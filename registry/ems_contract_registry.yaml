@@ -1,0 +1,31 @@
+# EMS Contract Registry
+# Phase 1 — Local Rebuild v1
+
+meta:
+  registry_id: ems_contract_registry
+  version: "0.1.0-rebuild"
+  updated_at_utc: "2026-05-10T20:00:00+00:00"
+  repo: EMS
+
+contracts:
+  ems_port_matrix:
+    path: "contracts/ems_port_matrix.yaml"
+    status: "active"
+    validated: true
+
+  ems_api_contract:
+    path: "contracts/ems_api_contract.yaml"
+    status: "active"
+    validated: true
+
+  ssid_core_integration:
+    path: "contracts/ssid_core_integration_contract.yaml"
+    status: "active"
+    validated: true
+
+policies:
+  no_service_start_in_rebuild: true
+  no_push_without_approval: true
+  no_provider_configs: true
+  no_secrets: true
+  no_env_files: true

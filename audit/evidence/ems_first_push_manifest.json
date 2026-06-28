@@ -1,0 +1,250 @@
+{
+  "manifest_id": "ems_first_push_manifest",
+  "timestamp_utc": "2026-05-10T20:00:00+00:00",
+  "repo": "C:\\Users\\bibel\\SSID-Workspace\\SSID-Arbeitsbereich\\Github\\EMS",
+  "file_count": 48,
+  "total_size_bytes": 90266,
+  "repository_tree_hash": "32c0949d83784e36e95f72a1def3fb3d680e6a45021164d0c2ad1a87daea7306",
+  "files": [
+    {
+      "path": ".github/workflows/ems-local-guard.yml",
+      "size_bytes": 1074,
+      "sha256": "bd3d2266fb02dfea89370c01b1c8b48a209dd500b267412737ab9c6f638cfae2"
+    },
+    {
+      "path": ".gitignore",
+      "size_bytes": 314,
+      "sha256": "cf481b8c23f9d3951b15efe69730e5ea57d8725f90e9d3a11b0fdfc511ef8353"
+    },
+    {
+      "path": "approvals/templates/ems_remote_push_approval_template.yaml",
+      "size_bytes": 373,
+      "sha256": "fb0d28ab6eb386b9566a2ef7f41e7ff1db7b76321e54d5fe8efb68b8ae2b203d"
+    },
+    {
+      "path": "audit/evidence/EMS_3H_REBUILD_REPORT.md",
+      "size_bytes": 3593,
+      "sha256": "84e2d1aa63c778c9298943c2542aca34b5847fb85f97da8dd72be9a3a2db1a8a"
+    },
+    {
+      "path": "audit/evidence/ems_first_push_manifest.json",
+      "size_bytes": 8762,
+      "sha256": "99266eeb53711e5531c4feaed7be5b26f790b5d7ac1ee2133b747feb0d0e39ce"
+    },
+    {
+      "path": "audit/evidence/ems_phase2_approval_validation.json",
+      "size_bytes": 4978,
+      "sha256": "9bd80ee5cd27e7132fcfb4df419f05e06c2e6137482afd600b071552161bd7f8"
+    },
+    {
+      "path": "audit/evidence/ems_phase2_push_execution_plan.json",
+      "size_bytes": 697,
+      "sha256": "1d6e6df7ad614ac281ba3f13e568f703afc7ddc4e04bfa04db5beccd022e1672"
+    },
+    {
+      "path": "audit/evidence/ems_phase2_push_gate.json",
+      "size_bytes": 480,
+      "sha256": "6b294f8bbe02243e81ecb5a79c08eef157548d26aa74e3135f9bacf8403ca464"
+    },
+    {
+      "path": "audit/evidence/ems_rebuild_evidence.json",
+      "size_bytes": 1959,
+      "sha256": "3536b25f0e6cd0d583832805c33917c5a8f4526a0c213c77cd8409427a2600fb"
+    },
+    {
+      "path": "audit/score/ems_phase2_approval_score.json",
+      "size_bytes": 448,
+      "sha256": "c1b57e7359536d6886c5fb791b9dcdf8d68ed4a57fefb6322ac8272842f0158d"
+    },
+    {
+      "path": "audit/score/ems_rebuild_score.json",
+      "size_bytes": 453,
+      "sha256": "cc5f79f3f1b7d5c2ce1fbacc0a94f0a11bbec9f6441fa0e2b585f683e1486a8a"
+    },
+    {
+      "path": "backend/app/__init__.py",
+      "size_bytes": 109,
+      "sha256": "99b3d2c80b63c9b62aa285404aba3926e1c50536f62eb11c3364de3710ae5869"
+    },
+    {
+      "path": "backend/app/api_contract.py",
+      "size_bytes": 3439,
+      "sha256": "59f8795814483f6f5abfb97ce7347b0523a6277f16af7db1c905ef068fa52685"
+    },
+    {
+      "path": "backend/app/config.py",
+      "size_bytes": 807,
+      "sha256": "e0cef1080e22c40e8e8727c0952cba86173871e2d2c27ab80a035374cbde0c97"
+    },
+    {
+      "path": "backend/app/health.py",
+      "size_bytes": 1093,
+      "sha256": "697c42ee8939f55ba535e057e13ef3fbb72aacc42c3c757913039d59eb4196b0"
+    },
+    {
+      "path": "backend/app/main.py",
+      "size_bytes": 1024,
+      "sha256": "9dd677ca22bda763a713f23ecdf097b2352739a1e14c7a02a59213939ebd68e8"
+    },
+    {
+      "path": "backend/app/version.py",
+      "size_bytes": 167,
+      "sha256": "7cb1794022f5d5f1cabdb7011aa078032985f04bf75bc19e3be3321f1739553c"
+    },
+    {
+      "path": "backend/tests/conftest.py",
+      "size_bytes": 169,
+      "sha256": "a3ffb4ed295657966cbf09d0ffd067b5636d2ed40a21c5d9ec9aa97465d93394"
+    },
+    {
+      "path": "backend/tests/test_api_contract.py",
+      "size_bytes": 1404,
+      "sha256": "6b27c8a28102c59c4e7a360795609b8f21649c0ce2a0af50a729e690d8a4e242"
+    },
+    {
+      "path": "backend/tests/test_config.py",
+      "size_bytes": 1111,
+      "sha256": "dddc74d4d35c7658ecef93880d1993cf0b0e3c6d41cb70f63d5157759bb2ed90"
+    },
+    {
+      "path": "backend/tests/test_health.py",
+      "size_bytes": 1208,
+      "sha256": "ce4887158ae8c6f4bcf026b10e9b7f31a594a57133ba80485d1b1e7c8ed95c29"
+    },
+    {
+      "path": "contracts/ems_api_contract.yaml",
+      "size_bytes": 1761,
+      "sha256": "afa662d3758ba7db264224d84ca22d1d5a839e95e73cc3fadb4f045cb572d1f3"
+    },
+    {
+      "path": "contracts/ems_port_matrix.yaml",
+      "size_bytes": 622,
+      "sha256": "2b46ae6c11b17249986362dae9c94508c85d04962548a55e744f22a3bc1080e1"
+    },
+    {
+      "path": "contracts/ssid_core_integration_contract.yaml",
+      "size_bytes": 1481,
+      "sha256": "1b69c11fd39226853e60c0dc4782569e5372a88b9f93096f65d158984aea5539"
+    },
+    {
+      "path": "docs/EMS_ARCHITECTURE.md",
+      "size_bytes": 1823,
+      "sha256": "604cd452fb2a20eeacdec43f72aea8fc873ebf400a436512e4477dd60f9c9e9e"
+    },
+    {
+      "path": "docs/EMS_LOCAL_REBUILD_RUNBOOK.md",
+      "size_bytes": 1514,
+      "sha256": "90a305c9dc606d5fbd47addb4f3bdf9cbe94ab7b718d0319dfa846800e9958c3"
+    },
+    {
+      "path": "docs/EMS_SECURITY_BOUNDARIES.md",
+      "size_bytes": 1374,
+      "sha256": "5cbe710f1a06faf53dbb8de1421109170f0dbd32ab4386474338631a80e9ccbe"
+    },
+    {
+      "path": "frontend/src/App.tsx",
+      "size_bytes": 715,
+      "sha256": "5e6beb515d79a94586f72bad8594e68b651697daa4ae1d79651dbadc92db6f14"
+    },
+    {
+      "path": "frontend/src/config.ts",
+      "size_bytes": 866,
+      "sha256": "8491a51e68bdfddba5151363fa1f39b557aa1f860a8d641838969d35303d83f3"
+    },
+    {
+      "path": "frontend/src/healthContract.ts",
+      "size_bytes": 1436,
+      "sha256": "ab2c8c193b69c1d47f7cf1ed1e58192eaf619bd28f9bed82f6387169e6b4346a"
+    },
+    {
+      "path": "frontend/tests/healthContract.test.ts",
+      "size_bytes": 1421,
+      "sha256": "202e9da823a2d83bf99a2e0c56d06bfc792106971cc70eea8156fbed725b7f29"
+    },
+    {
+      "path": "README.md",
+      "size_bytes": 1262,
+      "sha256": "5ac73fe4fec5a44740b1bf0364ee30ce3b1aec072b074596b2d4c0021a3f3967"
+    },
+    {
+      "path": "registry/ems_contract_registry.yaml",
+      "size_bytes": 678,
+      "sha256": "9bfe0fe3c174d9a03d1659e07b6c9faa8e8c4fc8de31e6a8cf687bdcb9fa412b"
+    },
+    {
+      "path": "registry/ems_module_registry.yaml",
+      "size_bytes": 1917,
+      "sha256": "0eba65c492906f2a66d8aa99c0c04f6a4593962ba249dfe79e0e3a411b799146"
+    },
+    {
+      "path": "registry/ems_push_registry.yaml",
+      "size_bytes": 966,
+      "sha256": "f8c2c129db9dad15afebaa539e44a0eeb1cbe6e4f98c1173e926c268804c4290"
+    },
+    {
+      "path": "registry/ems_remote_registry.yaml",
+      "size_bytes": 551,
+      "sha256": "c4c08d5e2e1c47a8af71caee363fcc35939ac98aacd76da2f2c3bcaa2969fed7"
+    },
+    {
+      "path": "schemas/ems_remote_push_approval.schema.json",
+      "size_bytes": 1314,
+      "sha256": "37640ecfe5257cfaca9d2f4a504cc491c870fcfd64adb14609cd46e974ef7c88"
+    },
+    {
+      "path": "scripts/ems_phase2_approval_validation.py",
+      "size_bytes": 2739,
+      "sha256": "daa03f7d178e5afae7b25a3da197cab3c74343aeb58184d90b25ff1da1148ad1"
+    },
+    {
+      "path": "scripts/ems_push_gate.py",
+      "size_bytes": 4066,
+      "sha256": "c263af131569a6a8091a674ffa264f29cdb46848ac78b18c30b73d541f7871f6"
+    },
+    {
+      "path": "scripts/ems_score.py",
+      "size_bytes": 7124,
+      "sha256": "87850be516eba67fbbcfad4a2f5c817ad02f2b367e017b03035c50e83259f157"
+    },
+    {
+      "path": "scripts/ems_static_guard.py",
+      "size_bytes": 11058,
+      "sha256": "d6fe1254bfb008ebdc1e6f12462219618a226d52bc5453389940763cc47de409"
+    },
+    {
+      "path": "scripts/ems_validation.py",
+      "size_bytes": 4500,
+      "sha256": "81972ff08ad789d305163aa7e1c9e5d6f6b18eadb638fb394657a8ecfd9fb5e3"
+    },
+    {
+      "path": "scripts/first_push_manifest.py",
+      "size_bytes": 2240,
+      "sha256": "52d600e90846ee2ef224332e9c027d661cf25b14f6a7a2d52616a4ae5a599d98"
+    },
+    {
+      "path": "tests/conftest.py",
+      "size_bytes": 162,
+      "sha256": "7224232d6a56b0b01ac73ed05757f62ed01e4dbbf8a5385965b73d14a1427ff7"
+    },
+    {
+      "path": "tests/test_ems_push_gate.py",
+      "size_bytes": 1732,
+      "sha256": "7b9013ce14e0eff82bd5cfe45004a0044698b52702c428e4c0178626506d20f9"
+    },
+    {
+      "path": "tests/test_ems_score.py",
+      "size_bytes": 934,
+      "sha256": "280cc7abae9df8cd0eb9ef85a6b7cd89eff4ec7372027e9b1ab41a623701044a"
+    },
+    {
+      "path": "tests/test_ems_static_guard.py",
+      "size_bytes": 1142,
+      "sha256": "c7dcc0b8ffd73e300531cc2dd17665dc23366ba40260c67c689a6fc972bc0abf"
+    },
+    {
+      "path": "tests/test_first_push_manifest.py",
+      "size_bytes": 1206,
+      "sha256": "daf04401a1f0d5bf864263fa5e6fb31f6d021cfc111f7cdc1803aaeaa16131f3"
+    }
+  ]
+}

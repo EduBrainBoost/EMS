@@ -1,0 +1,16 @@
+approval_id: ""
+approved_by: ""
+approved_at_utc: ""
+allowed_repos:
+  - "EMS"
+allowed_remote: "https://github.com/EduBrainBoost/EMS.git"
+allowed_branch: "main"
+approved_tree_hash: ""
+pre_push_manifest_required: true
+expires_at_utc: ""
+push_mode: "first_push_only"
+force_push_allowed: false
+pull_allowed: false
+fetch_allowed: false
+merge_allowed: false
+rebase_allowed: false

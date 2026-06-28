@@ -1,0 +1,44 @@
+name: EMS Local Guard
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  guard:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pytest pyyaml
+
+      - name: Run EMS Static Guard
+        run: python scripts/ems_static_guard.py
+
+      - name: Run Backend Tests
+        run: python -m pytest backend/tests -q
+
+      - name: Run Root Tests
+        run: python -m pytest tests -q
+
+      - name: Run First Push Manifest
+        run: python scripts/first_push_manifest.py
+
+      - name: Run EMS Validation
+        run: python scripts/ems_validation.py
+
+      - name: Check Score
+        run: |
+          SCORE=$(python -c "import json; print(json.load(open('audit/score/ems_rebuild_score.json'))['total_score'])")
+          echo "Score: $SCORE"
+          if [ "$SCORE" -lt 95 ]; then exit 1; fi
