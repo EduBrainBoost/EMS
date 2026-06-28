@@ -1,0 +1,29 @@
+{
+  "evidence_id": "ems_phase2_push_execution_plan",
+  "timestamp_utc": "2026-05-11T01:30:18+00:00",
+  "phase": "2",
+  "remote": "https://github.com/EduBrainBoost/EMS.git",
+  "branch": "main",
+  "planned_command": "git push -u origin main",
+  "force_push_allowed": false,
+  "push_executed": false,
+  "required_before_push": [
+    "ems_static_guard PASS",
+    "backend tests PASS",
+    "tests PASS",
+    "first_push_manifest PASS",
+    "approval file exists",
+    "approval gate PASS",
+    "no secrets",
+    "no forbidden ports",
+    "no service start"
+  ],
+  "forbidden_commands": [
+    "git push --force",
+    "git pull",
+    "git fetch",
+    "git merge",
+    "git rebase"
+  ],
+  "valid": true
+}

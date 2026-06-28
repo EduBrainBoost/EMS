@@ -1,0 +1,70 @@
+# EMS API Contract — Local Rebuild v1
+# Defines the EMS surface area. No auth. No PII. No secrets.
+
+meta:
+  version: "0.1.0-rebuild"
+  phase: "phase1_local_rebuild"
+  updated_at_utc: "2026-05-10T20:00:00+00:00"
+
+service: "EMS"
+base_path: "/"
+
+endpoints:
+  /health:
+    method: GET
+    description: "Liveness probe"
+    auth_required: false
+    response_schema:
+      type: object
+      required: [service, status, started, mode]
+      properties:
+        service: { type: string }
+        status: { type: string, enum: [not_started] }
+        started: { type: boolean }
+        mode: { type: string }
+
+  /readiness:
+    method: GET
+    description: "Readiness probe"
+    auth_required: false
+    response_schema:
+      type: object
+      required: [service, status, reason, started, mode]
+      properties:
+        service: { type: string }
+        status: { type: string, enum: [not_ready] }
+        reason: { type: string }
+        started: { type: boolean }
+        mode: { type: string }
+
+  /version:
+    method: GET
+    description: "Version information"
+    auth_required: false
+    response_schema:
+      type: object
+      required: [service, version, mode]
+      properties:
+        service: { type: string }
+        version: { type: string }
+        mode: { type: string }
+
+  /api/contract:
+    method: GET
+    description: "Self-describing API contract"
+    auth_required: false
+    response_schema:
+      type: object
+      required: [service, version, mode, endpoints]
+      properties:
+        service: { type: string }
+        version: { type: string }
+        mode: { type: string }
+        endpoints: { type: object }
+
+policies:
+  no_auth_in_scaffold: true
+  no_pii: true
+  no_secrets: true
+  no_provider_calls: true
+  no_service_start: true

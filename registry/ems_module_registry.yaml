@@ -1,0 +1,83 @@
+# EMS Module Registry
+# Phase 1 — Local Rebuild v1
+
+meta:
+  registry_id: ems_module_registry
+  version: "0.1.0-rebuild"
+  updated_at_utc: "2026-05-10T20:00:00+00:00"
+  repo: EMS
+
+modules:
+  backend:
+    name: "EMS Backend"
+    path: "backend/app"
+    language: "python"
+    port: 8100
+    status: "rebuilt_not_started"
+    entrypoint: "backend/app/main.py"
+    start_allowed: false
+
+  frontend:
+    name: "EMS Frontend"
+    path: "frontend/src"
+    language: "typescript"
+    port: 3100
+    status: "rebuilt_not_started"
+    entrypoint: "frontend/src/App.tsx"
+    start_allowed: false
+
+  contracts:
+    name: "EMS Contracts"
+    path: "contracts"
+    language: "yaml"
+    status: "active"
+
+  guard:
+    name: "EMS Static Guard"
+    path: "scripts/ems_static_guard.py"
+    language: "python"
+    status: "active"
+    purpose: "Policy enforcement before start/push"
+
+  score:
+    name: "EMS Score Calculator"
+    path: "scripts/ems_score.py"
+    language: "python"
+    status: "active"
+
+  validation:
+    name: "EMS Validation Orchestrator"
+    path: "scripts/ems_validation.py"
+    language: "python"
+    status: "active"
+
+  manifest:
+    name: "EMS First Push Manifest"
+    path: "scripts/first_push_manifest.py"
+    language: "python"
+    status: "active"
+
+  push_gate:
+    name: "EMS Push Gate"
+    path: "scripts/ems_push_gate.py"
+    language: "python"
+    status: "active"
+    purpose: "Blocks push without approval"
+
+  phase2_validator:
+    name: "EMS Phase 2 Approval Validation"
+    path: "scripts/ems_phase2_approval_validation.py"
+    language: "python"
+    status: "active"
+
+  approval_schema:
+    name: "EMS Push Approval Schema"
+    path: "schemas/ems_remote_push_approval.schema.json"
+    language: "json"
+    status: "active"
+
+  approval_template:
+    name: "EMS Push Approval Template"
+    path: "approvals/templates/ems_remote_push_approval_template.yaml"
+    language: "yaml"
+    status: "active"

@@ -1,0 +1,18 @@
+{
+  "score_version": "ems_phase2_v1",
+  "timestamp_utc": "2026-05-11T01:30:18+00:00",
+  "phase": "2",
+  "max_score": 100,
+  "pass_threshold": 95,
+  "total_score": 100,
+  "status": "pass",
+  "breakdown": {
+    "preflight_passed": 20,
+    "approval_schema_written": 15,
+    "approval_template_written": 15,
+    "push_gate_blocks_without_approval": 20,
+    "push_execution_plan_written": 10,
+    "registry_updated": 10,
+    "report_written": 10
+  }
+}

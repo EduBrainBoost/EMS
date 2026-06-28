@@ -1,0 +1,77 @@
+{
+  "evidence_id": "ems_phase2_approval_validation",
+  "timestamp_utc": "2026-05-11T01:32:42.712549+00:00",
+  "phase": "2",
+  "checks": {
+    "ems_static_guard": {
+      "scan": "ems_static_guard",
+      "timestamp": "2026-05-10T20:00:00+00:00",
+      "repo": "<REDACTED_LOCAL_PATH>",
+      "findings_count": 0,
+      "structure_findings": [],
+      "findings": [],
+      "contract_violations": [],
+      "status": "pass",
+      "exit_code": 0,
+      "path_redacted": true,
+      "redaction_reason": "LOCAL_ABSOLUTE_PATH_REMOVED"
+    },
+    "backend_tests": {
+      "exit_code": 0,
+      "pass": true,
+      "stdout": "...................                                                      [100%]\n19 passed in 0.03s\n",
+      "stderr": ""
+    },
+    "root_tests": {
+      "exit_code": 0,
+      "pass": true,
+      "stdout": "..................                                                       [100%]\n18 passed in 1.46s\n",
+      "stderr": ""
+    },
+    "first_push_manifest": {
+      "manifest_id": "ems_first_push_manifest",
+      "file_count": 48,
+      "total_size_bytes": 90266,
+      "repository_tree_hash": "32c0949d83784e36e95f72a1def3fb3d680e6a45021164d0c2ad1a87daea7306",
+      "exit_code": 0
+    },
+    "ems_push_gate": {
+      "gate_id": "ems_push_gate_v1",
+      "created_at_utc": "2026-05-11T01:32:45.890515+00:00",
+      "gate_status": "blocked",
+      "push_allowed": false,
+      "approval_required": true,
+      "approval_file_exists": false,
+      "approval_valid": false,
+      "block_reason": "approval_missing",
+      "remote": "https://github.com/EduBrainBoost/EMS.git",
+      "branch": "main",
+      "approved_tree_hash": null,
+      "actual_tree_hash": "32c0949d83784e36e95f72a1def3fb3d680e6a45021164d0c2ad1a87daea7306",
+      "exit_code": 21
+    },
+    "ems_score": {
+      "score_version": "ems_rebuild_v1",
+      "timestamp_utc": "2026-05-10T20:00:00+00:00",
+      "max_score": 100,
+      "pass_threshold": 95,
+      "total_score": 100,
+      "status": "pass",
+      "breakdown": {
+        "repo_structure": 15,
+        "backend_contract": 15,
+        "frontend_contract": 10,
+        "contracts_written": 15,
+        "port_policy": 15,
+        "no_service_start": 10,
+        "tests_passed": 10,
+        "evidence_written": 5,
+        "registry_updated": 5
+      },
+      "exit_code": 0
+    }
+  },
+  "approval_file_exists": false,
+  "approval_file_expected": false,
+  "all_checks_pass": true
+}

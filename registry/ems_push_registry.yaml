@@ -1,0 +1,30 @@
+# EMS Push Registry
+# Phase 2 — Explicit First Push Approval Package
+
+meta:
+  registry_id: ems_push_registry
+  version: "0.1.0-approval"
+  updated_at_utc: "2026-05-11T01:30:18+00:00"
+  repo: EMS
+
+pushes:
+  EMS_FIRST_PUSH:
+    push_id: "EMS_FIRST_PUSH"
+    status: "blocked_waiting_for_approval"
+    remote: "https://github.com/EduBrainBoost/EMS.git"
+    branch: "main"
+    tree_hash: "8d8a6838cbc92cf8826230787db24604e8fd2d7aafb7ea4f131682c09fde6401"
+    manifest_path: "audit/evidence/ems_first_push_manifest.json"
+    approval_required: true
+    approval_file: "approvals/ems_remote_push_approval.yaml"
+    approval_template: "approvals/templates/ems_remote_push_approval_template.yaml"
+    approval_schema: "schemas/ems_remote_push_approval.schema.json"
+    push_executed: false
+
+policies:
+  no_push_without_approval: true
+  no_force_push: true
+  no_pull_before_push: true
+  no_fetch_before_push: true
+  no_merge_before_push: true
+  no_rebase_before_push: true

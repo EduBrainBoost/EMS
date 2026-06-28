@@ -1,0 +1,37 @@
+# Secrets and local configs
+.env
+.env.*
+*.key
+*.pem
+*.p12
+*.pfx
+local_config*
+provider_config*
+mcp_config*
+secrets*
+
+# Python
+__pycache__/
+.pytest_cache/
+.venv/
+venv/
+*.egg-info/
+*.pyc
+
+# Node
+node_modules/
+dist/
+build/
+coverage/
+
+# OS and logs
+.DS_Store
+Thumbs.db
+*.log
+*.sqlite
+*.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
