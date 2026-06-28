@@ -26,9 +26,48 @@ TRACKED_EVIDENCE_FILES = [
     REPO_ROOT / "audit" / "score" / "ems_rebuild_score.json",
 ]
 
+CURATED_MANIFEST_REL = "audit/evidence/ems_recovery_curated_manifest_2026-06-28.json"
+CURATION_LEDGER = REPO_ROOT / "audit" / "evidence" / "EMS_RECOVERY_CURATION_LEDGER_2026-06-28.md"
+CURATED_MANIFEST = REPO_ROOT / CURATED_MANIFEST_REL
+CURATED_MANIFEST_SELF_EXCLUSION = {
+    "path": CURATED_MANIFEST_REL,
+    "reason": "SELF_DESCRIBING_MANIFEST_EXCLUDED_TO_AVOID_RECURSIVE_HASH_PARADOX",
+}
+
 
 def sha256_file(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def git_lines(*args: str) -> list[str]:
+    return subprocess.check_output(
+        ["git", *args],
+        cwd=REPO_ROOT,
+        text=True,
+    ).splitlines()
+
+
+def git_bytes(relative_path: str) -> bytes:
+    return subprocess.check_output(
+        ["git", "show", f":{relative_path}"],
+        cwd=REPO_ROOT,
+    )
+
+
+def git_object_id(relative_path: str) -> str:
+    return subprocess.check_output(
+        ["git", "rev-parse", f"HEAD:{relative_path}"],
+        cwd=REPO_ROOT,
+        text=True,
+    ).strip()
+
+
+def load_curated_manifest() -> dict:
+    return json.loads(CURATED_MANIFEST.read_text(encoding="utf-8"))
+
+
+def ledger_text() -> str:
+    return CURATION_LEDGER.read_text(encoding="utf-8")
 
 
 def walk_json_values(value):
@@ -146,3 +185,58 @@ def test_recovery_writer_scripts_do_not_mutate_tracked_evidence_when_output_root
 
     after = {path: sha256_file(path) for path in TRACKED_EVIDENCE_FILES}
     assert after == before
+
+
+def test_curated_manifest_declares_exact_scope_and_self_exclusion_only():
+    manifest = load_curated_manifest()
+
+    assert manifest["hash_algorithm"] == "SHA-256"
+    assert manifest["hash_input"] == "canonical_git_blob_content_bytes"
+    assert manifest["scope"] == "tracked_recovery_tree_except_explicit_scope_exclusions"
+    assert manifest["scope_exclusions"] == [CURATED_MANIFEST_SELF_EXCLUSION]
+
+    tracked_files = set(git_lines("ls-tree", "-r", "--name-only", "HEAD"))
+    manifest_files = [entry["relative_path"] for entry in manifest["files"]]
+
+    assert manifest_files == sorted(manifest_files)
+    assert len(manifest_files) == len(set(manifest_files))
+    assert set(manifest_files) == tracked_files - {CURATED_MANIFEST_REL}
+    assert CURATED_MANIFEST_REL not in manifest_files
+
+
+def test_curated_manifest_hashes_canonical_git_file_content_bytes_not_git_object_ids():
+    manifest = load_curated_manifest()
+
+    for entry in manifest["files"]:
+        content = git_bytes(entry["relative_path"])
+        assert entry["size_bytes"] == len(content)
+        assert entry["sha256"] == hashlib.sha256(content).hexdigest()
+        assert len(entry["sha256"]) == 64
+        assert entry["sha256"] != git_object_id(entry["relative_path"])
+
+
+def test_curation_ledger_declares_required_delta_categories_and_all_manifest_paths():
+    manifest = load_curated_manifest()
+    text = ledger_text()
+
+    required_categories = {
+        "LINE_ENDING_ONLY",
+        "TRANSPORT_MUTATION_REPAIRED",
+        "LOCAL_PATH_REDACTION",
+        "TEST_OUTPUT_ISOLATION",
+        "LICENSE_GUARD_POLICY_ALIGNMENT",
+        "RECOVERY_ASSURANCE_ARTIFACT_ADDED",
+    }
+    for category in required_categories:
+        assert category in text
+
+    assert "UNEXPLAINED_MISMATCH_COUNT:\n0" in text
+    assert "PASS_WITH_DECLARED_CURATION_DELTAS" in text
+
+    documented_paths = set(
+        re.findall(r"relative_path:\s+([^\n]+)", text)
+    )
+    for entry in manifest["files"]:
+        assert entry["relative_path"] in documented_paths
+
+    assert CURATED_MANIFEST_REL in documented_paths
