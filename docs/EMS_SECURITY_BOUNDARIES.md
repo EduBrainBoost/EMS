@@ -32,8 +32,8 @@ These boundaries are enforced by `scripts/ems_static_guard.py` and must hold for
 
 ### Tabu Paths
 - No references to:
-  - `C:\Users\bibel\Documents\Github`
-  - `C:\Users\bibel\OneDrive\Dokumente\Github`
+  - `<REDACTED_LOCAL_PATH>`
+  - `<REDACTED_LOCAL_PATH>`
 
 ### No Direct Core Writes
 - EMS must not write to `16_codex`
@@ -44,3 +44,6 @@ These boundaries are enforced by `scripts/ems_static_guard.py` and must hold for
 - Push requires approval file
 - Approval must be validated by guard
 - Force push is forbidden
+
+
+Path redaction: LOCAL_ABSOLUTE_PATH_REMOVED

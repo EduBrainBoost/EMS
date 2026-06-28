@@ -7,7 +7,7 @@
 2026-05-11T01:30:18+00:00
 
 ## Repo
-EMS (`C:\Users\bibel\SSID-Workspace\SSID-Arbeitsbereich\Github\EMS`)
+EMS (`<REDACTED_LOCAL_PATH>`)
 
 ## Remote
 - **URL**: `https://github.com/EduBrainBoost/EMS.git`
@@ -107,3 +107,6 @@ EMS (`C:\Users\bibel\SSID-Workspace\SSID-Arbeitsbereich\Github\EMS`)
 ## Nächster Prompt
 
 **EMS-PHASE-3** — Explicit First Push Execution
+
+
+Path redaction: LOCAL_ABSOLUTE_PATH_REMOVED

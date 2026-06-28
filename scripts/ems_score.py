@@ -4,6 +4,7 @@ Generates a deterministic score based on EMS rebuild artifacts.
 """
 
 import json
+import os
 import sys
 from pathlib import Path
 
@@ -23,6 +24,13 @@ MAX_SCORE = 100
 PASS_THRESHOLD = 95
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
+
+
+def output_root() -> Path:
+    configured = os.environ.get("EMS_TEST_OUTPUT_ROOT")
+    if configured:
+        return Path(configured)
+    return REPO_ROOT
 
 
 def check_repo_structure() -> tuple[int, str]:
@@ -182,7 +190,8 @@ def calculate_score(test_result: int = 10, evidence_present: bool = False) -> di
 
 def main():
     score = calculate_score(evidence_present=True)
-    out_path = REPO_ROOT / "audit/score/ems_rebuild_score.json"
+    out_path = output_root() / "audit/score/ems_rebuild_score.json"
+    out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(json.dumps(score, indent=2), encoding="utf-8")
     print(json.dumps(score, indent=2))
     return 0 if score["status"] == "pass" else 1

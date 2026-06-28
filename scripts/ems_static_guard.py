@@ -23,9 +23,9 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 FORBIDDEN_PORTS = {3000, 3001, 3002, 3210, 5173, 4321, 8000}
 ALLOWED_PORTS = {3100, 8100}
 
-TABU_PATHS = [
-    r"C:\Users\bibel\Documents\Github",
-    r"C:\Users\bibel\OneDrive\Dokumente\Github",
+TABU_PATH_MARKERS = [
+    r"Documents\Github",
+    r"OneDrive\Dokumente\Github",
 ]
 
 FORBIDDEN_FILES = {
@@ -73,6 +73,7 @@ ALLOWED_ROOT_ITEMS = {
     ".github",
     "README.md",
     ".gitignore",
+    "LICENSE",
     ".git",
     ".pytest_cache",
 }
@@ -206,12 +207,12 @@ def check_tabu_paths(text: str, rel_path: str) -> list[dict]:
     if rel_fwd in GUARD_REL_PATHS or is_doc_or_guard(rel_path):
         return []
     findings = []
-    for tabu in TABU_PATHS:
-        if tabu in text:
+    for marker in TABU_PATH_MARKERS:
+        if marker in text:
             findings.append({
                 "file": rel_path,
                 "reason": "tabu_path_detected",
-                "path": tabu,
+                "path_marker": marker,
             })
     return findings
 

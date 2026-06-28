@@ -5,6 +5,7 @@ Deterministically inventories the entire repo for pre-push verification.
 
 import hashlib
 import json
+import os
 import sys
 from pathlib import Path
 
@@ -23,6 +24,20 @@ EXCLUDES = {
     ".env.local",
     ".env.production",
 }
+
+
+def output_root() -> Path:
+    configured = os.environ.get("EMS_TEST_OUTPUT_ROOT")
+    if configured:
+        return Path(configured)
+    return REPO_ROOT
+
+
+def redacted_repo_reference(repo_root: Path) -> tuple[str, bool]:
+    repo_text = str(repo_root)
+    if "\\Users\\" in repo_text or "/home/" in repo_text:
+        return "<REDACTED_LOCAL_PATH>", True
+    return repo_text, False
 
 
 def sha256_file(path: Path) -> str:
@@ -59,10 +74,13 @@ def generate_manifest(repo_root: Path) -> dict:
     )
     tree_hash = hashlib.sha256(tree_input.encode("utf-8")).hexdigest()
 
+    repo_reference, path_redacted = redacted_repo_reference(repo_root)
     manifest = {
         "manifest_id": "ems_first_push_manifest",
         "timestamp_utc": "2026-05-10T20:00:00+00:00",
-        "repo": str(repo_root),
+        "repo": repo_reference,
+        "path_redacted": path_redacted,
+        "redaction_reason": "LOCAL_ABSOLUTE_PATH_REMOVED" if path_redacted else None,
         "file_count": len(files),
         "total_size_bytes": total_size,
         "repository_tree_hash": tree_hash,
@@ -73,7 +91,8 @@ def generate_manifest(repo_root: Path) -> dict:
 
 def main():
     manifest = generate_manifest(REPO_ROOT)
-    out_path = REPO_ROOT / "audit/evidence/ems_first_push_manifest.json"
+    out_path = output_root() / "audit/evidence/ems_first_push_manifest.json"
+    out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(
         json.dumps(manifest, indent=2, ensure_ascii=False),
         encoding="utf-8",

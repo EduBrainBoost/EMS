@@ -4,6 +4,7 @@ Runs all checks and produces evidence + report.
 """
 
 import json
+import os
 import subprocess
 import sys
 from datetime import datetime, timezone
@@ -11,6 +12,13 @@ from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 APPROVAL_FILE = REPO_ROOT / "approvals" / "ems_remote_push_approval.yaml"
+
+
+def output_root() -> Path:
+    configured = os.environ.get("EMS_TEST_OUTPUT_ROOT")
+    if configured:
+        return Path(configured)
+    return REPO_ROOT
 
 
 def run_script(name: str, *args) -> dict:
@@ -75,7 +83,8 @@ def main():
         ),
     }
 
-    ev_path = REPO_ROOT / "audit/evidence/ems_phase2_approval_validation.json"
+    ev_path = output_root() / "audit/evidence/ems_phase2_approval_validation.json"
+    ev_path.parent.mkdir(parents=True, exist_ok=True)
     ev_path.write_text(json.dumps(evidence, indent=2), encoding="utf-8")
 
     print(json.dumps({

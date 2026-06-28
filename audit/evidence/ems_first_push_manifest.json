@@ -1,7 +1,7 @@
 {
   "manifest_id": "ems_first_push_manifest",
   "timestamp_utc": "2026-05-10T20:00:00+00:00",
-  "repo": "C:\\Users\\bibel\\SSID-Workspace\\SSID-Arbeitsbereich\\Github\\EMS",
+  "repo": "<REDACTED_LOCAL_PATH>",
   "file_count": 48,
   "total_size_bytes": 90266,
   "repository_tree_hash": "32c0949d83784e36e95f72a1def3fb3d680e6a45021164d0c2ad1a87daea7306",
@@ -246,5 +246,7 @@
       "size_bytes": 1206,
       "sha256": "daf04401a1f0d5bf864263fa5e6fb31f6d021cfc111f7cdc1803aaeaa16131f3"
     }
-  ]
+  ],
+  "path_redacted": true,
+  "redaction_reason": "LOCAL_ABSOLUTE_PATH_REMOVED"
 }

@@ -9,14 +9,31 @@ Exit codes:
 """
 
 import json
+import os
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 APPROVAL_FILE = REPO_ROOT / "approvals" / "ems_remote_push_approval.yaml"
-MANIFEST_FILE = REPO_ROOT / "audit" / "evidence" / "ems_first_push_manifest.json"
-EVIDENCE_FILE = REPO_ROOT / "audit" / "evidence" / "ems_phase2_push_gate.json"
+
+
+def output_root() -> Path:
+    configured = os.environ.get("EMS_TEST_OUTPUT_ROOT")
+    if configured:
+        return Path(configured)
+    return REPO_ROOT
+
+
+def manifest_file() -> Path:
+    candidate = output_root() / "audit" / "evidence" / "ems_first_push_manifest.json"
+    if candidate.exists():
+        return candidate
+    return REPO_ROOT / "audit" / "evidence" / "ems_first_push_manifest.json"
+
+
+def evidence_file() -> Path:
+    return output_root() / "audit" / "evidence" / "ems_phase2_push_gate.json"
 
 EXPECTED_REMOTE = "https://github.com/EduBrainBoost/EMS.git"
 EXPECTED_BRANCH = "main"
@@ -33,10 +50,11 @@ def load_approval() -> dict | None:
 
 
 def load_manifest_tree_hash() -> str | None:
-    if not MANIFEST_FILE.exists():
+    path = manifest_file()
+    if not path.exists():
         return None
     try:
-        data = json.loads(MANIFEST_FILE.read_text(encoding="utf-8"))
+        data = json.loads(path.read_text(encoding="utf-8"))
         return data.get("repository_tree_hash")
     except Exception:
         return None
@@ -115,8 +133,9 @@ def main() -> int:
         "actual_tree_hash": actual_hash,
     }
 
-    EVIDENCE_FILE.parent.mkdir(parents=True, exist_ok=True)
-    EVIDENCE_FILE.write_text(json.dumps(gate, indent=2, ensure_ascii=False), encoding="utf-8")
+    out_path = evidence_file()
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(json.dumps(gate, indent=2, ensure_ascii=False), encoding="utf-8")
 
     print(json.dumps(gate, indent=2))
 

@@ -4,6 +4,7 @@ Runs all checks and produces evidence + report.
 """
 
 import json
+import os
 import subprocess
 import sys
 from datetime import datetime, timezone
@@ -11,6 +12,13 @@ from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 SSID_ROOT = REPO_ROOT.parent / "SSID"
+
+
+def output_root() -> Path:
+    configured = os.environ.get("EMS_TEST_OUTPUT_ROOT")
+    if configured:
+        return Path(configured)
+    return REPO_ROOT
 
 
 def run_guard() -> dict:
@@ -116,10 +124,12 @@ def main():
         "repo_root": str(REPO_ROOT),
     }
 
-    ev_path = REPO_ROOT / "audit/evidence/ems_rebuild_evidence.json"
+    ev_path = output_root() / "audit/evidence/ems_rebuild_evidence.json"
+    ev_path.parent.mkdir(parents=True, exist_ok=True)
     ev_path.write_text(json.dumps(evidence, indent=2), encoding="utf-8")
 
-    sc_path = REPO_ROOT / "audit/score/ems_rebuild_score.json"
+    sc_path = output_root() / "audit/score/ems_rebuild_score.json"
+    sc_path.parent.mkdir(parents=True, exist_ok=True)
     sc_path.write_text(json.dumps(score, indent=2), encoding="utf-8")
 
     print(json.dumps({"validation": "complete", "score": score["total_score"], "status": score["status"]}, indent=2))
