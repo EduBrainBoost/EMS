@@ -1,0 +1,19 @@
+{
+  "score_version": "ems_rebuild_v1",
+  "timestamp_utc": "2026-05-10T20:00:00+00:00",
+  "max_score": 100,
+  "pass_threshold": 95,
+  "total_score": 100,
+  "status": "pass",
+  "breakdown": {
+    "repo_structure": 15,
+    "backend_contract": 15,
+    "frontend_contract": 10,
+    "contracts_written": 15,
+    "port_policy": 15,
+    "no_service_start": 10,
+    "tests_passed": 10,
+    "evidence_written": 5,
+    "registry_updated": 5
+  }
+}

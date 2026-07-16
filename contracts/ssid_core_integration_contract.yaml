@@ -1,0 +1,44 @@
+# SSID-EMS ↔ SSID Core Integration Contract
+# Defines how EMS interacts with the SSID Core without violating boundaries.
+
+meta:
+  version: "0.1.0-scaffold"
+  phase: "phase1_local_scaffold"
+  updated_at_utc: "2026-05-10T19:00:00+00:00"
+
+principles:
+  - EMS reads from SSID Core registries and ledgers.
+  - EMS never writes directly to the Source of Truth (16_codex).
+  - EMS never modifies core logic autonomously.
+  - EMS never triggers external provider calls on behalf of core.
+
+integrations:
+  execution_ledger:
+    description: "EMS may read run records from the SSID Core execution ledger for observability."
+    direction: "read_only"
+    allowed: true
+
+  evidence_writer:
+    description: "EMS may submit its own evidence to a dedicated EMS evidence namespace."
+    direction: "write"
+    allowed: true
+    constraint: "Must not overwrite SSID Core evidence."
+
+  score_writer:
+    description: "EMS writes its own scores to a dedicated EMS score namespace."
+    direction: "write"
+    allowed: true
+    constraint: "Must not overwrite SSID Core scores."
+
+  registry_bridge:
+    description: "EMS registers its own modules in the EMS module registry."
+    direction: "write"
+    allowed: true
+    constraint: "Must not modify SSID Core root registries (e.g., ROOT-24-LOCK)."
+
+forbidden_actions:
+  - direct_write_to_sot
+  - autonomous_core_logic_modification
+  - external_provider_calls_from_core_context
+  - override_of_core_root_registry
+  - push_to_core_remote_without_approval

@@ -1,0 +1,24 @@
+# EMS Remote Registry
+# Phase 2 — Explicit First Push Approval Package
+
+meta:
+  registry_id: ems_remote_registry
+  version: "0.1.0-approval"
+  updated_at_utc: "2026-05-11T01:30:18+00:00"
+  repo: EMS
+
+remote:
+  name: "origin"
+  repo: "EduBrainBoost/EMS"
+  remote_url: "https://github.com/EduBrainBoost/EMS.git"
+  default_branch: "main"
+  origin_status: "configured"
+
+policies:
+  push_allowed: false
+  fetch_allowed: false
+  pull_allowed: false
+  merge_allowed: false
+  rebase_allowed: false
+  force_push_allowed: false
+  remote_create_allowed: false

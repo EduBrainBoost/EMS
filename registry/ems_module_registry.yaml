@@ -1,0 +1,46 @@
+# SSID-EMS Module Registry
+# Phase 1 — Local Operational Scaffold v1
+
+meta:
+  registry_id: ems_module_registry
+  version: "0.1.0-scaffold"
+  updated_at_utc: "2026-05-10T19:00:00+00:00"
+  repo: SSID-EMS
+
+modules:
+  backend:
+    name: "SSID-EMS Backend"
+    path: "backend/app"
+    language: "python"
+    port: 8100
+    status: "scaffolded_not_started"
+    entrypoint: "backend/app/main.py"
+    start_allowed: false
+
+  frontend:
+    name: "SSID-EMS Frontend"
+    path: "frontend/src"
+    language: "typescript"
+    port: 3100
+    status: "scaffolded_not_started"
+    entrypoint: "frontend/src/App.tsx"
+    start_allowed: false
+
+  guard:
+    name: "EMS Static Guard"
+    path: "scripts/ems_static_guard.py"
+    language: "python"
+    status: "active"
+    purpose: "Policy enforcement before start/push"
+
+  score:
+    name: "EMS Score Calculator"
+    path: "scripts/ems_score.py"
+    language: "python"
+    status: "active"
+
+  validation:
+    name: "EMS Validation Orchestrator"
+    path: "scripts/ems_validation.py"
+    language: "python"
+    status: "active"

@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EMS Remote Push Approval",
+  "type": "object",
+  "required": [
+    "approval_id",
+    "approved_by",
+    "approved_at_utc",
+    "allowed_repos",
+    "allowed_remote",
+    "allowed_branch",
+    "approved_tree_hash",
+    "pre_push_manifest_required",
+    "expires_at_utc",
+    "push_mode",
+    "force_push_allowed",
+    "pull_allowed",
+    "fetch_allowed",
+    "merge_allowed",
+    "rebase_allowed"
+  ],
+  "properties": {
+    "approval_id": { "type": "string" },
+    "approved_by": { "type": "string" },
+    "approved_at_utc": { "type": "string", "format": "date-time" },
+    "allowed_repos": { "type": "array", "items": { "type": "string" } },
+    "allowed_remote": { "type": "string" },
+    "allowed_branch": { "type": "string" },
+    "approved_tree_hash": { "type": "string" },
+    "pre_push_manifest_required": { "type": "boolean" },
+    "expires_at_utc": { "type": "string", "format": "date-time" },
+    "push_mode": { "type": "string", "enum": ["first_push_only", "allowed"] },
+    "force_push_allowed": { "type": "boolean" },
+    "pull_allowed": { "type": "boolean" },
+    "fetch_allowed": { "type": "boolean" },
+    "merge_allowed": { "type": "boolean" },
+    "rebase_allowed": { "type": "boolean" }
+  },
+  "additionalProperties": true
+}

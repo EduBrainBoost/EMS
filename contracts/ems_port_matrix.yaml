@@ -1,0 +1,32 @@
+# SSID-EMS Port Matrix — Local Operational Scaffold v1
+# No service start. Ports are configuration-only in this phase.
+
+meta:
+  version: "0.1.0-scaffold"
+  phase: "phase1_local_scaffold"
+  updated_at_utc: "2026-05-10T19:00:00+00:00"
+
+ports:
+  frontend:
+    port: 3100
+    purpose: "EMS Web UI"
+    status: "configured_not_started"
+  backend:
+    port: 8100
+    purpose: "EMS API"
+    status: "configured_not_started"
+
+forbidden_ports:
+  - 3000
+  - 3001
+  - 3002
+  - 3210
+  - 5173
+  - 4321
+  - 8000
+
+policies:
+  start_policy: "no_service_start_in_phase"
+  validation_required: true
+  bind_check_on_start: true
+  fail_on_forbidden_port: true

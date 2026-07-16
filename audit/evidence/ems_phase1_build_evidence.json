@@ -1,0 +1,59 @@
+{
+  "evidence_id": "ems_phase1_build_evidence",
+  "timestamp_utc": "2026-05-10T19:52:44.721815+00:00",
+  "ssid_preflight": {
+    "structure_guard.py": {
+      "exit_code": 24,
+      "status": "fail"
+    },
+    "secret_scan.py": {
+      "exit_code": 0,
+      "status": "pass"
+    },
+    "forbidden_path_scan.py": {
+      "exit_code": 0,
+      "status": "pass"
+    }
+  },
+  "ems_guard": {
+    "scan": "ems_static_guard",
+    "timestamp": "2026-05-10T19:00:00+00:00",
+    "repo": "C:\\Users\\bibel\\SSID-Workspace\\SSID-Arbeitsbereich\\Github\\SSID-EMS",
+    "findings_count": 0,
+    "findings": [],
+    "contract_violations": [],
+    "status": "pass",
+    "exit_code": 0
+  },
+  "backend_tests": {
+    "exit_code": 0,
+    "stdout": ".................                                                        [100%]\n17 passed in 0.04s\n",
+    "stderr": "",
+    "pass": true
+  },
+  "root_tests": {
+    "exit_code": 0,
+    "stdout": "........                                                                 [100%]\n8 passed in 0.65s\n",
+    "stderr": "",
+    "pass": true
+  },
+  "score": {
+    "score_version": "ems_phase1_v1",
+    "timestamp_utc": "2026-05-10T19:00:00+00:00",
+    "max_score": 100,
+    "pass_threshold": 95,
+    "total_score": 100,
+    "status": "pass",
+    "breakdown": {
+      "repo_structure": 15,
+      "backend_contract": 15,
+      "frontend_contract": 10,
+      "port_policy": 15,
+      "no_service_start": 15,
+      "tests_passed": 15,
+      "evidence_written": 10,
+      "registry_updated": 5
+    }
+  },
+  "repo_root": "C:\\Users\\bibel\\SSID-Workspace\\SSID-Arbeitsbereich\\Github\\SSID-EMS"
+}
