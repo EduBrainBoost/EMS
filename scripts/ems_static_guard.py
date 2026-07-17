@@ -108,20 +108,27 @@ def check_forbidden_ports_in_content(text: str, rel_path: str) -> list[dict]:
         return []
     findings = []
     for port in FORBIDDEN_PORTS:
-        if str(port) not in text:
+        port_str = str(port)
+        if port_str not in text:
             continue
         lines = text.splitlines()
         for i, line in enumerate(lines, start=1):
-            if str(port) in line:
-                lower = line.lower()
-                if "forbidden" in lower or "verboten" in lower or "port" in lower:
-                    continue
-                findings.append({
-                    "file": rel_path,
-                    "line": i,
-                    "port": port,
-                    "reason": "forbidden_port_in_source",
-                })
+            if port_str not in line:
+                continue
+            idx = line.index(port_str)
+            if (idx > 0 and line[idx - 1] in "0123456789abcdefABCDEFxX") or (
+                idx + len(port_str) < len(line) and line[idx + len(port_str)] in "0123456789abcdefABCDEFxX"
+            ):
+                continue
+            lower = line.lower()
+            if "forbidden" in lower or "verboten" in lower or "port" in lower:
+                continue
+            findings.append({
+                "file": rel_path,
+                "line": i,
+                "port": port,
+                "reason": "forbidden_port_in_source",
+            })
     return findings
 
 

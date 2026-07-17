@@ -1,0 +1,91 @@
+# SSID-EMS API Matrix
+# Stand: 2026-07-16T11:43:04Z
+
+endpoints:
+  - path: "/health"
+    method: GET
+    auth: false
+    description: "Liveness Probe"
+    response: "{service, status, started, mode}"
+  - path: "/api/health"
+    method: GET
+    auth: false
+    description: "Alias fuer /health"
+    response: "identisch"
+  - path: "/readiness"
+    method: GET
+    auth: false
+    description: "Readiness Probe"
+    response: "{service, status, reason, started, mode}"
+  - path: "/version"
+    method: GET
+    auth: false
+    description: "Version"
+    response: "{service, version, mode}"
+  - path: "/status"
+    method: GET
+    auth: false
+    description: "Aggregierter Status"
+    response: "{service, version, mode, started, backend_port, frontend_port, health, readiness}"
+  - path: "/api/contract"
+    method: GET
+    auth: false
+    description: "Self-describing API Contract"
+    response: "{service, version, mode, endpoints, policies}"
+  - path: "/api/mvp/health"
+    method: GET
+    auth: false
+    description: "Runtime Health"
+    response: "{service, status, runtime_id, adapter, auth_boundary, persistence_decision, external_services, diagnostics, privacy_boundary, persistence_boundary}"
+  - path: "/api/mvp/demo"
+    method: GET
+    auth: false
+    description: "Deterministic Demo Fixture"
+    response: "{demo_id, request, api_response, ui_result, audit_evidence, privacy_boundary}"
+  - path: "/api/mvp/verify"
+    method: POST
+    auth: "Demo-Auth (Header X-SSID-Demo-Auth)"
+    description: "Verification Result"
+    response: "{status, api_response, ui_result, audit_evidence, product_audit_chain, privacy_boundary}"
+  - path: "/api/mvp/auth/login"
+    method: POST
+    auth: false
+    description: "Demo Login"
+    response: "{status, authenticated, session_mode, user_role, privacy_boundary, persistence_boundary}"
+  - path: "/api/mvp/auth/session"
+    method: GET
+    auth: false
+    description: "Session Check"
+    response: "{status, authenticated, session_mode, persistence, privacy_boundary, persistence_boundary}"
+  - path: "/api/mvp/auth/logout"
+    method: POST
+    auth: false
+    description: "Logout"
+    response: "{status, authenticated, session_mode, privacy_boundary, persistence_boundary}"
+
+error_codes:
+  route_not_found: 404
+  method_not_allowed: 405
+  invalid_json: 400
+  schema_violation: 400
+  payload_too_large: 413
+  unknown_fields_rejected: 400
+  unsupported_version: 400
+  invalid_status_injection: 400
+  auth_required: 403
+  fake_token_rejected: 403
+  production_auth_not_allowed: 403
+  auth_boundary_violation: 400
+  AUTH_INVALID_DEMO_CREDENTIALS: 401
+  wrong_content_type: 415
+
+policies:
+  no_auth_in_scaffold: false
+  no_pii: true
+  no_secrets: true
+  start_services: false
+  backend_port: 8100
+  frontend_port: 3100
+  auth_boundary: "safe-demo-auth-stub"
+  persistence: "in-memory-hash-only-stub"
+  external_services: "NOT_USED"

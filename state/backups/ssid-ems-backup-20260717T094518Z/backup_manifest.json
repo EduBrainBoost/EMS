@@ -1,0 +1,25 @@
+{
+  "audit_chain": {
+    "chain_valid": true,
+    "event_count": 1,
+    "first_event_id": "aud_27da8f07149fa51b5546a4ae57c4f08b",
+    "last_event_hash": "01999736732b827b76e5b1c693b396fdb45159fd113b4ba8753e09f497e024a3",
+    "last_event_id": "aud_27da8f07149fa51b5546a4ae57c4f08b"
+  },
+  "backup_id": "ssid-ems-backup-20260717T094518Z",
+  "config_manifest": {
+    "cors_allowed_origins": [
+      "http://127.0.0.1:3100",
+      "http://localhost:3100"
+    ],
+    "demo_auth_enabled": false,
+    "env_mode": "local_scaffold",
+    "min_password_length": 12,
+    "session_ttl_seconds": 3600,
+    "version": "0.1.0-scaffold"
+  },
+  "created_at_utc": "2026-07-17T09:45:18Z",
+  "integrity_check": true,
+  "schema_version": 1,
+  "source_db": "C:\\Users\\bibel\\SSID-Workspace\\SSID-Arbeitsbereich\\Github\\SSID-EMS\\state\\debug_backup2.db"
+}

@@ -1,6 +1,6 @@
 {
   "gate_id": "ems_push_gate_v1",
-  "created_at_utc": "2026-07-16T11:29:55.771638+00:00",
+  "created_at_utc": "2026-07-17T10:25:18.268161+00:00",
   "gate_status": "blocked",
   "push_allowed": false,
   "approval_required": true,
@@ -10,5 +10,5 @@
   "remote": "https://github.com/EduBrainBoost/EMS.git",
   "branch": "main",
   "approved_tree_hash": null,
-  "actual_tree_hash": "fa27fc22af39106cca3816682e89728b3748061c43694c7e4252a3e44ba5ba47"
+  "actual_tree_hash": "53bd4c730fdeb73b1f5ea3bebc774e1147c917facab2895e24be6268efa8056e"
 }

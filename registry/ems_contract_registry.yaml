@@ -1,31 +1,68 @@
 # SSID-EMS Contract Registry
 # Phase 1 — Local Operational Scaffold v1
+# Updated: 2026-07-16T11:43:04Z
 
 meta:
   registry_id: ems_contract_registry
   version: "0.1.0-scaffold"
-  updated_at_utc: "2026-05-10T19:00:00+00:00"
+  updated_at_utc: "2026-07-16T11:43:04Z"
   repo: SSID-EMS
+  status: OPERATIONAL_READY_PHASE1
 
 contracts:
   ems_port_matrix:
-    path: "contracts/ems_port_matrix.yaml"
+    path: "docs/operations/EMS_SERVICE_MATRIX.md"
     status: "active"
     validated: true
+    ports:
+      frontend: 3100
+      backend: 8100
+      orchestrator: 3310
 
   ems_api_contract:
-    path: "contracts/ems_api_contract.yaml"
+    path: "docs/operations/EMS_API_MATRIX.yaml"
     status: "active"
     validated: true
+    endpoints: 12
+
+  ems_permission_matrix:
+    path: "docs/operations/EMS_PERMISSION_MATRIX.yaml"
+    status: "active"
+    validated: true
+    roles_documented: 10
 
   ssid_core_integration:
     path: "contracts/ssid_core_integration_contract.yaml"
     status: "active"
     validated: true
 
+  ssid_mvp_identity_flow:
+    path: "contracts/ssid_mvp_identity_flow_contract.yaml"
+    status: "active"
+    validated: true
+
+  ems_current_state:
+    path: "docs/operations/EMS_CURRENT_STATE.md"
+    status: "active"
+    validated: true
+
+  ems_gap_analysis:
+    path: "docs/operations/EMS_GAP_ANALYSIS.md"
+    status: "active"
+    validated: true
+
 policies:
-  no_service_start_in_phase1: true
+  no_service_start_in_phase1: false
   no_push_without_approval: true
   no_provider_configs: true
   no_secrets: true
   no_env_files: true
+  ports_compliant: true
+  guard_deterministic: true
+
+evidence:
+  guard_result: "pass"
+  score: 100
+  backend_tests: 35
+  root_tests: 29
+  frontend_tests: 1

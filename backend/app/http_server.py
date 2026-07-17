@@ -13,6 +13,17 @@ if str(REPO_ROOT) not in sys.path:
 
 from backend.app.health import full_status, health_status, readiness_status, version_status
 from backend.app.runtime_http_adapter import LocalRuntimeAdapter
+from backend.app.config import EMS_BACKEND_PORT, START_SERVICES
+
+_OPERATIONAL_ADAPTER = None
+
+
+def _get_operational_adapter():
+    global _OPERATIONAL_ADAPTER
+    if _OPERATIONAL_ADAPTER is None and START_SERVICES:
+        from backend.app.operational_adapter import OperationalAdapter
+        _OPERATIONAL_ADAPTER = OperationalAdapter()
+    return _OPERATIONAL_ADAPTER
 
 
 class BackendRequestHandler(BaseHTTPRequestHandler):
@@ -30,49 +41,113 @@ class BackendRequestHandler(BaseHTTPRequestHandler):
         self.wfile.write(payload)
 
     def do_GET(self) -> None:  # noqa: N802
-        adapter = self.server.adapter  # type: ignore[attr-defined]
-        if self.path in {"/health", "/api/health"}:
-            self._send_json(200, health_status())
+        adapter = getattr(self.server, "adapter", None) or _get_operational_adapter()
+        try:
+            if self.path in {"/health", "/api/health"}:
+                self._send_json(200, health_status())
+                return
+            if self.path == "/readiness":
+                self._send_json(200, readiness_status())
+                return
+            if self.path == "/version":
+                self._send_json(200, version_status())
+                return
+            if self.path == "/status":
+                self._send_json(200, full_status())
+                return
+            if self.path.startswith("/api/v1/"):
+                if adapter is None:
+                    self._send_json(501, {"status": "ERROR", "error_code": "operational_mode_disabled", "path": self.path})
+                    return
+                response = adapter.handle_request("GET", self.path, headers={key: value for key, value in self.headers.items()})
+                self._send_json(response["status_code"], response["body"])
+                return
+            if self.path == "/api/mvp/health":
+                response = adapter.handle_request("GET", "/api/mvp/health")
+                self._send_json(response["status_code"], response["body"])
+                return
+            if self.path == "/api/mvp/demo":
+                response = adapter.handle_request("GET", "/api/mvp/demo")
+                self._send_json(response["status_code"], response["body"])
+                return
+            if self.path == "/api/mvp/auth/session":
+                response = adapter.handle_request("GET", "/api/mvp/auth/session")
+                self._send_json(response["status_code"], response["body"])
+                return
+            self._send_json(404, {"status": "ERROR", "error_code": "route_not_found", "path": self.path})
+        except Exception as exc:
+            status = getattr(exc, "status_code", 500)
+            error_code = getattr(exc, "error_code", "INTERNAL_ERROR")
+            message = str(exc) or "Internal server error"
+            self._send_json(status, {"status": "ERROR", "error_code": error_code, "message": message})
+
+    def _handle_api_v1(self, method: str) -> None:
+        adapter = getattr(self.server, "adapter", None) or _get_operational_adapter()
+        if adapter is None:
+            self._send_json(501, {"status": "ERROR", "error_code": "operational_mode_disabled", "path": self.path})
             return
-        if self.path == "/readiness":
-            self._send_json(200, readiness_status())
-            return
-        if self.path == "/version":
-            self._send_json(200, version_status())
-            return
-        if self.path == "/status":
-            self._send_json(200, full_status())
-            return
-        if self.path == "/api/mvp/health":
-            response = adapter.handle_request("GET", "/api/mvp/health")
-            self._send_json(response["status_code"], response["body"])
-            return
-        if self.path == "/api/mvp/demo":
-            response = adapter.handle_request("GET", "/api/mvp/demo")
-            self._send_json(response["status_code"], response["body"])
-            return
-        if self.path == "/api/mvp/auth/session":
-            response = adapter.handle_request("GET", "/api/mvp/auth/session")
-            self._send_json(response["status_code"], response["body"])
-            return
-        self._send_json(404, {"status": "ERROR", "error_code": "route_not_found", "path": self.path})
+        raw = b""
+        if method in {"POST", "PUT", "PATCH"}:
+            raw = self.rfile.read(int(self.headers.get("Content-Length", "0") or 0))
+        response = adapter.handle_request(method, self.path, raw_body=raw, headers={key: value for key, value in self.headers.items()})
+        self._send_json(response["status_code"], response["body"])
 
     def do_POST(self) -> None:  # noqa: N802
-        adapter = self.server.adapter  # type: ignore[attr-defined]
-        raw = self.rfile.read(int(self.headers.get("Content-Length", "0") or 0))
-        if self.path == "/api/mvp/verify":
-            response = adapter.handle_request("POST", "/api/mvp/verify", raw_body=raw, headers={key: value for key, value in self.headers.items()})
-            self._send_json(response["status_code"], response["body"])
-            return
-        if self.path == "/api/mvp/auth/login":
-            response = adapter.handle_request("POST", "/api/mvp/auth/login", raw_body=raw, headers={key: value for key, value in self.headers.items()})
-            self._send_json(response["status_code"], response["body"])
-            return
-        if self.path == "/api/mvp/auth/logout":
-            response = adapter.handle_request("POST", "/api/mvp/auth/logout", headers={key: value for key, value in self.headers.items()})
-            self._send_json(response["status_code"], response["body"])
-            return
-        self._send_json(405, {"status": "ERROR", "error_code": "method_not_allowed", "path": self.path})
+        try:
+            if self.path.startswith("/api/v1/"):
+                self._handle_api_v1("POST")
+                return
+            if self.path == "/api/mvp/verify":
+                self._handle_api_v1("POST")
+                return
+            if self.path == "/api/mvp/auth/login":
+                self._handle_api_v1("POST")
+                return
+            if self.path == "/api/mvp/auth/logout":
+                self._handle_api_v1("POST")
+                return
+            self._send_json(405, {"status": "ERROR", "error_code": "method_not_allowed", "path": self.path})
+        except Exception as exc:
+            status = getattr(exc, "status_code", 500)
+            error_code = getattr(exc, "error_code", "INTERNAL_ERROR")
+            message = str(exc) or "Internal server error"
+            self._send_json(status, {"status": "ERROR", "error_code": error_code, "message": message})
+
+    def do_PUT(self) -> None:  # noqa: N802
+        try:
+            if self.path.startswith("/api/v1/"):
+                self._handle_api_v1("PUT")
+                return
+            self._send_json(405, {"status": "ERROR", "error_code": "method_not_allowed", "path": self.path})
+        except Exception as exc:
+            status = getattr(exc, "status_code", 500)
+            error_code = getattr(exc, "error_code", "INTERNAL_ERROR")
+            message = str(exc) or "Internal server error"
+            self._send_json(status, {"status": "ERROR", "error_code": error_code, "message": message})
+
+    def do_PATCH(self) -> None:  # noqa: N802
+        try:
+            if self.path.startswith("/api/v1/"):
+                self._handle_api_v1("PATCH")
+                return
+            self._send_json(405, {"status": "ERROR", "error_code": "method_not_allowed", "path": self.path})
+        except Exception as exc:
+            status = getattr(exc, "status_code", 500)
+            error_code = getattr(exc, "error_code", "INTERNAL_ERROR")
+            message = str(exc) or "Internal server error"
+            self._send_json(status, {"status": "ERROR", "error_code": error_code, "message": message})
+
+    def do_DELETE(self) -> None:  # noqa: N802
+        try:
+            if self.path.startswith("/api/v1/"):
+                self._handle_api_v1("DELETE")
+                return
+            self._send_json(405, {"status": "ERROR", "error_code": "method_not_allowed", "path": self.path})
+        except Exception as exc:
+            status = getattr(exc, "status_code", 500)
+            error_code = getattr(exc, "error_code", "INTERNAL_ERROR")
+            message = str(exc) or "Internal server error"
+            self._send_json(status, {"status": "ERROR", "error_code": error_code, "message": message})
 
 
 class BackendHTTPServer(ThreadingHTTPServer):
@@ -84,7 +159,11 @@ class BackendHTTPServer(ThreadingHTTPServer):
 def create_backend_server(host: str = "127.0.0.1", port: int = 8100, adapter: LocalRuntimeAdapter | None = None) -> BackendHTTPServer:
     if host not in {"127.0.0.1", "localhost"}:
         raise ValueError("backend server may bind only to localhost")
-    return BackendHTTPServer((host, port), BackendRequestHandler, adapter)
+    global _OPERATIONAL_ADAPTER
+    if adapter is not None:
+        _OPERATIONAL_ADAPTER = adapter
+    server = BackendHTTPServer((host, port), BackendRequestHandler, adapter=adapter)
+    return server
 
 
 def serve_backend(host: str = "127.0.0.1", port: int = 8100) -> None:

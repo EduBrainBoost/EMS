@@ -3,6 +3,8 @@ SSID-EMS Health, Readiness, and Version Contracts
 No service start. No external calls.
 """
 
+from __future__ import annotations
+
 from backend.app.config import (
     EMS_BACKEND_PORT,
     EMS_FRONTEND_PORT,
