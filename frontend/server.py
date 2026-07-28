@@ -40,6 +40,20 @@ NAVIGATION = [
 ]
 SPA_ROUTE_PREFIXES = tuple(dict.fromkeys(RESTORE_ROUTES + ADMIN_ROUTES))
 
+
+def _is_spa_route(path: str) -> bool:
+    if path in {"/", "/index.html"}:
+        return True
+    path_parts = path.rstrip("/").split("/")
+    for route in SPA_ROUTE_PREFIXES:
+        route_parts = route.split("/")
+        if len(path_parts) != len(route_parts):
+            continue
+        if all((expected.startswith("[") and expected.endswith("]")) or expected == actual
+               for expected, actual in zip(route_parts, path_parts)):
+            return True
+    return False
+
 REPO_ROOT = Path(__file__).resolve().parents[1]
 INDEX_PATH = Path(__file__).with_name("index.html")
 
@@ -77,7 +91,7 @@ class FrontendRequestHandler(BaseHTTPRequestHandler):
         return "<html><body><h1>SSID-EMS Frontend</h1><p>Index missing.</p></body></html>"
 
     def do_GET(self) -> None:  # noqa: N802
-        if self.path in {"/", "/index.html"} or any(self.path == prefix or self.path.startswith(prefix + "/") for prefix in SPA_ROUTE_PREFIXES):
+        if _is_spa_route(self.path):
             self._send_html(200, self._index_html())
             return
         if self.path in {"/health", "/api/health"}:
@@ -97,7 +111,7 @@ class FrontendRequestHandler(BaseHTTPRequestHandler):
         self._send_json(404, {"status": "ERROR", "error_code": "route_not_found", "path": self.path})
 
     def do_HEAD(self) -> None:  # noqa: N802
-        if self.path in {"/", "/index.html"} or any(self.path == prefix or self.path.startswith(prefix + "/") for prefix in SPA_ROUTE_PREFIXES):
+        if _is_spa_route(self.path):
             payload = self._index_html().encode("utf-8")
             self.send_response(200)
             self.send_header("Content-Type", "text/html; charset=utf-8")
