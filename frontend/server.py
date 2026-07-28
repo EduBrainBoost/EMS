@@ -10,7 +10,35 @@ from typing import Any
 FRONTEND_PORT = 3100
 BACKEND_PORT = 8100
 SERVICE_NAME = "SSID-EMS"
-FRONTEND_MODE = "local_static_health_wrapper"
+FRONTEND_MODE = "local_static_admin_shell"
+
+# Canonical static route registry. Backend APIs remain the authority for data and permissions.
+RESTORE_ROUTES = [
+    "/console", "/live", "/office", "/team", "/board/[taskId]",
+    "/content/[contentId]", "/memory/[docId]", "/governance/command-center",
+    "/governance/remediation", "/governance/sot-status", "/operations",
+    "/automation", "/knowledge", "/risk",
+]
+ADMIN_ROUTES = [
+    "/admin/compliance/exceptions", "/admin/compliance/jurisdictions",
+    "/admin/audit/reports", "/admin/runtime/blockers", "/admin/settings",
+    "/admin/settings/providers", "/admin/settings/integrations",
+    "/admin/settings/feature-gates",
+]
+def _route_group(path: str) -> str:
+    if path in {"/console", "/live"}: return "Overview"
+    if path in {"/operations", "/office", "/team"}: return "Operations"
+    if path == "/automation": return "Automation"
+    if path in {"/knowledge", "/content/[contentId]", "/memory/[docId]"}: return "Knowledge"
+    if path == "/risk": return "Risk"
+    if path.startswith("/governance/"): return "Governance"
+    return "Admin"
+
+NAVIGATION = [
+    (_route_group(path), path.strip("/").replace("/", " / "), path)
+    for path in RESTORE_ROUTES + ADMIN_ROUTES
+]
+SPA_ROUTE_PREFIXES = tuple(dict.fromkeys(RESTORE_ROUTES + ADMIN_ROUTES))
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 INDEX_PATH = Path(__file__).with_name("index.html")
@@ -44,7 +72,7 @@ class FrontendRequestHandler(BaseHTTPRequestHandler):
         return "<html><body><h1>SSID-EMS Frontend</h1><p>Index missing.</p></body></html>"
 
     def do_GET(self) -> None:  # noqa: N802
-        if self.path in {"/", "/index.html"}:
+        if self.path in {"/", "/index.html"} or self.path in SPA_ROUTE_PREFIXES:
             self._send_html(200, self._index_html())
             return
         if self.path in {"/health", "/api/health"}:
@@ -64,7 +92,7 @@ class FrontendRequestHandler(BaseHTTPRequestHandler):
         self._send_json(404, {"status": "ERROR", "error_code": "route_not_found", "path": self.path})
 
     def do_HEAD(self) -> None:  # noqa: N802
-        if self.path in {"/", "/index.html"}:
+        if self.path in {"/", "/index.html"} or self.path in SPA_ROUTE_PREFIXES:
             payload = self._index_html().encode("utf-8")
             self.send_response(200)
             self.send_header("Content-Type", "text/html; charset=utf-8")
