@@ -77,7 +77,7 @@ class FrontendRequestHandler(BaseHTTPRequestHandler):
         return "<html><body><h1>SSID-EMS Frontend</h1><p>Index missing.</p></body></html>"
 
     def do_GET(self) -> None:  # noqa: N802
-        if self.path in {"/", "/index.html"} or self.path in SPA_ROUTE_PREFIXES:
+        if self.path in {"/", "/index.html"} or any(self.path == prefix or self.path.startswith(prefix + "/") for prefix in SPA_ROUTE_PREFIXES):
             self._send_html(200, self._index_html())
             return
         if self.path in {"/health", "/api/health"}:
@@ -97,7 +97,7 @@ class FrontendRequestHandler(BaseHTTPRequestHandler):
         self._send_json(404, {"status": "ERROR", "error_code": "route_not_found", "path": self.path})
 
     def do_HEAD(self) -> None:  # noqa: N802
-        if self.path in {"/", "/index.html"} or self.path in SPA_ROUTE_PREFIXES:
+        if self.path in {"/", "/index.html"} or any(self.path == prefix or self.path.startswith(prefix + "/") for prefix in SPA_ROUTE_PREFIXES):
             payload = self._index_html().encode("utf-8")
             self.send_response(200)
             self.send_header("Content-Type", "text/html; charset=utf-8")
