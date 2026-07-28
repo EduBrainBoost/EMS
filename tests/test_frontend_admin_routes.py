@@ -36,7 +36,7 @@ def test_canonical_admin_registry_has_unique_groups_and_all_routes():
     }
     assert len({path for _group, _label, path in server.NAVIGATION}) == len(server.NAVIGATION)
 
-    html = (REPO_ROOT / "frontend" / "index.html").read_text(encoding="utf-8")
+    html = server.FrontendRequestHandler._index_html(object())
     registered_paths = set(re.findall(r"['\"](/[^'\"]+)['\"]", html))
     assert set(server.RESTORE_ROUTES + server.ADMIN_ROUTES) <= registered_paths
     assert "renderRoute" in html

@@ -68,7 +68,12 @@ class FrontendRequestHandler(BaseHTTPRequestHandler):
 
     def _index_html(self) -> str:
         if INDEX_PATH.exists():
-            return INDEX_PATH.read_text(encoding="utf-8")
+            html = INDEX_PATH.read_text(encoding="utf-8")
+            links = "".join(
+                f'<a data-route="{path}" href="{path}">{label}</a>'
+                for _group, label, path in NAVIGATION
+            )
+            return html.replace("<!-- NAVIGATION_REGISTRY -->", links)
         return "<html><body><h1>SSID-EMS Frontend</h1><p>Index missing.</p></body></html>"
 
     def do_GET(self) -> None:  # noqa: N802
