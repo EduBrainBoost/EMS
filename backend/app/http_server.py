@@ -33,9 +33,11 @@ class BackendRequestHandler(BaseHTTPRequestHandler):
     def log_message(self, format: str, *args: Any) -> None:  # noqa: A003
         return
 
-    def _send_json(self, status_code: int, body: dict[str, Any]) -> None:
+    def _send_json(self, status_code: int, body: dict[str, Any], headers: dict[str, str] | None = None) -> None:
         payload = json.dumps(body, sort_keys=True).encode("utf-8")
         self.send_response(status_code)
+        for key, value in (headers or {}).items():
+            self.send_header(key, value)
         self.send_header("Content-Type", "application/json")
         self.send_header("Content-Length", str(len(payload)))
         self.end_headers()
@@ -60,6 +62,10 @@ class BackendRequestHandler(BaseHTTPRequestHandler):
                 self._send_json(200, get_api_contract())
                 return
             if self.path.startswith("/api/v1/"):
+                if isinstance(adapter, LocalRuntimeAdapter):
+                    response = adapter.handle_request("GET", self.path, headers={key: value for key, value in self.headers.items()})
+                    self._send_json(response["status_code"], response["body"], response.get("headers"))
+                    return
                 if adapter is None:
                     self._send_json(501, {"status": "ERROR", "error_code": "operational_mode_disabled", "path": self.path})
                     return
@@ -68,15 +74,19 @@ class BackendRequestHandler(BaseHTTPRequestHandler):
                 return
             if self.path == "/api/mvp/health":
                 response = adapter.handle_request("GET", "/api/mvp/health")
-                self._send_json(response["status_code"], response["body"])
+                self._send_json(response["status_code"], response["body"], response.get("headers"))
                 return
             if self.path == "/api/mvp/demo":
                 response = adapter.handle_request("GET", "/api/mvp/demo")
                 self._send_json(response["status_code"], response["body"])
                 return
+            if self.path.startswith("/api/v1/auth/"):
+                response = adapter.handle_request("GET", self.path, headers={key: value for key, value in self.headers.items()})
+                self._send_json(response["status_code"], response["body"], response.get("headers"))
+                return
             if self.path == "/api/mvp/auth/session":
-                response = adapter.handle_request("GET", "/api/mvp/auth/session")
-                self._send_json(response["status_code"], response["body"])
+                response = adapter.handle_request("GET", "/api/mvp/auth/session", headers={key: value for key, value in self.headers.items()})
+                self._send_json(response["status_code"], response["body"], response.get("headers"))
                 return
             self._send_json(404, {"status": "ERROR", "error_code": "route_not_found", "path": self.path})
         except Exception as exc:
@@ -93,8 +103,13 @@ class BackendRequestHandler(BaseHTTPRequestHandler):
         raw = b""
         if method in {"POST", "PUT", "PATCH"}:
             raw = self.rfile.read(int(self.headers.get("Content-Length", "0") or 0))
-        response = adapter.handle_request(method, self.path, raw_body=raw, headers={key: value for key, value in self.headers.items()})
-        self._send_json(response["status_code"], response["body"])
+        route = self.path
+        if isinstance(adapter, LocalRuntimeAdapter):
+            if route == "/api/v1/auth/login": route = "/api/mvp/auth/login"
+            elif route == "/api/v1/auth/logout": route = "/api/mvp/auth/logout"
+            elif route == "/api/v1/auth/session": route = "/api/mvp/auth/session"
+        response = adapter.handle_request(method, route, raw_body=raw, headers={key: value for key, value in self.headers.items()})
+        self._send_json(response["status_code"], response["body"], response.get("headers"))
 
     def do_POST(self) -> None:  # noqa: N802
         try:
