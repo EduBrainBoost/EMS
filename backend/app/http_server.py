@@ -11,7 +11,7 @@ REPO_ROOT = Path(__file__).resolve().parents[2]
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
-from backend.app.health import full_status, health_status, readiness_status, version_status
+from backend.app.health import full_status, health_status, readiness_status, set_runtime_state, version_status
 from backend.app.api_contract import get_api_contract
 from backend.app.runtime_http_adapter import LocalRuntimeAdapter
 from backend.app.config import EMS_BACKEND_PORT, START_SERVICES
@@ -172,12 +172,14 @@ def create_backend_server(host: str = "127.0.0.1", port: int = 8100, adapter: Lo
 
 def serve_backend(host: str = "127.0.0.1", port: int = 8100) -> None:
     server = create_backend_server(host=host, port=port)
+    set_runtime_state(started=True, ready=True)
     print(f"SSID-EMS backend listening on http://{host}:{server.server_address[1]}", flush=True)
     try:
         server.serve_forever()
     except KeyboardInterrupt:
         print("SSID-EMS backend shutting down", flush=True)
     finally:
+        set_runtime_state(started=False, ready=False)
         server.server_close()
 
 

@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import html
 import json
 import sys
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
@@ -82,12 +83,24 @@ class FrontendRequestHandler(BaseHTTPRequestHandler):
 
     def _index_html(self) -> str:
         if INDEX_PATH.exists():
-            html = INDEX_PATH.read_text(encoding="utf-8")
-            links = "".join(
-                f'<a data-route="{path}" href="{path}">{label}</a>'
+            document = INDEX_PATH.read_text(encoding="utf-8")
+            groups: dict[str, list[tuple[str, str]]] = {}
+            for group, label, path in NAVIGATION:
+                groups.setdefault(group, []).append((label, path))
+            links = []
+            for group, entries in groups.items():
+                links.append(f'<div class="group" role="group" aria-label="{html.escape(group, quote=True)}">{html.escape(group)}</div>')
+                links.extend(
+                    f'<a data-route="{html.escape(path, quote=True)}" href="{html.escape(path, quote=True)}">{html.escape(label)}</a>'
+                    for label, path in entries
+                )
+            registry = "".join(links)
+            breadcrumbs = "".join(
+                f'<span data-breadcrumb-route="{html.escape(path, quote=True)}">{html.escape(label)}</span>'
                 for _group, label, path in NAVIGATION
             )
-            return html.replace("<!-- NAVIGATION_REGISTRY -->", links)
+            document = document.replace("<!-- NAVIGATION_REGISTRY -->", registry)
+            return document.replace('<div class="crumbs" id="breadcrumbs"></div>', f'<div class="crumbs" id="breadcrumbs" aria-label="Breadcrumb">{breadcrumbs}</div>')
         return "<html><body><h1>SSID-EMS Frontend</h1><p>Index missing.</p></body></html>"
 
     def do_GET(self) -> None:  # noqa: N802
