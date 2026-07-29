@@ -57,7 +57,10 @@ class LocalRuntimeAdapter:
 
     def __init__(self, persistence: runtime.SafePersistenceStub | None = None) -> None:
         self.persistence = persistence or runtime.SafePersistenceStub()
-        self._demo_cache: dict[str, Any] | None = None
+        # Build the deterministic fixture before serving requests.  The first
+        # construction traverses the Sprint-01 evidence fixture; doing that on
+        # the request thread caused the live demo probe to exceed its timeout.
+        self._demo_cache: dict[str, Any] | None = runtime.runtime_demo_fixture()
         self._auth_authenticated = False
 
     def _auth_success(self) -> dict[str, Any]:

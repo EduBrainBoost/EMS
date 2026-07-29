@@ -12,6 +12,7 @@ if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
 from backend.app.health import full_status, health_status, readiness_status, version_status
+from backend.app.api_contract import get_api_contract
 from backend.app.runtime_http_adapter import LocalRuntimeAdapter
 from backend.app.config import EMS_BACKEND_PORT, START_SERVICES
 
@@ -54,6 +55,9 @@ class BackendRequestHandler(BaseHTTPRequestHandler):
                 return
             if self.path == "/status":
                 self._send_json(200, full_status())
+                return
+            if self.path == "/api/contract":
+                self._send_json(200, get_api_contract())
                 return
             if self.path.startswith("/api/v1/"):
                 if adapter is None:
