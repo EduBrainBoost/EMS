@@ -8,13 +8,20 @@ inside tests.
 from __future__ import annotations
 
 import json
+import os
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 import sys
 from typing import Any
 
 _GITHUB_ROOT = Path(__file__).resolve().parents[3]
-_SSID_REPO = _GITHUB_ROOT / "SSID"
+_SSID_REPO = Path(os.environ["SSID_REPO"]) if os.environ.get("SSID_REPO") else _GITHUB_ROOT / "SSID"
+_SSID_CANDIDATES = (
+    _SSID_REPO,
+    Path(r"C:\SSID-R\20260728T204803Z\SSID"),
+    Path(r"C:\Users\bibel\SSID-Workspace\SSID-Arbeitsbereich\Github\SSID"),
+)
+_SSID_REPO = next((candidate for candidate in _SSID_CANDIDATES if (candidate / "03_core" / "src").is_dir()), _SSID_REPO)
 _CORE_SRC = _SSID_REPO / "03_core" / "src"
 for candidate in (str(_CORE_SRC), str(_SSID_REPO)):
     if candidate not in sys.path:
