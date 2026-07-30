@@ -14,7 +14,7 @@ def _request(url: str, method: str = "GET", payload: dict | None = None, headers
     data = None if payload is None else json.dumps(payload).encode()
     request = urllib.request.Request(url, data=data, method=method, headers=headers or {})
     try:
-        with urllib.request.urlopen(request, timeout=5) as response:
+        with urllib.request.urlopen(request, timeout=5) as response:  # nosec B310 - run-owned localhost test server
             return response.status, response.headers, response.read()
     except urllib.error.HTTPError as exc:
         return exc.code, exc.headers, exc.read()

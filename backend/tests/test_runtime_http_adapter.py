@@ -15,7 +15,7 @@ def http_json(url: str, method: str = "GET", payload: dict | None = None, auth: 
         headers["X-SSID-Demo-Auth"] = auth
     request = urllib.request.Request(url, data=data, headers=headers, method=method)
     try:
-        with urllib.request.urlopen(request, timeout=5) as response:
+        with urllib.request.urlopen(request, timeout=5) as response:  # nosec B310 - run-owned localhost test server
             return response.status, json.loads(response.read().decode("utf-8"))
     except urllib.error.HTTPError as exc:
         return exc.code, json.loads(exc.read().decode("utf-8"))

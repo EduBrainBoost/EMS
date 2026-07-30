@@ -1,0 +1,22 @@
+{
+  "schema_version": "1",
+  "path": "release_tmp",
+  "exists": true,
+  "classification": "VERIFIED_GENERATED_TEMP",
+  "tracked": false,
+  "symlinks": [],
+  "items": [
+    {"path":"release_tmp/ems_a.zip","tracked":false,"symlink":false,"size_bytes":179346,"sha256":"30204671a91788e82c9c735ff5e468e4ddff8b741fc5c9098dbf2fddb1fbb738","classification":"VERIFIED_GENERATED_TEMP"},
+    {"path":"release_tmp/ems_b.zip","tracked":false,"symlink":false,"size_bytes":179346,"sha256":"30204671a91788e82c9c735ff5e468e4ddff8b741fc5c9098dbf2fddb1fbb738","classification":"VERIFIED_GENERATED_TEMP"}
+  ],
+  "file_count": 2,
+  "directory_count": 1,
+  "total_size_bytes": 358692,
+  "release_hash_confirmed": true,
+  "productive_artifact": false,
+  "legacy_evidence": false,
+  "registry_reference": false,
+  "outside_current_run": false,
+  "cleanup_authorized": true,
+  "cleanup_decision": "remove_exact_verified_temporary_path_only"
+}

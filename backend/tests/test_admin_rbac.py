@@ -49,7 +49,7 @@ def _http(url, method="GET", payload=None, headers=None, timeout=5):
         hdrs.update(headers)
     req = urllib.request.Request(url, data=data, headers=hdrs, method=method)
     try:
-        with urllib.request.urlopen(req, timeout=timeout) as resp:
+        with urllib.request.urlopen(req, timeout=timeout) as resp:  # nosec B310 - run-owned localhost test server
             raw = resp.read().decode("utf-8")
             return resp.status, resp.headers, __import__("json").loads(raw), raw
     except urllib.error.HTTPError as exc:

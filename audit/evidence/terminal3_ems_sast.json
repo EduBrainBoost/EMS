@@ -1,11 +1,24 @@
 {
   "schema_version": "1",
   "status": "PASS",
-  "tool": "repository-native bounded source review plus existing tests/static guard",
-  "findings": [],
-  "critical": 0,
-  "high": 0,
-  "repaired": ["session revoke path extraction", "cross-user resource authorization"],
-  "unresolved": 0,
-  "coverage": ["command injection", "path traversal", "SSRF", "SQL injection", "XSS", "CSRF", "CORS", "session", "cookies", "authorization", "deserialization", "cryptography", "randomness", "TLS", "sensitive logs", "audit", "rate limit", "header injection", "open redirect", "file upload"]
+  "tool": "bandit 1.9.4",
+  "command": "python -m bandit -r backend frontend scripts tests -q",
+  "policy": {
+    "repository_ci_workflow": ".github/workflows/ems-local-guard.yml",
+    "workflow_bandit_invocation": "not configured; repository policy was derived from the available local gate and actual Bandit run",
+    "local_gate": "Medium and High findings must be zero; Low findings are recorded and non-blocking",
+    "scan_excludes": [],
+    "global_suppression": false
+  },
+  "findings_before": {"high": 0, "medium": 12, "low": 470},
+  "findings_after": {"high": 0, "medium": 0, "low": 470},
+  "remediations": [
+    {"finding":"B608","file":"backend/app/repository.py","fix":"removed unnecessary f-string from fixed SELECT expression; dynamic identifiers remain fixed allowlists","test":"full pytest and Bandit"},
+    {"finding":"B310","files":"run-owned localhost HTTP test helpers and browser matrix","fix":"narrow per-call nosec B310 annotations with explicit localhost test-server rationale","test":"targeted HTTP tests, browser matrix and Bandit"}
+  ],
+  "suppressions": {"count": 11,"scope":"B310 only at run-owned localhost test calls","global":false},
+  "tests": {"targeted": "17 passed", "static_guard": "PASS, 0 findings", "compileall": "PASS"},
+  "unresolved_medium": 0,
+  "unresolved_high": 0,
+  "note": "B105/B110 were not Medium findings in the actual scan; they remain recorded as low-severity findings under the non-blocking policy."
 }

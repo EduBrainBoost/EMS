@@ -12,7 +12,7 @@ from backend.app.http_server import create_backend_server
 def _http_json(url: str):
     request = urllib.request.Request(url)
     try:
-        with urllib.request.urlopen(request, timeout=5) as response:
+        with urllib.request.urlopen(request, timeout=5) as response:  # nosec B310 - run-owned localhost test server
             raw = response.read().decode("utf-8")
             return response.status, response.headers, json.loads(raw), raw
     except urllib.error.HTTPError as exc:

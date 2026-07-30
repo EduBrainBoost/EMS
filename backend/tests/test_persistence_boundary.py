@@ -14,7 +14,7 @@ def _http_json(url: str, method: str = "GET", payload: dict | None = None):
     headers = {"Content-Type": "application/json"} if payload is not None else {}
     request = urllib.request.Request(url, data=data, headers=headers, method=method)
     try:
-        with urllib.request.urlopen(request, timeout=5) as response:
+        with urllib.request.urlopen(request, timeout=5) as response:  # nosec B310 - run-owned localhost test server
             raw = response.read().decode("utf-8")
             return response.status, response.headers, json.loads(raw), raw
     except urllib.error.HTTPError as exc:

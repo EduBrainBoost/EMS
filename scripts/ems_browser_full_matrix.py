@@ -19,7 +19,7 @@ def http(url: str, method: str = "GET", payload: dict | None = None, headers: di
     data = None if payload is None else json.dumps(payload).encode()
     request = urllib.request.Request(url, data=data, headers=headers or {}, method=method)
     try:
-        with urllib.request.urlopen(request, timeout=5) as response:
+        with urllib.request.urlopen(request, timeout=5) as response:  # nosec B310 - run-owned localhost test server
             raw = response.read()
             return response.status, dict(response.headers), json.loads(raw) if raw else {}
     except urllib.error.HTTPError as exc:

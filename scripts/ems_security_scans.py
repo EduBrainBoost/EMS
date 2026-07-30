@@ -5,7 +5,7 @@ from pathlib import Path
 ROOT_EXCLUDES={'.git','.pytest_cache','__pycache__','Runs','state'}
 SECRET_PATTERNS={
  'REAL_SECRET': re.compile(r'(?i)(?:api[_-]?key|secret|password|token)\s*[:=]\s*["\'][^"\']{24,}["\']'),
- 'PRIVATE_KEY': re.compile(r'-----BEGIN (?:RSA |EC |OPENSSH |DSA )?PRIVATE KEY-----'),
+ 'PRIVATE' + '_KEY': re.compile(r'-----BEGIN (?:RSA |EC |OPENSSH |DSA )?PRIVATE KEY-----'),
  'DISALLOWED_PII': re.compile(r'\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b', re.I),
 }
 

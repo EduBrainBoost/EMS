@@ -71,11 +71,12 @@ def list_users(store: PersistentStore, *, limit: int = 50, offset: int = 0, stat
         sort = "username_display"
     order = "DESC" if order.lower() == "desc" else "ASC"
     limit = max(1, min(limit, 200))
-    sql = f"SELECT * FROM users"
+    sql = "SELECT * FROM users"
     params: list = []
     if status:
         sql += " WHERE status = ?"
         params.append(status)
+
     sql += f" ORDER BY {sort} {order} LIMIT ? OFFSET ?"
     params.extend([limit, offset])
     with store.connection() as conn:

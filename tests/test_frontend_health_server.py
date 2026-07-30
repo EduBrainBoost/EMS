@@ -20,12 +20,12 @@ def load_server_module():
 
 
 def fetch_json(url: str) -> dict:
-    with urllib.request.urlopen(url, timeout=5) as response:
+    with urllib.request.urlopen(url, timeout=5) as response:  # nosec B310 - run-owned localhost test server
         return json.loads(response.read().decode("utf-8"))
 
 
 def fetch_text(url: str) -> str:
-    with urllib.request.urlopen(url, timeout=5) as response:
+    with urllib.request.urlopen(url, timeout=5) as response:  # nosec B310 - run-owned localhost test server
         return response.read().decode("utf-8")
 
 

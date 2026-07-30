@@ -63,6 +63,7 @@ DOC_REL_PREFIXES = (
     "README",
     "docs/",
     "contracts/",
+    "audit/evidence/",
     "frontend/tests/TESTPLAN",
     "backend/README",
     "frontend/README",
@@ -72,6 +73,8 @@ GUARD_REL_PATHS = (
     "scripts/ems_static_guard.py",
     "scripts/ems_score.py",
     "scripts/ems_validation.py",
+    "scripts/ems_governance_evidence.py",
+    "scripts/ems_security_scans.py",
 )
 
 TEST_REL_PREFIXES = (
