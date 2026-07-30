@@ -100,6 +100,8 @@ class OperationalAdapter:
         user = get_user_by_id(self.db, user_id)
         if not user:
             return self._error(404, "USER_NOT_FOUND", "User not found")
+        if user_id != ctx.user_id and "users.manage" not in ctx.permissions:
+            return self._error(403, "AUTH_RESOURCE_FORBIDDEN", "Resource belongs to another user")
         return self._ok({"user": _safe_user(user)})
 
     def handle_admin_user_status(self, ctx: AuthContext, user_id: str, payload: dict[str, Any]) -> dict[str, Any]:
@@ -218,7 +220,7 @@ class OperationalAdapter:
             ctx = resolve_session(self.db, token)
             if not ctx:
                 return self._error(401, "AUTH_SESSION_REQUIRED", "Authentication required")
-            return self.handle_admin_session_revoke(ctx, path.split("/")[-1])
+            return self.handle_admin_session_revoke(ctx, path.split("/")[-2])
 
         if method == "GET" and path == "/api/v1/admin/users":
             ctx = resolve_session(self.db, token)
@@ -272,7 +274,7 @@ class OperationalAdapter:
             ctx = resolve_session(self.db, token)
             if not ctx:
                 return self._error(401, "AUTH_SESSION_REQUIRED", "Authentication required")
-            return self.handle_admin_session_revoke(ctx, path.split("/")[-1])
+            return self.handle_admin_session_revoke(ctx, path.split("/")[-2])
 
         if method == "GET" and path == "/api/v1/admin/audit":
             ctx = resolve_session(self.db, token)
