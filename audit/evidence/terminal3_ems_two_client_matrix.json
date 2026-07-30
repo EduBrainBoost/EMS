@@ -1,0 +1,15 @@
+{
+  "schema_version": "1",
+  "status": "PARTIAL",
+  "client_a": {"isolation": "separate adapter/session state required", "verified": false},
+  "client_b": {"isolation": "separate adapter/session state required", "verified": false},
+  "cases": [
+    {"case": "own_resource_access", "status": "NOT_IMPLEMENTED"},
+    {"case": "cross_client_read_denied", "status": "NOT_IMPLEMENTED"},
+    {"case": "cross_client_write_denied", "status": "NOT_IMPLEMENTED"},
+    {"case": "logout_a_does_not_affect_b", "status": "NOT_IMPLEMENTED"},
+    {"case": "revocation_a_immediate", "status": "PARTIALLY_SUPPORTED"},
+    {"case": "admin_server_enforced", "status": "PASS_BY_EXISTING_RBAC_TESTS"}
+  ],
+  "unresolved": ["domain resource ownership and two-client live matrix not implemented in current scaffold"]
+}
