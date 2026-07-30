@@ -1,0 +1,11 @@
+{
+  "schema_version": "1",
+  "status": "PASS",
+  "tool": "repository-native bounded source review plus existing tests/static guard",
+  "findings": [],
+  "critical": 0,
+  "high": 0,
+  "repaired": ["session revoke path extraction", "cross-user resource authorization"],
+  "unresolved": 0,
+  "coverage": ["command injection", "path traversal", "SSRF", "SQL injection", "XSS", "CSRF", "CORS", "session", "cookies", "authorization", "deserialization", "cryptography", "randomness", "TLS", "sensitive logs", "audit", "rate limit", "header injection", "open redirect", "file upload"]
+}

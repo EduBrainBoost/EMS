@@ -1,0 +1,13 @@
+{
+  "schema_version": "1",
+  "status": "PASS_WITH_INVENTORY_SCOPE",
+  "runtime": "Python stdlib",
+  "test_dependencies": {"pytest": "installed environment; not declared by repository manifest", "playwright": "installed environment; browser smoke tooling"},
+  "direct_dependencies": [],
+  "transitive_dependencies": [],
+  "critical": 0,
+  "high": 0,
+  "unresolved": 0,
+  "unfixed_versions": [],
+  "note": "No requirements, pyproject, package.json, lockfile, or package manifest is tracked; no undeclared runtime dependency is introduced by EMS production code."
+}

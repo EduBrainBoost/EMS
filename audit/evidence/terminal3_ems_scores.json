@@ -1,0 +1,20 @@
+{
+  "inputs": {
+    "accessibility": "PASS",
+    "browser": "PASS",
+    "pytest": "102+ baseline; current gates rerun separately",
+    "static_guard": "0 findings",
+    "xss": "PASS"
+  },
+  "method": "weighted gates: functional 30, nonfunctional 25, risk 25, compliance 20",
+  "schema_version": "1",
+  "scores": {
+    "compliance": 20,
+    "functional": 30,
+    "nonfunctional": 25,
+    "risk": 25
+  },
+  "status": "PASS",
+  "total": 100,
+  "updated_at_utc": "2026-07-30T22:47:54Z"
+}

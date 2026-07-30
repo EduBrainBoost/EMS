@@ -1,0 +1,22 @@
+{
+  "controls": {
+    "AMLD6": {
+      "reason": "no AML/KYC case-management functionality",
+      "status": "NOT_APPLICABLE"
+    },
+    "DSGVO": {
+      "reason": "technical access controls, minimization and PII-free evidence present; legal obligations not certified",
+      "status": "PARTIAL"
+    },
+    "MiCA": {
+      "reason": "no crypto-asset or token functionality",
+      "status": "NOT_APPLICABLE"
+    },
+    "eIDAS": {
+      "reason": "no qualified electronic signature implementation",
+      "status": "NOT_APPLICABLE"
+    }
+  },
+  "schema_version": "1",
+  "status": "PARTIAL"
+}

@@ -1,0 +1,10 @@
+{
+  "schema_version": "1",
+  "status": "PASS_WITH_INVENTORY_SCOPE",
+  "direct_dependencies": [],
+  "transitive_dependencies": [],
+  "license_violations": 0,
+  "missing_license_metadata": 0,
+  "unresolved": 0,
+  "note": "No dependency manifest is tracked. Project-local production code uses Python standard library; Playwright is test-only environment tooling."
+}

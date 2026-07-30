@@ -1,0 +1,10 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.5",
+  "version": 1,
+  "metadata": {"component": {"name": "SSID-EMS", "version": "terminal3-closure"}},
+  "components": [
+    {"type": "framework", "name": "Python", "version": "3.14", "scope": "runtime", "purl": "pkg:generic/python@3.14"},
+    {"type": "library", "name": "Playwright", "scope": "test", "purl": "pkg:pypi/playwright"}
+  ]
+}

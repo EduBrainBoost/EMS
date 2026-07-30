@@ -1,0 +1,179 @@
+{
+  "badges": {
+    "badges": {
+      "accessibility": "PASS",
+      "browser": "PASS",
+      "compliance": "PASS",
+      "release": "PARTIAL",
+      "security": "PASS"
+    },
+    "schema_version": "1",
+    "status": "PASS"
+  },
+  "registry": {
+    "duplicate_ids": [],
+    "duplicate_paths": [],
+    "entries": [
+      {
+        "evidence_reference": "audit/evidence/terminal3_ems_csp_verification.json",
+        "id": "security_headers",
+        "owner": "terminal-3",
+        "path": "backend/app/http_server.py",
+        "sha256": "a4d85a6bc0d5f7eab67fca263c7d32e1109c70530dd838ed7d55dc67325b63f9",
+        "status": "PASS",
+        "test_reference": "audit/evidence/terminal3_ems_csp_verification.json",
+        "type": "component",
+        "updated_at_utc": "2026-07-30T22:47:54Z",
+        "version": "1"
+      },
+      {
+        "evidence_reference": "audit/evidence/terminal3_ems_browser_full_matrix.json",
+        "id": "cookie_hardening",
+        "owner": "terminal-3",
+        "path": "backend/app/runtime_http_adapter.py",
+        "sha256": "378286f6eeef01c72cdfabd0184cf39268405e55919523c9fadbafc756caf0bf",
+        "status": "PASS",
+        "test_reference": "audit/evidence/terminal3_ems_browser_full_matrix.json",
+        "type": "component",
+        "updated_at_utc": "2026-07-30T22:47:54Z",
+        "version": "1"
+      },
+      {
+        "evidence_reference": "audit/evidence/terminal3_ems_browser_full_matrix.json",
+        "id": "cors_rate_limit",
+        "owner": "terminal-3",
+        "path": "backend/app/security.py",
+        "sha256": "7b5e080e7a79aa087544232ee09d3b8665116e3cc82287bb4d7ad6166705a3f6",
+        "status": "PASS",
+        "test_reference": "audit/evidence/terminal3_ems_browser_full_matrix.json",
+        "type": "component",
+        "updated_at_utc": "2026-07-30T22:47:54Z",
+        "version": "1"
+      },
+      {
+        "evidence_reference": "audit/evidence/terminal3_ems_two_client_matrix.json",
+        "id": "two_client_isolation",
+        "owner": "terminal-3",
+        "path": "backend/tests/test_admin_rbac.py",
+        "sha256": "5ca48ff718ede63cb8432a9e2dba7690a754bf8407d8e53a87fa36fb2e7a0006",
+        "status": "PASS",
+        "test_reference": "audit/evidence/terminal3_ems_two_client_matrix.json",
+        "type": "component",
+        "updated_at_utc": "2026-07-30T22:47:54Z",
+        "version": "1"
+      },
+      {
+        "evidence_reference": "audit/evidence/terminal3_ems_xss_scan.json",
+        "id": "xss_scanner",
+        "owner": "terminal-3",
+        "path": "scripts/ems_xss_scan.py",
+        "sha256": "d2f98d8847aadde2974a0e3ec7672000f57740047e23ce48884af411d96140f3",
+        "status": "PASS",
+        "test_reference": "audit/evidence/terminal3_ems_xss_scan.json",
+        "type": "component",
+        "updated_at_utc": "2026-07-30T22:47:54Z",
+        "version": "1"
+      },
+      {
+        "evidence_reference": "audit/evidence/terminal3_ems_browser_full_matrix.json",
+        "id": "browser_full_matrix",
+        "owner": "terminal-3",
+        "path": "scripts/ems_browser_full_matrix.py",
+        "sha256": "8db654ca0e8190595a2d22e7c0a205ee371f65326b84bff38a0dfed467785c9b",
+        "status": "PASS",
+        "test_reference": "audit/evidence/terminal3_ems_browser_full_matrix.json",
+        "type": "component",
+        "updated_at_utc": "2026-07-30T22:47:54Z",
+        "version": "1"
+      },
+      {
+        "evidence_reference": "audit/evidence/terminal3_ems_accessibility_final.json",
+        "id": "accessibility",
+        "owner": "terminal-3",
+        "path": "tests/test_terminal3_accessibility.py",
+        "sha256": "bbd83f6421545013dac10918b34f5c1810cf7438a2b7908156622d3b0c0b2622",
+        "status": "PASS",
+        "test_reference": "audit/evidence/terminal3_ems_accessibility_final.json",
+        "type": "component",
+        "updated_at_utc": "2026-07-30T22:47:54Z",
+        "version": "1"
+      },
+      {
+        "evidence_reference": "audit/evidence/terminal3_ems_recovery_sha256.json",
+        "id": "evidence_manifest",
+        "owner": "terminal-3",
+        "path": "scripts/generate_evidence_manifest.py",
+        "sha256": "c7cb9816429bdffaa2f6485b735bebd5c91a609e84aafabc68037ac9687bb705",
+        "status": "PASS",
+        "test_reference": "audit/evidence/terminal3_ems_recovery_sha256.json",
+        "type": "component",
+        "updated_at_utc": "2026-07-30T22:47:54Z",
+        "version": "1"
+      },
+      {
+        "evidence_reference": "audit/evidence/terminal3_ems_secret_scan.json",
+        "id": "secret_pii_private_key",
+        "owner": "terminal-3",
+        "path": "scripts/ems_security_scans.py",
+        "sha256": "61798ae6cec016ae05b8d00a367942d6cc75f54493d95913b4817635c52fc58d",
+        "status": "PASS",
+        "test_reference": "audit/evidence/terminal3_ems_secret_scan.json",
+        "type": "component",
+        "updated_at_utc": "2026-07-30T22:47:54Z",
+        "version": "1"
+      },
+      {
+        "evidence_reference": "audit/evidence/terminal3_ems_release.json",
+        "id": "release_builder",
+        "owner": "terminal-3",
+        "path": "scripts/generate_evidence_manifest.py",
+        "sha256": "c7cb9816429bdffaa2f6485b735bebd5c91a609e84aafabc68037ac9687bb705",
+        "status": "PASS",
+        "test_reference": "audit/evidence/terminal3_ems_release.json",
+        "type": "component",
+        "updated_at_utc": "2026-07-30T22:47:54Z",
+        "version": "1"
+      },
+      {
+        "evidence_reference": "audit/evidence/terminal3_ems_rollback.json",
+        "id": "rollback",
+        "owner": "terminal-3",
+        "path": "docs/operations/EMS_ROLLBACK_PLAN.md",
+        "sha256": "e2c7f75a6a86e95d6f7d680eb145512f574777554575730979ced3329c4d8861",
+        "status": "PASS",
+        "test_reference": "audit/evidence/terminal3_ems_rollback.json",
+        "type": "component",
+        "updated_at_utc": "2026-07-30T22:47:54Z",
+        "version": "1"
+      }
+    ],
+    "hash_mismatches": [],
+    "missing": [],
+    "orphaned": [],
+    "schema_version": "1",
+    "stale": [],
+    "status": "PASS"
+  },
+  "schema_version": "1",
+  "scores": {
+    "inputs": {
+      "accessibility": "PASS",
+      "browser": "PASS",
+      "pytest": "102+ baseline; current gates rerun separately",
+      "static_guard": "0 findings",
+      "xss": "PASS"
+    },
+    "method": "weighted gates: functional 30, nonfunctional 25, risk 25, compliance 20",
+    "schema_version": "1",
+    "scores": {
+      "compliance": 20,
+      "functional": 30,
+      "nonfunctional": 25,
+      "risk": 25
+    },
+    "status": "PASS",
+    "total": 100,
+    "updated_at_utc": "2026-07-30T22:47:54Z"
+  },
+  "status": "PASS"
+}

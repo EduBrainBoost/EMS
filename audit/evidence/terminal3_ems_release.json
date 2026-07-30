@@ -1,0 +1,10 @@
+{
+  "schema_version": "1",
+  "status": "PASS",
+  "build_a": {"sha256": "30204671a91788e82c9c735ff5e468e4ddff8b741fc5c9098dbf2fddb1fbb738", "size_bytes": 179346, "files": 150},
+  "build_b": {"sha256": "30204671a91788e82c9c735ff5e468e4ddff8b741fc5c9098dbf2fddb1fbb738", "size_bytes": 179346, "files": 150},
+  "identical": true,
+  "drift": 0,
+  "builder": "scripts/ems_release.py",
+  "zip_policy": {"fixed_timestamp": "1980-01-01T00:00:00Z", "stable_order": true, "stable_permissions": true}
+}
