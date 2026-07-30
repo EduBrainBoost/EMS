@@ -182,7 +182,9 @@ class LocalRuntimeAdapter:
                 self._sessions[current_session[0]]["revoked"] = True
                 if current_session[0] == self._legacy_demo_token:
                     self._legacy_demo_token = None
-            return self._ok({"status": "ok", "authenticated": False, "session_mode": AUTH_DEMO_SESSION_MODE, "privacy_boundary": AUTH_DEMO_PRIVACY_BOUNDARY, "persistence_boundary": AUTH_DEMO_PERSISTENCE_BOUNDARY})
+            response = self._ok({"status": "ok", "authenticated": False, "session_mode": AUTH_DEMO_SESSION_MODE, "privacy_boundary": AUTH_DEMO_PRIVACY_BOUNDARY, "persistence_boundary": AUTH_DEMO_PERSISTENCE_BOUNDARY})
+            response["headers"] = {"Set-Cookie": f"{SESSION_COOKIE}=; HttpOnly; SameSite=Lax; Path=/; Max-Age=0"}
+            return response
         if method == "POST" and path == "/api/mvp/auth/login":
             client = normalized_headers.get("x-client-id", "anonymous")
             now = self._clock()
@@ -201,7 +203,7 @@ class LocalRuntimeAdapter:
             if normalized_headers.get("x-legacy-demo-session") == "true":
                 self._legacy_demo_token = token
             response = self._ok({"status": "ok", "authenticated": True, "session_mode": AUTH_DEMO_SESSION_MODE, "user_role": AUTH_DEMO_USER_ROLE, "privacy_boundary": AUTH_DEMO_PRIVACY_BOUNDARY, "persistence_boundary": AUTH_DEMO_PERSISTENCE_BOUNDARY})
-            cookie = f"{SESSION_COOKIE}={token}; HttpOnly; SameSite=Lax; Path=/" + ("; Secure" if self._secure_cookie else "")
+            cookie = f"{SESSION_COOKIE}={token}; HttpOnly; SameSite=Lax; Path=/; Max-Age={self._session_ttl}" + ("; Secure" if self._secure_cookie else "")
             response["headers"] = {"Set-Cookie": cookie}
             return response
         if path in {"/api/mvp/auth/login", "/api/mvp/auth/logout", "/api/mvp/auth/session"}:

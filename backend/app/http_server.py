@@ -15,6 +15,7 @@ from backend.app.health import full_status, health_status, readiness_status, set
 from backend.app.api_contract import get_api_contract
 from backend.app.runtime_http_adapter import LocalRuntimeAdapter
 from backend.app.config import EMS_BACKEND_PORT, START_SERVICES
+from backend.app.security import cors_headers, is_origin_allowed
 
 _OPERATIONAL_ADAPTER = None
 
@@ -28,15 +29,33 @@ def _get_operational_adapter():
 
 
 class BackendRequestHandler(BaseHTTPRequestHandler):
-    server_version = "SSIDEMSBackend/0.1"
+    server_version = ""
+    sys_version = ""
 
     def log_message(self, format: str, *args: Any) -> None:  # noqa: A003
         return
 
+    def _security_headers(self, *, sensitive: bool = False) -> dict[str, str]:
+        headers = {
+            "Content-Security-Policy": "default-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'",
+            "X-Content-Type-Options": "nosniff",
+            "Referrer-Policy": "no-referrer",
+            "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
+            "Cross-Origin-Opener-Policy": "same-origin",
+            "Cross-Origin-Resource-Policy": "same-origin",
+            "X-Frame-Options": "DENY",
+            "Cache-Control": "no-store",
+        }
+        if sensitive:
+            headers["Pragma"] = "no-cache"
+        return headers
+
     def _send_json(self, status_code: int, body: dict[str, Any], headers: dict[str, str] | None = None) -> None:
         payload = json.dumps(body, sort_keys=True).encode("utf-8")
         self.send_response(status_code)
-        for key, value in (headers or {}).items():
+        merged = self._security_headers(sensitive=status_code >= 400 or self.path.startswith("/api/"))
+        merged.update(headers or {})
+        for key, value in merged.items():
             self.send_header(key, value)
         self.send_header("Content-Type", "application/json")
         self.send_header("Content-Length", str(len(payload)))
@@ -47,19 +66,19 @@ class BackendRequestHandler(BaseHTTPRequestHandler):
         adapter = getattr(self.server, "adapter", None) or _get_operational_adapter()
         try:
             if self.path in {"/health", "/api/health"}:
-                self._send_json(200, health_status())
+                self._send_json(200, health_status(), cors_headers(self.headers.get("Origin")))
                 return
             if self.path == "/readiness":
-                self._send_json(200, readiness_status())
+                self._send_json(200, readiness_status(), cors_headers(self.headers.get("Origin")))
                 return
             if self.path == "/version":
-                self._send_json(200, version_status())
+                self._send_json(200, version_status(), cors_headers(self.headers.get("Origin")))
                 return
             if self.path == "/status":
-                self._send_json(200, full_status())
+                self._send_json(200, full_status(), cors_headers(self.headers.get("Origin")))
                 return
             if self.path == "/api/contract":
-                self._send_json(200, get_api_contract())
+                self._send_json(200, get_api_contract(), cors_headers(self.headers.get("Origin")))
                 return
             if self.path.startswith("/api/v1/"):
                 if isinstance(adapter, LocalRuntimeAdapter):
@@ -109,7 +128,19 @@ class BackendRequestHandler(BaseHTTPRequestHandler):
             elif route == "/api/v1/auth/logout": route = "/api/mvp/auth/logout"
             elif route == "/api/v1/auth/session": route = "/api/mvp/auth/session"
         response = adapter.handle_request(method, route, raw_body=raw, headers={key: value for key, value in self.headers.items()})
-        self._send_json(response["status_code"], response["body"], response.get("headers"))
+        response_headers = dict(response.get("headers") or {})
+        response_headers.update(cors_headers(self.headers.get("Origin")))
+        self._send_json(response["status_code"], response["body"], response_headers)
+
+    def do_OPTIONS(self) -> None:  # noqa: N802
+        origin = self.headers.get("Origin")
+        self.send_response(204 if origin and is_origin_allowed(origin) else 403)
+        merged = self._security_headers(sensitive=True)
+        if origin and is_origin_allowed(origin):
+            merged.update(cors_headers(origin))
+        for key, value in merged.items():
+            self.send_header(key, value)
+        self.end_headers()
 
     def do_POST(self) -> None:  # noqa: N802
         try:

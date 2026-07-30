@@ -60,14 +60,30 @@ INDEX_PATH = Path(__file__).with_name("index.html")
 
 
 class FrontendRequestHandler(BaseHTTPRequestHandler):
-    server_version = "SSIDEMSFrontend/0.1"
+    server_version = ""
+    sys_version = ""
 
     def log_message(self, format: str, *args: Any) -> None:  # noqa: A003
         return
 
+    @staticmethod
+    def _security_headers() -> dict[str, str]:
+        return {
+            "Content-Security-Policy": "default-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'",
+            "X-Content-Type-Options": "nosniff",
+            "Referrer-Policy": "no-referrer",
+            "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
+            "Cross-Origin-Opener-Policy": "same-origin",
+            "Cross-Origin-Resource-Policy": "same-origin",
+            "X-Frame-Options": "DENY",
+            "Cache-Control": "no-store",
+        }
+
     def _send_json(self, status_code: int, body: dict[str, Any]) -> None:
         payload = json.dumps(body, sort_keys=True).encode("utf-8")
         self.send_response(status_code)
+        for key, value in self._security_headers().items():
+            self.send_header(key, value)
         self.send_header("Content-Type", "application/json")
         self.send_header("Content-Length", str(len(payload)))
         self.end_headers()
@@ -76,6 +92,8 @@ class FrontendRequestHandler(BaseHTTPRequestHandler):
     def _send_html(self, status_code: int, html: str) -> None:
         payload = html.encode("utf-8")
         self.send_response(status_code)
+        for key, value in self._security_headers().items():
+            self.send_header(key, value)
         self.send_header("Content-Type", "text/html; charset=utf-8")
         self.send_header("Content-Length", str(len(payload)))
         self.end_headers()
@@ -127,6 +145,8 @@ class FrontendRequestHandler(BaseHTTPRequestHandler):
         if _is_spa_route(self.path):
             payload = self._index_html().encode("utf-8")
             self.send_response(200)
+            for key, value in self._security_headers().items():
+                self.send_header(key, value)
             self.send_header("Content-Type", "text/html; charset=utf-8")
             self.send_header("Content-Length", str(len(payload)))
             self.end_headers()
@@ -134,11 +154,15 @@ class FrontendRequestHandler(BaseHTTPRequestHandler):
         if self.path in {"/health", "/api/health"}:
             payload = json.dumps({"service": SERVICE_NAME, "status": "ok"}).encode("utf-8")
             self.send_response(200)
+            for key, value in self._security_headers().items():
+                self.send_header(key, value)
             self.send_header("Content-Type", "application/json")
             self.send_header("Content-Length", str(len(payload)))
             self.end_headers()
             return
         self.send_response(404)
+        for key, value in self._security_headers().items():
+            self.send_header(key, value)
         self.end_headers()
 
 
