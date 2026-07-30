@@ -1,0 +1,20 @@
+{
+  "schema_version": "1",
+  "phase": "cluster_c_complete_cluster_g_pending",
+  "worktree": "C:/Users/bibel/SSID-Workspace/SSID-Arbeitsbereich/Worktrees/SSID-EMS-terminal3-recovery",
+  "branch": "remediation/20260730/ems-terminal3-final",
+  "head": "acfbe74d4adfa5132b6f251a038e847b74de078c",
+  "remote_ref": "acfbe74d4adfa5132b6f251a038e847b74de078c",
+  "last_commit": "test(ems): preserve Playwright browser end-to-end foundation",
+  "last_push": "verified remote branch ref",
+  "browser_status": "FOUNDATION_PASS",
+  "accessibility_status": "PASS_WITH_MANUAL_CONTRAST_SCOPE",
+  "security_status": "XSS_CSP_PASS; full_scans_pending",
+  "registry_status": "pending",
+  "compliance_status": "pending",
+  "release_status": "pending",
+  "last_tests": {"browser": "PASS: 4 pages, 0 console errors, 0 unhandled exceptions, 0 process leaks, 0 port leaks", "manifest": "6 passed", "compileall": "PASS"},
+  "open_gates": ["full browser matrix", "automated contrast", "secret/PII/private-key scans", "dependency/license/SAST", "registry/scores/badges", "compliance", "manifest idempotency", "release", "final suite", "PR/CI"],
+  "next_operation": "complete full browser matrix and commit",
+  "updated_at_utc": "2026-07-31T00:00:00Z"
+}

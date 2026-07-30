@@ -38,16 +38,27 @@ def test_content_change_changes_manifest(tmp_path: Path):
     assert output.read_text(encoding="utf-8") != first
 
 
-def test_symlink_escape_is_rejected(tmp_path: Path, tmp_path_factory):
-    outside = tmp_path_factory.mktemp("outside") / "secret.txt"
-    outside.write_text("x", encoding="utf-8")
+def test_mocked_link_metadata_escape_is_rejected(tmp_path: Path, monkeypatch):
     link = tmp_path / "escape.txt"
-    try:
-        link.symlink_to(outside)
-    except (OSError, NotImplementedError):
-        pytest.skip("symlinks unavailable")
+    link.write_text("placeholder", encoding="utf-8")
+    outside = tmp_path.parent / "outside-secret.txt"
+    outside.write_text("secret", encoding="utf-8")
+    original_is_symlink = Path.is_symlink
+    original_resolve = Path.resolve
+
+    def mocked_is_symlink(path):
+        return path == link or original_is_symlink(path)
+
+    def mocked_resolve(path, strict=False):
+        if path == link:
+            return outside.resolve()
+        return original_resolve(path, strict=strict)
+
+    monkeypatch.setattr(Path, "is_symlink", mocked_is_symlink)
+    monkeypatch.setattr(Path, "resolve", mocked_resolve)
     with pytest.raises(ValueError, match="escapes"):
         build_manifest(tmp_path)
+    outside.unlink(missing_ok=True)
 
 
 def test_output_must_be_inside_root(tmp_path: Path, tmp_path_factory):
