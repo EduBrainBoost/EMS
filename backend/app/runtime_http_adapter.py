@@ -12,25 +12,10 @@ import os
 import secrets
 import time
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
-from pathlib import Path
-import sys
 from typing import Any
-from urllib.parse import urlsplit, parse_qs
+from urllib.parse import parse_qs, urlsplit
 
-_GITHUB_ROOT = Path(__file__).resolve().parents[3]
-_SSID_REPO = Path(os.environ["SSID_REPO"]) if os.environ.get("SSID_REPO") else _GITHUB_ROOT / "SSID"
-_SSID_CANDIDATES = (
-    _SSID_REPO,
-    Path(r"C:\SSID-R\20260728T204803Z\SSID"),
-    Path(r"C:\Users\bibel\SSID-Workspace\SSID-Arbeitsbereich\Github\SSID"),
-)
-_SSID_REPO = next((candidate for candidate in _SSID_CANDIDATES if (candidate / "03_core" / "src").is_dir()), _SSID_REPO)
-_CORE_SRC = _SSID_REPO / "03_core" / "src"
-for candidate in (str(_CORE_SRC), str(_SSID_REPO)):
-    if candidate not in sys.path:
-        sys.path.insert(0, candidate)
-
-from ssid_production import productization_sprint_02_runtime as runtime  # noqa: E402
+from backend.app import ssid_runtime_compat as runtime
 
 MAX_REQUEST_BYTES = 8192
 ALLOWED_VERIFY_FIELDS = {
@@ -62,9 +47,6 @@ class LocalRuntimeAdapter:
     def __init__(self, persistence: runtime.SafePersistenceStub | None = None, clock=time.time) -> None:
         self.persistence = persistence or runtime.SafePersistenceStub()
         self._clock = clock
-        # Build the deterministic fixture before serving requests.  The first
-        # construction traverses the Sprint-01 evidence fixture; doing that on
-        # the request thread caused the live demo probe to exceed its timeout.
         self._demo_cache: dict[str, Any] | None = runtime.runtime_demo_fixture()
         self._sessions: dict[str, dict[str, Any]] = {}
         self._legacy_demo_token: str | None = None
@@ -74,7 +56,14 @@ class LocalRuntimeAdapter:
 
     def _session(self, headers: dict[str, str]) -> tuple[str, dict[str, Any]] | None:
         cookie = headers.get("cookie", "")
-        token = next((part.strip().split("=", 1)[1] for part in cookie.split(";") if part.strip().startswith(f"{SESSION_COOKIE}=") and "=" in part), "")
+        token = next(
+            (
+                part.strip().split("=", 1)[1]
+                for part in cookie.split(";")
+                if part.strip().startswith(f"{SESSION_COOKIE}=") and "=" in part
+            ),
+            "",
+        )
         if not token and self._legacy_demo_token:
             token = self._legacy_demo_token
         session = self._sessions.get(token)
@@ -116,17 +105,30 @@ class LocalRuntimeAdapter:
         headers: dict[str, str] | None = None,
     ) -> dict[str, Any]:
         method = method.upper()
-        if path == "/api/v1/auth/login": path = "/api/mvp/auth/login"
-        elif path == "/api/v1/auth/logout": path = "/api/mvp/auth/logout"
-        elif path == "/api/v1/auth/session": path = "/api/mvp/auth/session"
+        if path == "/api/v1/auth/login":
+            path = "/api/mvp/auth/login"
+        elif path == "/api/v1/auth/logout":
+            path = "/api/mvp/auth/logout"
+        elif path == "/api/v1/auth/session":
+            path = "/api/mvp/auth/session"
         headers = headers or {}
         normalized_headers = {key.lower(): value for key, value in headers.items()}
         current_session = self._session(normalized_headers)
         if raw_body is not None:
-            if method == "POST" and path in {"/api/mvp/verify", "/api/mvp/auth/login"} and normalized_headers.get("content-type", "application/json").split(";", 1)[0].strip().lower() != "application/json":
+            if (
+                method == "POST"
+                and path in {"/api/mvp/verify", "/api/mvp/auth/login"}
+                and normalized_headers.get("content-type", "application/json").split(";", 1)[0].strip().lower()
+                != "application/json"
+            ):
                 if path == "/api/mvp/auth/login":
                     return self._auth_error(401)
-                return self._error(415, "wrong_content_type", "verify endpoint requires application/json", route=f"{method} {path}")
+                return self._error(
+                    415,
+                    "wrong_content_type",
+                    "verify endpoint requires application/json",
+                    route=f"{method} {path}",
+                )
             raw_length = len(raw_body.encode("utf-8") if isinstance(raw_body, str) else raw_body)
             if raw_length > MAX_REQUEST_BYTES:
                 return self._error(413, "payload_too_large", "request body exceeds local RC limit")
@@ -182,8 +184,18 @@ class LocalRuntimeAdapter:
                 self._sessions[current_session[0]]["revoked"] = True
                 if current_session[0] == self._legacy_demo_token:
                     self._legacy_demo_token = None
-            response = self._ok({"status": "ok", "authenticated": False, "session_mode": AUTH_DEMO_SESSION_MODE, "privacy_boundary": AUTH_DEMO_PRIVACY_BOUNDARY, "persistence_boundary": AUTH_DEMO_PERSISTENCE_BOUNDARY})
-            response["headers"] = {"Set-Cookie": f"{SESSION_COOKIE}=; HttpOnly; SameSite=Lax; Path=/; Max-Age=0"}
+            response = self._ok(
+                {
+                    "status": "ok",
+                    "authenticated": False,
+                    "session_mode": AUTH_DEMO_SESSION_MODE,
+                    "privacy_boundary": AUTH_DEMO_PRIVACY_BOUNDARY,
+                    "persistence_boundary": AUTH_DEMO_PERSISTENCE_BOUNDARY,
+                }
+            )
+            response["headers"] = {
+                "Set-Cookie": f"{SESSION_COOKIE}=; HttpOnly; SameSite=Lax; Path=/; Max-Age=0"
+            }
             return response
         if method == "POST" and path == "/api/mvp/auth/login":
             client = normalized_headers.get("x-client-id", "anonymous")
@@ -193,42 +205,115 @@ class LocalRuntimeAdapter:
                 response = self._error(429, "rate_limited", "login rate limit exceeded", route=f"{method} {path}")
                 response["headers"] = {"Retry-After": "60"}
                 return response
-            if not isinstance(json_body, dict) or json_body.get("username") != AUTH_DEMO_USERNAME or json_body.get("password") != AUTH_DEMO_PASSWORD:
+            if (
+                not isinstance(json_body, dict)
+                or json_body.get("username") != AUTH_DEMO_USERNAME
+                or json_body.get("password") != AUTH_DEMO_PASSWORD
+            ):
                 attempts.append(now)
                 self._login_attempts[client] = attempts
                 return self._auth_error(401)
             self._login_attempts.pop(client, None)
             token = secrets.token_urlsafe(32)
-            self._sessions[token] = {"role": AUTH_DEMO_USER_ROLE, "permissions": {"protected:read"}, "created_at": now, "expires_at": now + self._session_ttl, "revoked": False}
+            self._sessions[token] = {
+                "role": AUTH_DEMO_USER_ROLE,
+                "permissions": {"protected:read"},
+                "created_at": now,
+                "expires_at": now + self._session_ttl,
+                "revoked": False,
+            }
             if normalized_headers.get("x-legacy-demo-session") == "true":
                 self._legacy_demo_token = token
-            response = self._ok({"status": "ok", "authenticated": True, "session_mode": AUTH_DEMO_SESSION_MODE, "user_role": AUTH_DEMO_USER_ROLE, "privacy_boundary": AUTH_DEMO_PRIVACY_BOUNDARY, "persistence_boundary": AUTH_DEMO_PERSISTENCE_BOUNDARY})
-            cookie = f"{SESSION_COOKIE}={token}; HttpOnly; SameSite=Lax; Path=/; Max-Age={self._session_ttl}" + ("; Secure" if self._secure_cookie else "")
+            response = self._ok(
+                {
+                    "status": "ok",
+                    "authenticated": True,
+                    "session_mode": AUTH_DEMO_SESSION_MODE,
+                    "user_role": AUTH_DEMO_USER_ROLE,
+                    "privacy_boundary": AUTH_DEMO_PRIVACY_BOUNDARY,
+                    "persistence_boundary": AUTH_DEMO_PERSISTENCE_BOUNDARY,
+                }
+            )
+            cookie = (
+                f"{SESSION_COOKIE}={token}; HttpOnly; SameSite=Lax; Path=/; Max-Age={self._session_ttl}"
+                + ("; Secure" if self._secure_cookie else "")
+            )
             response["headers"] = {"Set-Cookie": cookie}
             return response
         if path in {"/api/mvp/auth/login", "/api/mvp/auth/logout", "/api/mvp/auth/session"}:
             return self._error(405, "method_not_allowed", "auth endpoint method not allowed", route=f"{method} {path}")
         if method == "POST" and path == "/api/mvp/verify":
             if "x-ssid-production-auth" in normalized_headers:
-                return self._error(403, "production_auth_not_allowed", "production-like auth is forbidden in local RC", route=f"{method} {path}")
+                return self._error(
+                    403,
+                    "production_auth_not_allowed",
+                    "production-like auth is forbidden in local RC",
+                    route=f"{method} {path}",
+                )
             auth_context = normalized_headers.get("x-ssid-demo-auth")
             if auth_context and auth_context != runtime.RUNTIME_AUTH_STUB:
-                return self._error(403, "fake_token_rejected", "safe demo auth token was not accepted", route=f"{method} {path}")
+                return self._error(
+                    403,
+                    "fake_token_rejected",
+                    "safe demo auth token was not accepted",
+                    route=f"{method} {path}",
+                )
             if not isinstance(json_body, dict):
-                return self._error(400, "schema_violation", "verify request must be a JSON object", route=f"{method} {path}")
+                return self._error(
+                    400,
+                    "schema_violation",
+                    "verify request must be a JSON object",
+                    route=f"{method} {path}",
+                )
             unknown_fields = set(json_body) - ALLOWED_VERIFY_FIELDS
             if unknown_fields:
                 if "contract_version" in unknown_fields:
-                    return self._error(400, "unsupported_version", "unsupported contract version is rejected", route=f"{method} {path}")
+                    return self._error(
+                        400,
+                        "unsupported_version",
+                        "unsupported contract version is rejected",
+                        route=f"{method} {path}",
+                    )
                 if "status" in unknown_fields:
-                    return self._error(400, "invalid_status_injection", "status injection is rejected", route=f"{method} {path}")
-                return self._error(400, "unknown_fields_rejected", "unknown verify fields are rejected", route=f"{method} {path}")
-            if auth_context == runtime.RUNTIME_AUTH_STUB and isinstance(json_body, dict) and json_body.get("auth_boundary") not in {None, "safe-demo-auth-stub-required-for-verify"}:
-                return self._error(400, "auth_boundary_violation", "auth boundary bypass attempt rejected", route=f"{method} {path}")
+                    return self._error(
+                        400,
+                        "invalid_status_injection",
+                        "status injection is rejected",
+                        route=f"{method} {path}",
+                    )
+                return self._error(
+                    400,
+                    "unknown_fields_rejected",
+                    "unknown verify fields are rejected",
+                    route=f"{method} {path}",
+                )
+            if (
+                auth_context == runtime.RUNTIME_AUTH_STUB
+                and json_body.get("auth_boundary") not in {None, "safe-demo-auth-stub-required-for-verify"}
+            ):
+                return self._error(
+                    400,
+                    "auth_boundary_violation",
+                    "auth boundary bypass attempt rejected",
+                    route=f"{method} {path}",
+                )
             if self._demo_cache is None:
                 self._demo_cache = runtime.runtime_demo_fixture()
-            body = runtime.verify_runtime_request(json_body, auth_context=auth_context, persistence=self.persistence)
-            return {"status_code": 200 if body["status"] == "PASS" else 403 if body.get("error_code") == "auth_required" else 400, "body": body}
+            body = runtime.verify_runtime_request(
+                json_body,
+                auth_context=auth_context,
+                persistence=self.persistence,
+            )
+            return {
+                "status_code": (
+                    200
+                    if body["status"] == "PASS"
+                    else 403
+                    if body.get("error_code") == "auth_required"
+                    else 400
+                ),
+                "body": body,
+            }
         if path == "/api/mvp/verify":
             return self._error(405, "method_not_allowed", "verify endpoint allows POST only", route=f"{method} {path}")
         if path.startswith("/api/v1/"):
@@ -237,7 +322,14 @@ class LocalRuntimeAdapter:
             query = parse_qs(urlsplit(path).query)
             if path.endswith("/admin/protected-action") or query.get("permission", [""])[0] == "admin":
                 return self._error(403, "permission_denied", "permission required", route=f"{method} {path}")
-            return self._ok({"status": "ok", "authenticated": True, "action": "allowed", "audit_event": "privileged_action"})
+            return self._ok(
+                {
+                    "status": "ok",
+                    "authenticated": True,
+                    "action": "allowed",
+                    "audit_event": "privileged_action",
+                }
+            )
         return self._error(404, "route_not_allowed", "runtime route is not allowed", route=f"{method} {path}")
 
     def _ok(self, body: dict[str, Any]) -> dict[str, Any]:
@@ -274,10 +366,19 @@ def get_runtime_demo() -> dict[str, Any]:
 
 def post_runtime_verify(request: dict[str, Any] | None, auth_context: str | None = None) -> dict[str, Any]:
     headers = {"X-SSID-Demo-Auth": auth_context} if auth_context else {}
-    return LocalRuntimeAdapter().handle_request("POST", "/api/mvp/verify", json_body=request, headers=headers)["body"]
+    return LocalRuntimeAdapter().handle_request(
+        "POST",
+        "/api/mvp/verify",
+        json_body=request,
+        headers=headers,
+    )["body"]
 
 
-def create_runtime_server(host: str = "127.0.0.1", port: int = 0, adapter: LocalRuntimeAdapter | None = None) -> ThreadingHTTPServer:
+def create_runtime_server(
+    host: str = "127.0.0.1",
+    port: int = 0,
+    adapter: LocalRuntimeAdapter | None = None,
+) -> ThreadingHTTPServer:
     runtime_adapter = adapter or LocalRuntimeAdapter()
 
     class RuntimeRequestHandler(BaseHTTPRequestHandler):
