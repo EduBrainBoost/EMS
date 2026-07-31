@@ -1,0 +1,851 @@
+{
+  "files": [
+    {
+      "path": ".github/workflows/ems-local-guard.yml",
+      "sha256": "d186a7d5b28a8c5b0e9963473ab39c67faafb0cd104f42b63a3ab84f499c98d5",
+      "size_bytes": 1118
+    },
+    {
+      "path": ".gitignore",
+      "sha256": "d8cd48367b1ea1350d0fb78e3f9ad0e033d8c5a7b7daf0193b8c036760d262eb",
+      "size_bytes": 351
+    },
+    {
+      "path": "23_compliance/evidence/ci/phase2_guard_evidence.json",
+      "sha256": "ceb870c1a79684b972540329d1aa9aea5fe4d7a448935075a75f78a1c60c3158",
+      "size_bytes": 12169
+    },
+    {
+      "path": "24_meta_orchestration/config/ems_hourly_operations.yaml",
+      "sha256": "f7f4b1cf7af62ef6dee43bfe1826d8153d1864cc882947c53c2b7900cd8ad091",
+      "size_bytes": 693
+    },
+    {
+      "path": "24_meta_orchestration/scripts/run_ems_hourly_operations.py",
+      "sha256": "824752e1a8a30e525930cd41bef860d68d27d2b6c4280bfbc7ccc760fea5e04f",
+      "size_bytes": 107230
+    },
+    {
+      "path": "README.md",
+      "sha256": "576e210262ef71e00d314d9d53a8789917c8541224936b328064dcbe9aad09bf",
+      "size_bytes": 1206
+    },
+    {
+      "path": "Runs/20260713T070651Z_ems_auth_login_runner_recovery/broken_runner_copy.py.txt",
+      "sha256": "bfaae22fbb151054c081d536dbd4e14482562180bbd0c95cc8c2d32c5aa3163d",
+      "size_bytes": 74192
+    },
+    {
+      "path": "Runs/20260713T070651Z_ems_auth_login_runner_recovery/changed_files_before.json",
+      "sha256": "ad536f3d2a4a0d553a2f38468ca880bac2dcd39a3460c5901d3385963e76751f",
+      "size_bytes": 375
+    },
+    {
+      "path": "Runs/20260713T070651Z_ems_auth_login_runner_recovery/ems_auth_compile_report.json",
+      "sha256": "36446acb49942c01aeceaaabd2e4bac88221166dede1628991e46da1e03f39bd",
+      "size_bytes": 344
+    },
+    {
+      "path": "Runs/20260713T070651Z_ems_auth_login_runner_recovery/ems_auth_live_probe.json",
+      "sha256": "6f7f40286a8aa8754838bca398e15a488fe3bc56ec675a5e5fce64f49e1c7364",
+      "size_bytes": 7208
+    },
+    {
+      "path": "Runs/20260713T070651Z_ems_auth_login_runner_recovery/ems_runner_recovery_fix_report.json",
+      "sha256": "4027c3687cc0c2241f81f96d3127c6b991be7cb80de6bb0b8ee3d9e2f46f1e3d",
+      "size_bytes": 302
+    },
+    {
+      "path": "Runs/20260713T070651Z_ems_auth_login_runner_recovery/ems_runner_syntax_error_report.json",
+      "sha256": "c637ba46143985d3402f0d7d5c6c221c1b653097f224ae74df1f0e6b92c8db39",
+      "size_bytes": 417
+    },
+    {
+      "path": "Runs/20260713T070651Z_ems_auth_login_runner_recovery/recovery_plan.md",
+      "sha256": "ffc21bfe6571418ce38a48b187d85f80e5722401656930158fbfe7ed3283a806",
+      "size_bytes": 63
+    },
+    {
+      "path": "Runs/20260713T070651Z_ems_auth_login_runner_recovery/recovery_run_guard.json",
+      "sha256": "12a12499db59329ec565403712b778c69437ff0f2bca433807698457777d20d8",
+      "size_bytes": 165
+    },
+    {
+      "path": "Runs/20260713T070651Z_ems_auth_login_runner_recovery/repository_integrity_before.json",
+      "sha256": "dbdea466973719412b1b6c224962302adaa0b3eecf4cea15e8f19f56c90ad55f",
+      "size_bytes": 398
+    },
+    {
+      "path": "approvals/templates/ems_remote_push_approval_template.yaml",
+      "sha256": "871bffe946eb1c754dcff21d94796c7c6a75c16fcbfdf1b65543a08c9f9f356b",
+      "size_bytes": 389
+    },
+    {
+      "path": "audit/evidence/EMS_3H_LOCAL_BUILD_REPORT.md",
+      "sha256": "ee32089a0df2bc688ab011c61781ecdd54af09796dee558e5c87baba4ebd6d7b",
+      "size_bytes": 3044
+    },
+    {
+      "path": "audit/evidence/EMS_3H_REBUILD_REPORT.md",
+      "sha256": "229cdc97ee833ad6844502754dfd138acbeab9ce81e374baaf923f8446bbeff1",
+      "size_bytes": 3715
+    },
+    {
+      "path": "audit/evidence/EMS_API_STATUS.json",
+      "sha256": "c10cbf5a56f30781488b2c6b46e2715b1ca9036a5a74cc5040e558372dce7f7a",
+      "size_bytes": 1266
+    },
+    {
+      "path": "audit/evidence/EMS_CHANGESET.md",
+      "sha256": "e5c0fa8fbfff6056ed3f2c146df3b79a757d98c348ae48904365456db772a169",
+      "size_bytes": 2620
+    },
+    {
+      "path": "audit/evidence/EMS_COMPLIANCE_REPORT.md",
+      "sha256": "9f1e6a9fdd28c75f8580e2767b868afdbe263550c30dc8257f1b8ab59daa17b9",
+      "size_bytes": 1961
+    },
+    {
+      "path": "audit/evidence/EMS_EVIDENCE.json",
+      "sha256": "e016d06a4dbc393518af1eff1e7787ba275e547f2dc4dc0cecec5bb8c889e4a9",
+      "size_bytes": 2898
+    },
+    {
+      "path": "audit/evidence/EMS_EVIDENCE.md",
+      "sha256": "2f5bef072c443d7948082e130afa5bcfc830753c444b609da590e0a89c0a6869",
+      "size_bytes": 1883
+    },
+    {
+      "path": "audit/evidence/EMS_PHASE2_APPROVAL_PACKAGE_REPORT.md",
+      "sha256": "43040836b8173f62478db055d5caead91516d2079be67e1dc4a3ac795b7adf21",
+      "size_bytes": 3247
+    },
+    {
+      "path": "audit/evidence/EMS_REGISTRY_UPDATE.yaml",
+      "sha256": "84e8d297ab6f8581449e51aa90c1070c624312ff810b20922b374ff10985db06",
+      "size_bytes": 1648
+    },
+    {
+      "path": "audit/evidence/EMS_RELEASE_MANIFEST.json",
+      "sha256": "32688aa2a5a39a033c124c6e8ae8b00ccb24cfc68bbe59366df2a16174d35f19",
+      "size_bytes": 4566
+    },
+    {
+      "path": "audit/evidence/EMS_SCORE.json",
+      "sha256": "1b2ab0a0f18a14dd33ce0dcd9894f1b230b69263a4249c6babc9af821f5901d9",
+      "size_bytes": 2182
+    },
+    {
+      "path": "audit/evidence/EMS_SECURITY_REPORT.md",
+      "sha256": "41c4d1317a3f35a7bad1f287cb129031d3333ae06fc47a9c88784ccda9605900",
+      "size_bytes": 2466
+    },
+    {
+      "path": "audit/evidence/EMS_SERVICE_STATUS.json",
+      "sha256": "0c406daf94cbb7c4b84b89e84453527bb965af1973d768658970ee0679f76dba",
+      "size_bytes": 1049
+    },
+    {
+      "path": "audit/evidence/EMS_TEST_REPORT.md",
+      "sha256": "66220adf871d336ac6b2088e6ae09343c0409e8adaef38d13890c546546d4951",
+      "size_bytes": 6493
+    },
+    {
+      "path": "audit/evidence/ems_first_push_manifest.json",
+      "sha256": "c369c4704f34351bf123118332f8b8ab56566497c125669d48ee23f211ed3c9a",
+      "size_bytes": 28756
+    },
+    {
+      "path": "audit/evidence/ems_phase1_build_evidence.json",
+      "sha256": "f02dded687f7f0f71683741b463d3055d71554fadba189209f728555c027ab02",
+      "size_bytes": 1671
+    },
+    {
+      "path": "audit/evidence/ems_phase2_approval_validation.json",
+      "sha256": "a4afb9094973a1583a589df6ed40fc2e39b239a2e72e553483cc47abc40a53b5",
+      "size_bytes": 2463
+    },
+    {
+      "path": "audit/evidence/ems_phase2_push_execution_plan.json",
+      "sha256": "ea3ee3b727ad072c259536dabd9876a6d1815b8881aaedb7de9cba077dd1581f",
+      "size_bytes": 726
+    },
+    {
+      "path": "audit/evidence/ems_phase2_push_gate.json",
+      "sha256": "a9066e8e6e0ca307b3cf433728efc723a2e184eeb015051b3892c59c1c105dc9",
+      "size_bytes": 480
+    },
+    {
+      "path": "audit/evidence/ems_rebuild_evidence.json",
+      "sha256": "3536b25f0e6cd0d583832805c33917c5a8f4526a0c213c77cd8409427a2600fb",
+      "size_bytes": 1959
+    },
+    {
+      "path": "audit/evidence/terminal3_ems_accessibility.json",
+      "sha256": "63266cc2cb81d0e9ac55c1e33c8c3f9685a19788939e936f9d2d4d8936a5b12b",
+      "size_bytes": 954
+    },
+    {
+      "path": "audit/evidence/terminal3_ems_accessibility_final.json",
+      "sha256": "82e302ef78c0be2e87c388e8f27a663fa0264f165046456d019ca338694a6045",
+      "size_bytes": 897
+    },
+    {
+      "path": "audit/evidence/terminal3_ems_audit_final.json",
+      "sha256": "9e41da4641cac4615ed2e21df956af379320b0b3031afdbdba3e4f6d0fbc582c",
+      "size_bytes": 6805
+    },
+    {
+      "path": "audit/evidence/terminal3_ems_badges.json",
+      "sha256": "af097bc20baabca63028639f4f8ad52a0f265927be4edbbc303b43df66502446",
+      "size_bytes": 205
+    },
+    {
+      "path": "audit/evidence/terminal3_ems_browser_e2e.json",
+      "sha256": "fdad2b81d8fc646ddad442e4ef3cdc1b57080327fb3ed9721bae820439734b23",
+      "size_bytes": 218
+    },
+    {
+      "path": "audit/evidence/terminal3_ems_browser_full_matrix.json",
+      "sha256": "05b93559603e30e210266c2ac76defa828d2341b3b5e254bec5346c46a86728b",
+      "size_bytes": 1224
+    },
+    {
+      "path": "audit/evidence/terminal3_ems_compliance.json",
+      "sha256": "58c2553852c0861b973ea21662ebcdaec2489c0025194c8a6fb866ada39e81be",
+      "size_bytes": 613
+    },
+    {
+      "path": "audit/evidence/terminal3_ems_continuation_state.json",
+      "sha256": "97fcd76ade47392e6a4aa490e5eb3344372504e2a074b095c2f980cf9fc1756f",
+      "size_bytes": 1468
+    },
+    {
+      "path": "audit/evidence/terminal3_ems_csp_verification.json",
+      "sha256": "13194cd12d1b7802792ab015c2ba76d5a160f80af5383335eb8b09362d70ef41",
+      "size_bytes": 427
+    },
+    {
+      "path": "audit/evidence/terminal3_ems_dynamic_xss.json",
+      "sha256": "3818f22751e2c6f446d9bbeff9f77ae91fb7ce9cb8016f000d793f970d9ebad9",
+      "size_bytes": 536
+    },
+    {
+      "path": "audit/evidence/terminal3_ems_legacy_snapshot.json",
+      "sha256": "4847785f3f357ccff2c21896c98c8018a976a85da779299b393b1f5f6c09a2f2",
+      "size_bytes": 1083
+    },
+    {
+      "path": "audit/evidence/terminal3_ems_pii_scan.json",
+      "sha256": "d45ad012e37f2648263f2c107ff6b80780bcefce9be5b1bb417f572fca77c4c7",
+      "size_bytes": 183
+    },
+    {
+      "path": "audit/evidence/terminal3_ems_private_key_scan.json",
+      "sha256": "d45ad012e37f2648263f2c107ff6b80780bcefce9be5b1bb417f572fca77c4c7",
+      "size_bytes": 183
+    },
+    {
+      "path": "audit/evidence/terminal3_ems_registry_audit.json",
+      "sha256": "3e848b21a452b36204ddcae0ec7dff5c3b56912b689c2cf87ba4d050a718a268",
+      "size_bytes": 5659
+    },
+    {
+      "path": "audit/evidence/terminal3_ems_scores.json",
+      "sha256": "655b7dcfb5fd2db62d17421408f22ed267561c0fab57aa070c03a13350ee5f35",
+      "size_bytes": 504
+    },
+    {
+      "path": "audit/evidence/terminal3_ems_secret_scan.json",
+      "sha256": "d45ad012e37f2648263f2c107ff6b80780bcefce9be5b1bb417f572fca77c4c7",
+      "size_bytes": 183
+    },
+    {
+      "path": "audit/evidence/terminal3_ems_two_client_matrix.json",
+      "sha256": "5eb3613c1245d61574bc30545913acbb3910296ebad77c41ec9183c8d5889fb4",
+      "size_bytes": 2244
+    },
+    {
+      "path": "audit/evidence/terminal3_ems_xss_scan.json",
+      "sha256": "4d7e3afc9bfa3a07befb90c8253cc4a19fa5c06479ca4b59fd5c1f18acfc1a8d",
+      "size_bytes": 113
+    },
+    {
+      "path": "audit/score/ems_phase1_score.json",
+      "sha256": "160094047e6e292dc6afdd81f260ce4db8c1b6c57fd1144a308da90c61182472",
+      "size_bytes": 423
+    },
+    {
+      "path": "audit/score/ems_phase2_approval_score.json",
+      "sha256": "db25359dd777ce6a1d0df398190a3b966529e5f8172c0348ca108909328eb4e0",
+      "size_bytes": 466
+    },
+    {
+      "path": "audit/score/ems_rebuild_score.json",
+      "sha256": "cc5f79f3f1b7d5c2ce1fbacc0a94f0a11bbec9f6441fa0e2b585f683e1486a8a",
+      "size_bytes": 453
+    },
+    {
+      "path": "backend/README.md",
+      "sha256": "5a21e521399c5c61403d7700aecd3d6512f2f91d07b9c73e54a46990c92ac8aa",
+      "size_bytes": 1105
+    },
+    {
+      "path": "backend/app/__init__.py",
+      "sha256": "7285a62bc5b3df049940c98b3251355b5dd0b186d49effaea778d9771509045a",
+      "size_bytes": 130
+    },
+    {
+      "path": "backend/app/api_contract.py",
+      "sha256": "843819828c73c7a7e22403a3107074125e398ff0ff271a90d42658d64b6a1293",
+      "size_bytes": 9554
+    },
+    {
+      "path": "backend/app/audit.py",
+      "sha256": "04c416e24dfdb062c1f31c5c2ab6138c4f4f370693977bd5df3a5f1954e6462a",
+      "size_bytes": 6451
+    },
+    {
+      "path": "backend/app/auth_service.py",
+      "sha256": "827b882aabb8194b5453bf10d01b2097d256325bfc6207fa4699d78c73bf2fa0",
+      "size_bytes": 6409
+    },
+    {
+      "path": "backend/app/backup.py",
+      "sha256": "1fe213b5c4e71e57130a4c71754931170cbdf012fe35d1a556785623a1c8598b",
+      "size_bytes": 4653
+    },
+    {
+      "path": "backend/app/cli.py",
+      "sha256": "089d1ee92646e95a4fc6a24f33ce001b8808921f10f633fd2e8bbae93c38e5df",
+      "size_bytes": 3783
+    },
+    {
+      "path": "backend/app/config.py",
+      "sha256": "ae2b271cfcaba1e409e6d07bfe1e9d28c4a6f06047094ff65a0843804589ba27",
+      "size_bytes": 5642
+    },
+    {
+      "path": "backend/app/database.py",
+      "sha256": "66b9645654bed3a5fe724f638d144ec77212aa0e478541523cea4bcce4b418bf",
+      "size_bytes": 8019
+    },
+    {
+      "path": "backend/app/health.py",
+      "sha256": "13516e9a34c3a28b15d665a11e554784ae9e35bdc7c125acddbcbd4e276d8e40",
+      "size_bytes": 1762
+    },
+    {
+      "path": "backend/app/http_server.py",
+      "sha256": "a4d85a6bc0d5f7eab67fca263c7d32e1109c70530dd838ed7d55dc67325b63f9",
+      "size_bytes": 12008
+    },
+    {
+      "path": "backend/app/main.py",
+      "sha256": "29f986e7fc719b72a338714d23030c5d9751b06c98228705df01a2bf1f2e7c20",
+      "size_bytes": 1543
+    },
+    {
+      "path": "backend/app/migrations.py",
+      "sha256": "3e67e7b6880d755664a5936874032b983e43b122b0b53e3e2142d81e9d213f0b",
+      "size_bytes": 9730
+    },
+    {
+      "path": "backend/app/mvp_productization.py",
+      "sha256": "d2203e6296cee77c06e80de52eff91de938fd03922c6f7902c9d16f7f826dd62",
+      "size_bytes": 2750
+    },
+    {
+      "path": "backend/app/operational_adapter.py",
+      "sha256": "0fe6f08f78d68de5fc431520fbff17c16db8c2752b646e698496420c5bc0e783",
+      "size_bytes": 18351
+    },
+    {
+      "path": "backend/app/password.py",
+      "sha256": "d334b0e8dba6b36c92a11f7c5dd7c59eefdbc7370ded496c149c9e780db700ad",
+      "size_bytes": 2447
+    },
+    {
+      "path": "backend/app/persistence.py",
+      "sha256": "df9b465f2bc4b3eb0af48dab86411dff80b3cdee2ae980c2acd67d7a5613f943",
+      "size_bytes": 1208
+    },
+    {
+      "path": "backend/app/rbac.py",
+      "sha256": "9200dc83d3f5fb74cde6d7af616eb9d86069a29628939749df05278ec5759981",
+      "size_bytes": 3388
+    },
+    {
+      "path": "backend/app/rbac_matrix.py",
+      "sha256": "96176ba458377809f9970affe087a30d12d0c594440c1ef9b49280a5534d2ef1",
+      "size_bytes": 2025
+    },
+    {
+      "path": "backend/app/readiness.py",
+      "sha256": "d515311f72082c61855dcf3c753a8fb6cb54a0f12ed1a4e36581b39bccd567fb",
+      "size_bytes": 3005
+    },
+    {
+      "path": "backend/app/repository.py",
+      "sha256": "78e0ecc274f9a2ab926922d70dcc5aaa899de0a8c59bfc517041f8c6daf3c684",
+      "size_bytes": 11046
+    },
+    {
+      "path": "backend/app/runtime_http_adapter.py",
+      "sha256": "378286f6eeef01c72cdfabd0184cf39268405e55919523c9fadbafc756caf0bf",
+      "size_bytes": 16920
+    },
+    {
+      "path": "backend/app/security.py",
+      "sha256": "7b5e080e7a79aa087544232ee09d3b8665116e3cc82287bb4d7ad6166705a3f6",
+      "size_bytes": 3574
+    },
+    {
+      "path": "backend/app/version.py",
+      "sha256": "dd91e7e456f7ed0b4bea142867bd2c3b3cfbd3739b059efedf76064668757777",
+      "size_bytes": 207
+    },
+    {
+      "path": "backend/tests/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "path": "backend/tests/conftest.py",
+      "sha256": "aa833098a1b969cbdd444b9ad742badd238ee5e436b288941e928d46de416cc2",
+      "size_bytes": 236
+    },
+    {
+      "path": "backend/tests/test_admin_api_contract.py",
+      "sha256": "25491ab7baba54cc1d0c552f4a3c4ee4876c45cd06bc0134f32354690d7dd221",
+      "size_bytes": 6000
+    },
+    {
+      "path": "backend/tests/test_admin_rbac.py",
+      "sha256": "5ca48ff718ede63cb8432a9e2dba7690a754bf8407d8e53a87fa36fb2e7a0006",
+      "size_bytes": 12198
+    },
+    {
+      "path": "backend/tests/test_api_contract.py",
+      "sha256": "5620cc89f6719df814120366696b9de0affbcd6155105b4cb647a7668cb5da1c",
+      "size_bytes": 4555
+    },
+    {
+      "path": "backend/tests/test_auth_login.py",
+      "sha256": "fec0079ce38ad184f58b39412330a8b49a6248aed3124c5b8829bb4e3e1883c1",
+      "size_bytes": 3579
+    },
+    {
+      "path": "backend/tests/test_config.py",
+      "sha256": "7b19bd9a006dcb915b32d39a5890871af497708342264b89109e3904cf267094",
+      "size_bytes": 968
+    },
+    {
+      "path": "backend/tests/test_full_program_order_api_abuse.py",
+      "sha256": "576444b3e88f1cf86389607e52abcde0f3408c5f121a2be0d3074b9997cdd97d",
+      "size_bytes": 2610
+    },
+    {
+      "path": "backend/tests/test_health.py",
+      "sha256": "8bfa4ace0c7e081f87cd0922400cfa47719aa15cbff93f6149e7378f1f5fb44a",
+      "size_bytes": 1259
+    },
+    {
+      "path": "backend/tests/test_mvp_productization_api.py",
+      "sha256": "cc3cab3df69c6ef151c2941d1370f2d54e2e23f72d3d2952b66721d21b8a862a",
+      "size_bytes": 1846
+    },
+    {
+      "path": "backend/tests/test_operational_hardening.py",
+      "sha256": "b3f8f22e88c49df5ba3dbd7c44d2f2f9b637f09ae05b97824c27b9e06320500d",
+      "size_bytes": 8196
+    },
+    {
+      "path": "backend/tests/test_persistence_boundary.py",
+      "sha256": "5f2ac24d79084f7a4cbd9ef5b7084f8882a613d10c7787e3216e896642e5256f",
+      "size_bytes": 4542
+    },
+    {
+      "path": "backend/tests/test_program_epic_02_api_release.py",
+      "sha256": "783f75c2805b1f9c06cd5004a80f43917472270c17acaf40232c177fa2207674",
+      "size_bytes": 2195
+    },
+    {
+      "path": "backend/tests/test_release_candidate_runtime_api.py",
+      "sha256": "d496f5bb57391a5ddeedf3ce79d1e0036d45213d0d833d6a644e8d30661ca333",
+      "size_bytes": 1931
+    },
+    {
+      "path": "backend/tests/test_runtime_http_adapter.py",
+      "sha256": "21e38b096e229f98b4978e45a0200d38bfb5a5a1cb5567924f7b669b570ec695",
+      "size_bytes": 3900
+    },
+    {
+      "path": "backend/tests/test_security_gates.py",
+      "sha256": "c5a7275bedb5073d5e68246cf5aa6137338c1e3886d1ecb5f3d249b2bad9dceb",
+      "size_bytes": 1193
+    },
+    {
+      "path": "backend/tests/test_security_headers.py",
+      "sha256": "fdc46bd42f5f5877d0afb39eee6d2f574d0d008e95a2fd25ab104a94e91124fb",
+      "size_bytes": 3442
+    },
+    {
+      "path": "contracts/ems_api_contract.yaml",
+      "sha256": "07334afc56093d9f26ddf6ebbbb9ff6ec5907bd98111d178e4026c51eb5e1200",
+      "size_bytes": 5556
+    },
+    {
+      "path": "contracts/ems_port_matrix.yaml",
+      "sha256": "26a98ae73b31779b135224bd57622f10969ecccafbc89e3aa8c9ebdcf9070e76",
+      "size_bytes": 674
+    },
+    {
+      "path": "contracts/ssid_core_integration_contract.yaml",
+      "sha256": "44f185c3d3ead02b1172f7a885ef2d01a93ad044a3725cd8556d83d9d37034dc",
+      "size_bytes": 1532
+    },
+    {
+      "path": "contracts/ssid_mvp_identity_flow_contract.yaml",
+      "sha256": "642de012d7c62980ec04ed53c611fd7396cdadc7e3d144c9923f71797e6187c5",
+      "size_bytes": 1903
+    },
+    {
+      "path": "docs/EMS_ARCHITECTURE.md",
+      "sha256": "46fc61a52f29d1ddc9ef34bf8c523ac4dc6736c54185072f4c715f178053dbfc",
+      "size_bytes": 1775
+    },
+    {
+      "path": "docs/EMS_LOCAL_BUILD_RUNBOOK.md",
+      "sha256": "733f599eea94858cbdb8f28aee1fc0b42a1e5c2c850ccc2daaf0f7acddd49889",
+      "size_bytes": 2673
+    },
+    {
+      "path": "docs/EMS_LOCAL_REBUILD_RUNBOOK.md",
+      "sha256": "c9b7734b38a7337b2bfaa814beea3c52a5a8ef1601eb2ee7183b4e1b3055c4a1",
+      "size_bytes": 1582
+    },
+    {
+      "path": "docs/EMS_SECURITY_BOUNDARIES.md",
+      "sha256": "df2bfd7cf43719d8c6612fb959599b3af9f996c0ac6c01fd79fc60f6a898c77b",
+      "size_bytes": 1270
+    },
+    {
+      "path": "docs/operations/EMS_API_MATRIX.yaml",
+      "sha256": "fd5b0327ce9b8240a6e15589358c26e35d94315ad522327fad301d5c62ee2620",
+      "size_bytes": 2973
+    },
+    {
+      "path": "docs/operations/EMS_CURRENT_STATE.md",
+      "sha256": "67fbfb836772fdfdb32f0a382b08133e2d89775def258b933e669e1c0777abde",
+      "size_bytes": 3138
+    },
+    {
+      "path": "docs/operations/EMS_DEPENDENCY_MATRIX.yaml",
+      "sha256": "aebdd8b40b4c46f3c3885b24d0b1aab0c222f395b67db5794d7873d93e0a750c",
+      "size_bytes": 1297
+    },
+    {
+      "path": "docs/operations/EMS_GAP_ANALYSIS.md",
+      "sha256": "cc628ce0a8b9d9c09da7156d6ca78a3800996009130d1b378dcd43f71d4835aa",
+      "size_bytes": 2422
+    },
+    {
+      "path": "docs/operations/EMS_IMPLEMENTATION_PLAN.md",
+      "sha256": "dcc7edac11c03a9c8ce4a9ccf10846ce1d48076451350968f16e3ba76764b45d",
+      "size_bytes": 2873
+    },
+    {
+      "path": "docs/operations/EMS_PERMISSION_MATRIX.yaml",
+      "sha256": "3266ecda8f3d3ad4b6497a7ab5fc90275a77cd54e557182e94c7e76f3fa0ab61",
+      "size_bytes": 3884
+    },
+    {
+      "path": "docs/operations/EMS_ROLLBACK_PLAN.md",
+      "sha256": "e2c7f75a6a86e95d6f7d680eb145512f574777554575730979ced3329c4d8861",
+      "size_bytes": 2307
+    },
+    {
+      "path": "docs/operations/EMS_SERVICE_MATRIX.md",
+      "sha256": "f8eb7458660a1da2daf3b5e59258f3a6a162af511b4479bc3db54fdf2a80e08a",
+      "size_bytes": 2200
+    },
+    {
+      "path": "docs/operations/EMS_SERVICE_MATRIX.yaml",
+      "sha256": "04b691d8fa85d46e059b564f27d8380a4ade4078f227787c35767ee0a3ffe038",
+      "size_bytes": 856
+    },
+    {
+      "path": "frontend/README.md",
+      "sha256": "1106e9fdc9df5d62d4d28da71fbf8dc1ea0a9a974343a60e96236c589228b10f",
+      "size_bytes": 1716
+    },
+    {
+      "path": "frontend/index.html",
+      "sha256": "4ef3f7e0feb1379bba7c434f130cba5ef75304562c024f6ba61bb81a1d0c4ebc",
+      "size_bytes": 3952
+    },
+    {
+      "path": "frontend/server.py",
+      "sha256": "9b91f5dbc994e11423e012810c930a63e59e04af2a6f8827649f5ab35cc2aa16",
+      "size_bytes": 8677
+    },
+    {
+      "path": "frontend/src/App.tsx",
+      "sha256": "ebc65469ce03a63b3e5efddea03f692160b185c8497f8e2959ac37ab1d093339",
+      "size_bytes": 1715
+    },
+    {
+      "path": "frontend/src/config.ts",
+      "sha256": "bfdcbebb8db3cc3040cedd81a6837ff09d8e465c0f55a5fe1421266ad9a2d4dc",
+      "size_bytes": 823
+    },
+    {
+      "path": "frontend/src/healthContract.ts",
+      "sha256": "00680e23699855034af472a803a65b7e2fb3b209e03d43f743f946b666f6053f",
+      "size_bytes": 1500
+    },
+    {
+      "path": "frontend/src/mvpResultContract.ts",
+      "sha256": "607e383f9826a0eaebe6791226cb0e027b654bdbd47206c5eeeec638bf147da6",
+      "size_bytes": 2654
+    },
+    {
+      "path": "frontend/src/preReleaseDomHarness.ts",
+      "sha256": "ba15f297415dd1d5fcc1e6186d27e3e049206cf87b2d9158338f402a7df74059",
+      "size_bytes": 1114
+    },
+    {
+      "path": "frontend/src/runtimeClient.ts",
+      "sha256": "1b6845c0fa55580c3d250ea4b79867c39463c4b3221bc817fb82fc2b9b82da33",
+      "size_bytes": 7053
+    },
+    {
+      "path": "frontend/tests/TESTPLAN.md",
+      "sha256": "fa9976b1a346ac85ce58f5bfe040249f0590d9a9b1afb416bc1692a9fc328a99",
+      "size_bytes": 759
+    },
+    {
+      "path": "frontend/tests/healthContract.test.ts",
+      "sha256": "51e2890dda16189b43ece46981f149e3e0047e7ef4dc4cb50287e08d539d4d04",
+      "size_bytes": 1505
+    },
+    {
+      "path": "frontend/tests/mvpResultContract.test.ts",
+      "sha256": "c2b965be2951f91568d674bdbd830dca4703f4cbad0544e4aa7076e5a308d1e7",
+      "size_bytes": 802
+    },
+    {
+      "path": "pytest.ini",
+      "sha256": "f32c4c2870b7a8d99811c906f13ee826d8e8b22e9fa777c45adc58d77102329f",
+      "size_bytes": 88
+    },
+    {
+      "path": "registry/ems_contract_registry.yaml",
+      "sha256": "97bb4ef62108f31a8b2f6a8d9ce03c2bb4877ec46f0cdfe7349b711d71bf8fb1",
+      "size_bytes": 1590
+    },
+    {
+      "path": "registry/ems_module_registry.yaml",
+      "sha256": "87bfbb218410cba052eab65f3c9eff5f761748db8da3cfd3c5df3002efa07d96",
+      "size_bytes": 2753
+    },
+    {
+      "path": "registry/ems_push_registry.yaml",
+      "sha256": "c8cdaf90c1d05ccac7ec4d7de7bdfe8c667809e55a7be7bf1186c4c73e7cb28a",
+      "size_bytes": 996
+    },
+    {
+      "path": "registry/ems_remote_registry.yaml",
+      "sha256": "f0defb9116d13ca25501a78e55ff2db70933ff0235dec7f67f003deb98463c08",
+      "size_bytes": 575
+    },
+    {
+      "path": "schemas/ems_remote_push_approval.schema.json",
+      "sha256": "140ca4fe3544efbe460ba816c11a155391783069419def9a941aaf04a7c08bb7",
+      "size_bytes": 1354
+    },
+    {
+      "path": "scripts/ems_browser_e2e.py",
+      "sha256": "ce83a9a9b114b10d9f0c3b9df5ba281db6089395487d0f43931a196114eefa50",
+      "size_bytes": 2628
+    },
+    {
+      "path": "scripts/ems_browser_full_matrix.py",
+      "sha256": "8db654ca0e8190595a2d22e7c0a205ee371f65326b84bff38a0dfed467785c9b",
+      "size_bytes": 6499
+    },
+    {
+      "path": "scripts/ems_governance_evidence.py",
+      "sha256": "469c6f9c11175110d3f989d2cfb82d047004e1fbf9c721b654fb62db2d348de6",
+      "size_bytes": 4003
+    },
+    {
+      "path": "scripts/ems_phase2_approval_validation.py",
+      "sha256": "45dd0b94f62b5763dbb1b212600fee84e60aaea0eeef6e9b5d1f1975fdbb5bbb",
+      "size_bytes": 2831
+    },
+    {
+      "path": "scripts/ems_push_gate.py",
+      "sha256": "42026fca01b01efaffb21c115b12ef7fec6b85e0dcea36cf216d9ad3dabf285d",
+      "size_bytes": 4193
+    },
+    {
+      "path": "scripts/ems_release.py",
+      "sha256": "49d76cb3d345a4fbef0aa2829b2fde77c33ccb1b8da4248a77243d12ea2d8804",
+      "size_bytes": 1926
+    },
+    {
+      "path": "scripts/ems_score.py",
+      "sha256": "1d681589fdc5a8d8fc2611a7c1b5bf7e16cd81a47cdef48d55687b0177df0383",
+      "size_bytes": 6606
+    },
+    {
+      "path": "scripts/ems_security_scans.py",
+      "sha256": "61798ae6cec016ae05b8d00a367942d6cc75f54493d95913b4817635c52fc58d",
+      "size_bytes": 2120
+    },
+    {
+      "path": "scripts/ems_static_guard.py",
+      "sha256": "3ebb12fadbe46859e3840b749bfa9220a9dacf0500c498702d07744dab7327ea",
+      "size_bytes": 10367
+    },
+    {
+      "path": "scripts/ems_validation.py",
+      "sha256": "5c459d018fa9ad0d78521933434ee19c34c02c43e31c6d184455aa4c63aa1268",
+      "size_bytes": 3972
+    },
+    {
+      "path": "scripts/ems_xss_scan.py",
+      "sha256": "d2f98d8847aadde2974a0e3ec7672000f57740047e23ce48884af411d96140f3",
+      "size_bytes": 2327
+    },
+    {
+      "path": "scripts/first_push_manifest.py",
+      "sha256": "fb06cb492529773a0696a8e80ef84b5d6a84871d7fdc4c4411f9cae5c4c61959",
+      "size_bytes": 2331
+    },
+    {
+      "path": "scripts/generate_evidence_manifest.py",
+      "sha256": "c7cb9816429bdffaa2f6485b735bebd5c91a609e84aafabc68037ac9687bb705",
+      "size_bytes": 3148
+    },
+    {
+      "path": "state/backups/ssid-ems-backup-20260717T094518Z/backup_manifest.json",
+      "sha256": "15fb37c6984c935c485ae1e9a89b93452eb36977b482a67ee6c7fd1ff0a887e5",
+      "size_bytes": 858
+    },
+    {
+      "path": "state/backups/ssid-ems-backup-20260717T094518Z/ems.db-shm",
+      "sha256": "93976fdda44a6a5d5de9970b5c02b4a7e10292f456cd0b9a170025d02d8965bd",
+      "size_bytes": 32768
+    },
+    {
+      "path": "state/backups/ssid-ems-backup-20260717T094518Z/ems.db-wal",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "path": "state/test_admin_contract.db",
+      "sha256": "81a34871478e87b55f6376794c0de989ff851d5b654fbfba9411d759c8de56ac",
+      "size_bytes": 126976
+    },
+    {
+      "path": "state/test_operational.db",
+      "sha256": "ebd799929053e19a2895051725a166cf9a3823e6eea57154e874b83e6e64b519",
+      "size_bytes": 126976
+    },
+    {
+      "path": "state/test_operational_17208.db",
+      "sha256": "badf646c18fcfdb537c678029fc1e1a46ef4aebf572850dde1743df9742a1295",
+      "size_bytes": 126976
+    },
+    {
+      "path": "state/test_operational_17480.db",
+      "sha256": "7fc61b44115dce878b40617b71430ca1e8bf85664d040ebce7b0c06635095cd5",
+      "size_bytes": 126976
+    },
+    {
+      "path": "state/test_operational_7488.db",
+      "sha256": "2713a773d1295386c714fee0eef1ef8b25073a9a1d286c3e27bc1567c21a81e1",
+      "size_bytes": 126976
+    },
+    {
+      "path": "tests/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "path": "tests/test_ems_push_gate.py",
+      "sha256": "b9e04bcb8ecdfe42fdc4e731c545fe95b3a6624592cac93907450692094ce564",
+      "size_bytes": 1786
+    },
+    {
+      "path": "tests/test_ems_score.py",
+      "sha256": "321bdeda1cf7ddb262db4cf40afdfc6017923a4e5cdbe06b1191d6092f40d6de",
+      "size_bytes": 942
+    },
+    {
+      "path": "tests/test_ems_static_guard.py",
+      "sha256": "3352304112565304c93a4343b4fcaec50ab11dfbeab1f428178d9c225a4f37ed",
+      "size_bytes": 903
+    },
+    {
+      "path": "tests/test_evidence_manifest.py",
+      "sha256": "f7ecaae6c1db83d21e49dee11a79737406fe9758533462ef636d768f45eab84a",
+      "size_bytes": 2765
+    },
+    {
+      "path": "tests/test_first_push_manifest.py",
+      "sha256": "89c168ba3742020459abbb6e27708f4245874c06aedadb77038897acd42c1d0b",
+      "size_bytes": 1244
+    },
+    {
+      "path": "tests/test_frontend_admin_routes.py",
+      "sha256": "8eba02cd1cd2a5cac9926a363fa3b5f6fcb4a42facdefa7c4754036f8e5e26af",
+      "size_bytes": 2209
+    },
+    {
+      "path": "tests/test_frontend_health_server.py",
+      "sha256": "e6c198520ae4de63a4881d0f24846c1db1b85aea9f8308615eac3bc0fb46dee5",
+      "size_bytes": 2101
+    },
+    {
+      "path": "tests/test_full_program_order_dom_e2e.py",
+      "sha256": "4a23bb8299c1ead4b368d1315eb3a6feb7b25c056b2b1fed94b0a1e842e15e09",
+      "size_bytes": 1630
+    },
+    {
+      "path": "tests/test_full_program_order_frontend_abuse_static.py",
+      "sha256": "ce5f9b09f7bf66902b5c71ac2292d08ba579cb99213da1a391caa7f3a059a95c",
+      "size_bytes": 685
+    },
+    {
+      "path": "tests/test_mvp_ui_contract_static.py",
+      "sha256": "486503cb27cc275bf51d39116ce044aa77c8bcc31166fe74ea1837e9b19d4a07",
+      "size_bytes": 883
+    },
+    {
+      "path": "tests/test_program_epic_02_frontend_runtime_static.py",
+      "sha256": "7fbfc7c93a7cb45a70de2b56979f64a55ee1b8a16440cfa838da9e0dabd81512",
+      "size_bytes": 1071
+    },
+    {
+      "path": "tests/test_release_candidate_ui_runtime_static.py",
+      "sha256": "4f976f15aeb23fb6b9255f4d0f60152663b28e8e3b7c7e1bd0ceeb024327a59b",
+      "size_bytes": 1033
+    },
+    {
+      "path": "tests/test_runtime_ui_contract_static.py",
+      "sha256": "787cb149db2bd18ac87c75830cce9992e7f78c948ede3d4f260db75aefa52a0a",
+      "size_bytes": 1680
+    },
+    {
+      "path": "tests/test_terminal3_accessibility.py",
+      "sha256": "bbd83f6421545013dac10918b34f5c1810cf7438a2b7908156622d3b0c0b2622",
+      "size_bytes": 2323
+    }
+  ],
+  "root": ".",
+  "schema_version": "1"
+}

@@ -1,0 +1,10 @@
+{
+  "schema_version": "1",
+  "status": "PASS",
+  "rollback_manifest": {
+    "previous_verified_head": "7accbf875b75df40f4a689b0cb7974c5ef72d21d",
+    "branch": "remediation/20260730/ems-terminal3-final",
+    "rollback_action": "deploy previous normal branch commit; no force push or history rewrite",
+    "artifacts": ["release_tmp/ems_a.zip", "audit/evidence/terminal3_ems_recovery_sha256.json"]
+  }
+}

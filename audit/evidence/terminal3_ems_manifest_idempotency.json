@@ -1,0 +1,9 @@
+{
+  "schema_version": "1",
+  "status": "PASS",
+  "manifest_sha256_a": "9ee771cc4bcd3f74e10176919bf29ab911dc03aa666ac22781539d74995f50db",
+  "manifest_sha256_b": "9ee771cc4bcd3f74e10176919bf29ab911dc03aa666ac22781539d74995f50db",
+  "identical": true,
+  "drift": 0,
+  "output": "audit/evidence/terminal3_ems_recovery_sha256.json"
+}

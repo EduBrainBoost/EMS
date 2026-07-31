@@ -1,7 +1,7 @@
 /**
- * EMS Frontend Health Contract Tests
+ * SSID-EMS Frontend Health Contract Tests
  * Run with: npx jest frontend/tests/healthContract.test.ts
- * If Jest/Node is unavailable, see docs/EMS_LOCAL_REBUILD_RUNBOOK.md
+ * If Jest/Node is unavailable, see docs/EMS_LOCAL_BUILD_RUNBOOK.md
  */
 
 import {
@@ -14,10 +14,10 @@ describe("HealthResponse validator", () => {
   it("accepts a valid health response", () => {
     expect(
       validateHealthResponse({
-        service: "EMS",
-        status: "not_started",
+        service: "SSID-EMS",
+        status: "ok",
         started: false,
-        mode: "local_rebuild",
+        mode: "local_scaffold",
       })
     ).toBe(true);
   });
@@ -25,10 +25,10 @@ describe("HealthResponse validator", () => {
   it("rejects an invalid health response", () => {
     expect(
       validateHealthResponse({
-        service: "EMS",
-        status: "ok",
+        service: "SSID-EMS",
+        status: "error",
         started: false,
-        mode: "local_rebuild",
+        mode: "local_scaffold",
       })
     ).toBe(false);
   });
@@ -38,11 +38,11 @@ describe("ReadinessResponse validator", () => {
   it("accepts a valid readiness response", () => {
     expect(
       validateReadinessResponse({
-        service: "EMS",
+        service: "SSID-EMS",
         status: "not_ready",
-        reason: "local_rebuild_no_service_start",
+        reason: "local_scaffold_no_service_start",
         started: false,
-        mode: "local_rebuild",
+        mode: "local_scaffold",
       })
     ).toBe(true);
   });
@@ -52,9 +52,9 @@ describe("VersionResponse validator", () => {
   it("accepts a valid version response", () => {
     expect(
       validateVersionResponse({
-        service: "EMS",
-        version: "0.1.0-rebuild",
-        mode: "local_rebuild",
+        service: "SSID-EMS",
+        version: "0.1.0-scaffold",
+        mode: "local_scaffold",
       })
     ).toBe(true);
   });

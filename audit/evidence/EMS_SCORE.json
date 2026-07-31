@@ -1,0 +1,74 @@
+{
+  "score_id": "ssid-ems-phase1-corrected",
+  "timestamp_utc": "2026-07-16T12:55:00Z",
+  "score_version": "ems_phase1_v2",
+  "max_score": 100,
+  "pass_threshold": 95,
+  "total_score": 68,
+  "status": "partial",
+  "breakdown": {
+    "functional": {
+      "score": 20,
+      "max": 25,
+      "status": "partial",
+      "details": "Backend 35/35 PASS, Root 29/29 PASS, Combined 64/64 PASS. Frontend Contract 6/6 PASS. Readiness not_ready."
+    },
+    "nonfunctional": {
+      "score": 10,
+      "max": 15,
+      "status": "partial",
+      "details": "Ports korrekt (3100/8100). Keine CORS, kein Rate Limit, kein npm-Build."
+    },
+    "security": {
+      "score": 8,
+      "max": 15,
+      "status": "partial",
+      "details": "Keine Secrets, keine PII, Auth-Bypass blockiert. Demo-Credentials aktiv, kein RBAC, kein CORS, kein Rate Limit."
+    },
+    "risk": {
+      "score": 10,
+      "max": 15,
+      "status": "partial",
+      "details": "Demo-Auth akzeptabel für Phase 1. Keine DB, kein RBAC, kein Audit-Log."
+    },
+    "compliance": {
+      "score": 8,
+      "max": 15,
+      "status": "partial",
+      "details": "DSGVO Datenminimierung PASS, DORA PARTIAL, NIS2 PARTIAL, Lizenzen PASS."
+    },
+    "operational_readiness": {
+      "score": 5,
+      "max": 15,
+      "status": "fail",
+      "details": "Readiness not_ready. Kein Release ZIP. Registry nicht vollständig validiert."
+    },
+    "evidence_completeness": {
+      "score": 7,
+      "max": 10,
+      "status": "partial",
+      "details": "Dokumentation vorhanden. Release ZIP fehlt."
+    }
+  },
+  "deductions": [
+    "readiness_not_ready: -5",
+    "missing_release_zip: -3",
+    "missing_full_rbac: -4",
+    "missing_cors: -2",
+    "missing_rate_limit: -2",
+    "missing_audit_log: -3",
+    "missing_browser_e2e: -2",
+    "missing_db: -1"
+  ],
+  "gates": {
+    "guard": "pass",
+    "backend_tests": "pass",
+    "root_tests": "pass",
+    "combined_tests": "pass",
+    "readiness": "not_ready",
+    "release_zip": "missing",
+    "registry": "partial"
+  },
+  "overall_status": "PARTIAL",
+  "classification": "OPERATIONAL_SCAFFOLD_NOT_READY"
+}

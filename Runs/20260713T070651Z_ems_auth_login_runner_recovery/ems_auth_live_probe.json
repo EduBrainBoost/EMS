@@ -1,0 +1,168 @@
+{
+  "backend_health": {
+    "ok": true,
+    "status_code": 200,
+    "content_type": "application/json",
+    "body": {
+      "mode": "local_scaffold",
+      "service": "SSID-EMS",
+      "started": false,
+      "status": "ok"
+    },
+    "raw": "{\"mode\": \"local_scaffold\", \"service\": \"SSID-EMS\", \"started\": false, \"status\": \"ok\"}"
+  },
+  "backend_api_mvp_health": {
+    "ok": true,
+    "status_code": 200,
+    "content_type": "application/json",
+    "body": {
+      "adapter": "local-stdlib-http",
+      "auth_boundary": {
+        "accepted_stub_context": "demo-runtime-auth",
+        "auth_header": "X-SSID-Demo-Auth",
+        "fail_closed": true,
+        "mode": "safe-demo-auth-stub",
+        "no_real_user_management": true,
+        "no_secrets": true,
+        "protected_endpoints": [
+          "POST /api/mvp/verify"
+        ],
+        "public_demo_endpoints": [
+          "GET /api/mvp/health",
+          "GET /api/mvp/demo"
+        ],
+        "sprint_03_follow_up": "replace safe demo stub with real AuthN/AuthZ design after product boundary approval"
+      },
+      "diagnostics": {
+        "contract_version": "0.3.0-program-epic-02",
+        "external_services": "NOT_USED",
+        "logs_contain_pii": false,
+        "logs_contain_secrets": false,
+        "max_request_bytes": 8192,
+        "program_epic_02_ready": true,
+        "runtime_mode": "local-release-candidate"
+      },
+      "external_services": "NOT_USED",
+      "persistence_decision": {
+        "allowed_payloads": [
+          "audit evidence ids",
+          "sha256 hashes",
+          "deterministic runtime event metadata"
+        ],
+        "decision": "no real database or restart-safe persistence in Sprint 02",
+        "future_storage": "DECISION_NEEDED for Sprint 03 after AuthN/AuthZ and data minimization review",
+        "mode": "in-memory-hash-only-stub",
+        "restart_safe": false,
+        "stores_raw_pii": false,
+        "stores_secrets": false
+      },
+      "privacy_boundary": "NO_RAW_PII_NO_PRIVATE_KEY_MATERIAL",
+      "runtime_id": "runtime_20260709_productization_sprint_02",
+      "service": "SSID-EMS",
+      "status": "ok"
+    },
+    "raw": "{\"adapter\": \"local-stdlib-http\", \"auth_boundary\": {\"accepted_stub_context\": \"demo-runtime-auth\", \"auth_header\": \"X-SSID-Demo-Auth\", \"fail_closed\": true, \"mode\": \"safe-demo-auth-stub\", \"no_real_user_management\": true, \"no_secrets\": true, \"protected_endpoints\": [\"POST /api/mvp/verify\"], \"public_demo_endpoints\": [\"GET /api/mvp/health\", \"GET /api/mvp/demo\"], \"sprint_03_follow_up\": \"replace safe demo stub with real AuthN/AuthZ design after product boundary approval\"}, \"diagnostics\": {\"contract_version\": \"0.3.0-program-epic-02\", \"external_services\": \"NOT_USED\", \"logs_contain_pii\": false, \"logs_contain_secrets\": false, \"max_request_bytes\": 8192, \"program_epic_02_ready\": true, \"runtime_mode\": \"local-release-candidate\"}, \"external_services\": \"NOT_USED\", \"persistence_decision\": {\"allowed_payloads\": [\"audit evidence ids\", \"sha256 hashes\", \"deterministic runtime event metadata\"], \"decision\": \"no real database or restart-safe persistence in Sprint 02\", \"future_storage\": \"DECISION_NEEDED for Sprint 03 after AuthN/AuthZ and data minimization review\", \"mode\": \"in-memory-hash-only-stub\", \"restart_safe\": false, \"stores_raw_pii\": false, \"stores_secrets\": false}, \"privacy_boundary\": \"NO_RAW_PII_NO_PRIVATE_KEY_MATERIAL\", \"runtime_id\": \"runtime_20260709_productization_sprint_02\", \"service\": \"SSID-EMS\", \"status\": \"ok\"}"
+  },
+  "backend_session_before": {
+    "ok": false,
+    "status_code": 404,
+    "content_type": "application/json",
+    "body": {
+      "error_code": "route_not_found",
+      "path": "/api/mvp/auth/session",
+      "status": "ERROR"
+    },
+    "raw": "{\"error_code\": \"route_not_found\", \"path\": \"/api/mvp/auth/session\", \"status\": \"ERROR\"}",
+    "error": "HTTP Error 404: Not Found"
+  },
+  "backend_login_ok": {
+    "ok": false,
+    "status_code": 405,
+    "content_type": "application/json",
+    "body": {
+      "error_code": "method_not_allowed",
+      "path": "/api/mvp/auth/login",
+      "status": "ERROR"
+    },
+    "raw": "{\"error_code\": \"method_not_allowed\", \"path\": \"/api/mvp/auth/login\", \"status\": \"ERROR\"}",
+    "error": "HTTP Error 405: Method Not Allowed"
+  },
+  "backend_session_after_login": {
+    "ok": false,
+    "status_code": 404,
+    "content_type": "application/json",
+    "body": {
+      "error_code": "route_not_found",
+      "path": "/api/mvp/auth/session",
+      "status": "ERROR"
+    },
+    "raw": "{\"error_code\": \"route_not_found\", \"path\": \"/api/mvp/auth/session\", \"status\": \"ERROR\"}",
+    "error": "HTTP Error 404: Not Found"
+  },
+  "backend_logout_ok": {
+    "ok": false,
+    "status_code": 405,
+    "content_type": "application/json",
+    "body": {
+      "error_code": "method_not_allowed",
+      "path": "/api/mvp/auth/logout",
+      "status": "ERROR"
+    },
+    "raw": "{\"error_code\": \"method_not_allowed\", \"path\": \"/api/mvp/auth/logout\", \"status\": \"ERROR\"}",
+    "error": "HTTP Error 405: Method Not Allowed"
+  },
+  "backend_login_invalid": {
+    "ok": false,
+    "status_code": 405,
+    "content_type": "application/json",
+    "body": {
+      "error_code": "method_not_allowed",
+      "path": "/api/mvp/auth/login",
+      "status": "ERROR"
+    },
+    "raw": "{\"error_code\": \"method_not_allowed\", \"path\": \"/api/mvp/auth/login\", \"status\": \"ERROR\"}",
+    "error": "HTTP Error 405: Method Not Allowed"
+  },
+  "frontend_health": {
+    "ok": true,
+    "status_code": 200,
+    "content_type": "application/json",
+    "body": {
+      "backend_port": 8100,
+      "frontend_port": 3100,
+      "manifest_present": false,
+      "mode": "local_static_health_wrapper",
+      "service": "SSID-EMS",
+      "started": true,
+      "status": "ok"
+    },
+    "raw": "{\"backend_port\": 8100, \"frontend_port\": 3100, \"manifest_present\": false, \"mode\": \"local_static_health_wrapper\", \"service\": \"SSID-EMS\", \"started\": true, \"status\": \"ok\"}"
+  },
+  "frontend_api_health": {
+    "ok": true,
+    "status_code": 200,
+    "content_type": "application/json",
+    "body": {
+      "backend_port": 8100,
+      "frontend_port": 3100,
+      "manifest_present": false,
+      "mode": "local_static_health_wrapper",
+      "service": "SSID-EMS",
+      "started": true,
+      "status": "ok"
+    },
+    "raw": "{\"backend_port\": 8100, \"frontend_port\": 3100, \"manifest_present\": false, \"mode\": \"local_static_health_wrapper\", \"service\": \"SSID-EMS\", \"started\": true, \"status\": \"ok\"}"
+  },
+  "frontend_api_mvp_health": {
+    "ok": false,
+    "status_code": 404,
+    "content_type": "application/json",
+    "body": {
+      "error_code": "route_not_found",
+      "path": "/api/mvp/health",
+      "status": "ERROR"
+    },
+    "raw": "{\"error_code\": \"route_not_found\", \"path\": \"/api/mvp/health\", \"status\": \"ERROR\"}",
+    "error": "HTTP Error 404: Not Found"
+  }
+}

@@ -1,0 +1,55 @@
+meta:
+  version: "1.0.0"
+  phase: "BUILD-01-CONTRACT-SCHEMA-LAYER"
+  updated_at_utc: "2026-07-09T05:42:30Z"
+  source_milestone_run_id: "20260709T052724Z"
+
+service: "SSID-EMS"
+contract:
+  name: "ssid_mvp_identity_flow_contract"
+  schema_id: "https://ssid.local/schemas/mvp/ssid_mvp_identity_flow.schema.json"
+  schema_ref_private: "SSID/03_core/src/ssid_production/schemas/ssid_mvp_identity_flow.schema.json"
+  schema_ref_public: "SSID-open-core/03_core/interfaces/json_schemas/ssid_mvp_identity_flow.schema.json"
+  components:
+    - identity_profile
+    - credential_or_proof
+    - verification_request
+    - verification_result
+    - audit_evidence
+    - api_response
+  later_builds_enabled_by_contract:
+    - "BUILD-02 Identity Profile / DID Core"
+    - "BUILD-03 Credential Issue / Import"
+    - "BUILD-04 Verification Endpoint"
+    - "BUILD-05 Audit Evidence Chain"
+    - "BUILD-06 UI Result Flow"
+
+policies:
+  no_pii: true
+  no_secrets: true
+  hash_only_storage: true
+  no_external_provider_calls: true
+  no_service_autostart: true
+  root_24_lock: true
+  contract_layer_only: true
+
+compliance_mapping:
+  DSGVO:
+    status: "MAPPED_WITH_EXTERNAL_LEGAL_GATE"
+    note: "Data-minimized contract; no direct personal fields in examples."
+  eIDAS:
+    status: "MAPPED_WITH_EXTERNAL_LEGAL_GATE"
+    note: "Prepared for later trust profile mapping; no production assurance claim."
+  MiCA:
+    status: "OUT_OF_SCOPE_WITH_RATIONALE"
+    note: "No asset, payment, market, reserve, or related economic implementation in BUILD-01."
+  AMLD6:
+    status: "MAPPED_WITH_EXTERNAL_LEGAL_GATE"
+    note: "Hash-only audit reference supports later review without adding enforcement workflow."
+
+non_changes:
+  api_handler: "NOT_STARTED"
+  ui_flow: "NOT_STARTED"
+  runtime_store: "NOT_CHANGED"
+  provider_configuration: "NOT_CHANGED"
+  scheduled_tasks: "NOT_CHANGED"

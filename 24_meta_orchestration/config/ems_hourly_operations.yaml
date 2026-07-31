@@ -1,0 +1,30 @@
+frequency: hourly
+one_task_per_run: true
+max_tasks_per_run: 1
+repo: SSID-EMS
+repo_path: C:\Users\bibel\SSID-Workspace\SSID-Arbeitsbereich\Github\SSID-EMS
+frontend_port: 3100
+backend_port: 8100
+goal: complete_operability
+continue_unfinished_task_first: true
+zip_required: true
+sha256_required: true
+size_json_required: true
+finalizer_always_runs: true
+
+task_priority:
+  - service_start
+  - backend_health
+  - frontend_health
+  - frontend_backend_roundtrip
+  - api_contract
+  - auth_login
+  - persistence
+  - frontend_build
+  - backend_tests
+  - frontend_tests
+  - deployment_readiness
+  - runbook
+  - audit_score_badge
+  - observability
+  - cleanup_technical_debt

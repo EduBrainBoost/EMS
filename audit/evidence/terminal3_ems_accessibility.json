@@ -1,0 +1,22 @@
+{
+  "schema_version": "1",
+  "status": "PASS_WITH_MANUAL_CONTRAST_SCOPE",
+  "pages": ["/", "/console", "/admin/compliance/exceptions", "/admin/settings"],
+  "keyboard": "PASS_STATIC_CONTRACT",
+  "focus": "PASS_NO_FOCUS_SUPPRESSION",
+  "focus_order": "PASS_DOM_ORDER",
+  "dialog_focus": "NOT_APPLICABLE_NO_DIALOG_COMPONENT",
+  "escape": "NOT_APPLICABLE_NO_DIALOG_COMPONENT",
+  "form_labels": "NOT_APPLICABLE_NO_FORMS_IN_STATIC_SHELL",
+  "error_association": "NOT_APPLICABLE_NO_FORM_ERRORS_IN_STATIC_SHELL",
+  "aria_names": "PASS",
+  "landmarks": "PASS",
+  "headings": "PASS",
+  "buttons_links_tables": "PASS_LINKS_NO_BUTTONS_OR_TABLES",
+  "contrast": {"status": "MANUAL_REVIEW_REQUIRED", "values": {"text": "#e5edf8", "background": "#0b1220", "muted": "#91a4bd", "panel": "#111c2e"}},
+  "zoom": "PASS_NO_USER_SCALABLE_NO",
+  "critical": 0,
+  "serious": 0,
+  "unresolved": 0,
+  "test_command": "python -m pytest -q tests/test_terminal3_accessibility.py"
+}

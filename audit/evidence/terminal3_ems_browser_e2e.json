@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "framework": "Playwright Python",
+  "browser": "Chromium",
+  "pages": 4,
+  "console_errors": [],
+  "unhandled_exceptions": [],
+  "process_leaks": 0,
+  "port_leaks": 0,
+  "tests": 4
+}

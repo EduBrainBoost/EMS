@@ -1,12 +1,12 @@
-# EMS
+# SSID-EMS
 
-Enterprise Management System — SSID-compatible operational layer.
+SSID Educational Management System — Local Operational Scaffold v1
 
 ## Status
-- Phase: Local Rebuild v1
+- Phase: 1 (Local Scaffold)
 - Services: NOT STARTED
 - Push: BLOCKED
-- Remote: `https://github.com/EduBrainBoost/EMS.git`
+- Remote: UNCONFIRMED
 
 ## Ports
 | Service  | Port | Status                 |
@@ -29,17 +29,16 @@ python scripts/ems_validation.py
 - `backend/` — Python skeleton (no start)
 - `frontend/` — TypeScript skeleton (no start)
 - `contracts/` — Port matrix, API contract, Core integration contract
-- `scripts/` — Guard, score, manifest, validation
-- `tests/` — Guard, score, manifest tests
+- `scripts/` — Guard, score, validation
+- `tests/` — Guard and score tests
 - `docs/` — Runbook, architecture, security boundaries
-- `registry/` — Module, contract, and remote registry
+- `registry/` — Module and contract registry
 - `audit/` — Evidence and score artifacts
-- `.github/workflows/` — CI guard workflow
 
 ## Policies
 - No `.env` files
 - No secrets
 - No provider configs
 - No global CLI configs
-- No service start in rebuild phase
+- No service start in Phase 1
 - No push without approval

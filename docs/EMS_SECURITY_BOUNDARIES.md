@@ -1,10 +1,7 @@
-# EMS Security Boundaries
+# SSID-EMS Security Boundaries
 
 ## Phase 1 Boundaries
 These boundaries are enforced by `scripts/ems_static_guard.py` and must hold for every commit.
-
-### Root Structure
-- Only allowed root items: backend, frontend, contracts, docs, audit, registry, scripts, tests, .github, README.md, .gitignore, .git
 
 ### No Secrets
 - No `.env` files
@@ -19,7 +16,7 @@ These boundaries are enforced by `scripts/ems_static_guard.py` and must hold for
 ### No Global CLI Configs
 - No `.claude/`, `.cursor/`, `.aider/`, `.kimi/` directories in repo
 
-### No Service Start in Rebuild
+### No Service Start in Scaffold
 - No `uvicorn.run(` in backend source
 - No `npm start` / `npm run dev` in frontend source
 - `START_SERVICES = False` in backend config
@@ -32,8 +29,8 @@ These boundaries are enforced by `scripts/ems_static_guard.py` and must hold for
 
 ### Tabu Paths
 - No references to:
-  - `<REDACTED_LOCAL_PATH>`
-  - `<REDACTED_LOCAL_PATH>`
+  - `C:\Users\bibel\Documents\Github`
+  - `C:\Users\bibel\OneDrive\Dokumente\Github`
 
 ### No Direct Core Writes
 - EMS must not write to `16_codex`
@@ -44,6 +41,3 @@ These boundaries are enforced by `scripts/ems_static_guard.py` and must hold for
 - Push requires approval file
 - Approval must be validated by guard
 - Force push is forbidden
-
-
-Path redaction: LOCAL_ABSOLUTE_PATH_REMOVED

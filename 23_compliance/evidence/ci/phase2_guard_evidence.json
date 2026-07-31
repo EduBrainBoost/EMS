@@ -1,0 +1,345 @@
+{
+  "status": "fail",
+  "exit_code": 24,
+  "errors": [
+    "Missing roots: ['01_ai_layer', '02_audit_logging', '03_core', '04_deployment', '05_documentation', '06_data_pipeline', '07_governance_legal', '08_identity_score', '09_meta_identity', '10_interoperability', '11_test_simulation', '12_tooling', '13_ui_layer', '14_zero_time_auth', '15_infra', '16_codex', '17_observability', '18_data_layer', '19_adapters', '20_foundation', '21_post_quantum_crypto', '22_datasets', '24_meta_orchestration']",
+    "Unexpected roots: ['audit', 'backend', 'contracts', 'docs', 'frontend', 'registry', 'scripts', 'tests']",
+    "ROOT-24-LOCK violated: expected 24, found 9",
+    "SoT directory missing: 16_codex",
+    "Registry violations: ['registry_file_missing']",
+    "Forbidden findings: {'paths': [{'file': 'docs/EMS_SECURITY_BOUNDARIES.md', 'path': 'C:\\\\Users\\\\bibel\\\\Documents\\\\Github'}, {'file': 'docs/EMS_SECURITY_BOUNDARIES.md', 'path': 'C:\\\\Users\\\\bibel\\\\OneDrive\\\\Dokumente\\\\Github'}, {'file': 'scripts/ems_static_guard.py', 'path': 'C:\\\\Users\\\\bibel\\\\Documents\\\\Github'}, {'file': 'scripts/ems_static_guard.py', 'path': 'C:\\\\Users\\\\bibel\\\\OneDrive\\\\Dokumente\\\\Github'}], 'ports': [{'file': 'README.md', 'port': '3000'}, {'file': 'README.md', 'port': '3001'}, {'file': 'README.md', 'port': '3002'}, {'file': 'README.md', 'port': '3210'}, {'file': 'README.md', 'port': '5173'}, {'file': 'README.md', 'port': '4321'}, {'file': 'README.md', 'port': '8000'}, {'file': 'contracts/ems_port_matrix.yaml', 'port': '3000'}, {'file': 'contracts/ems_port_matrix.yaml', 'port': '3001'}, {'file': 'contracts/ems_port_matrix.yaml', 'port': '3002'}, {'file': 'contracts/ems_port_matrix.yaml', 'port': '3210'}, {'file': 'contracts/ems_port_matrix.yaml', 'port': '5173'}, {'file': 'contracts/ems_port_matrix.yaml', 'port': '4321'}, {'file': 'contracts/ems_port_matrix.yaml', 'port': '8000'}, {'file': 'docs/EMS_LOCAL_BUILD_RUNBOOK.md', 'port': '3000'}, {'file': 'docs/EMS_LOCAL_BUILD_RUNBOOK.md', 'port': '3001'}, {'file': 'docs/EMS_LOCAL_BUILD_RUNBOOK.md', 'port': '3002'}, {'file': 'docs/EMS_LOCAL_BUILD_RUNBOOK.md', 'port': '3210'}, {'file': 'docs/EMS_LOCAL_BUILD_RUNBOOK.md', 'port': '5173'}, {'file': 'docs/EMS_LOCAL_BUILD_RUNBOOK.md', 'port': '4321'}, {'file': 'docs/EMS_LOCAL_BUILD_RUNBOOK.md', 'port': '8000'}, {'file': 'docs/EMS_SECURITY_BOUNDARIES.md', 'port': '3000'}, {'file': 'docs/EMS_SECURITY_BOUNDARIES.md', 'port': '3001'}, {'file': 'docs/EMS_SECURITY_BOUNDARIES.md', 'port': '3002'}, {'file': 'docs/EMS_SECURITY_BOUNDARIES.md', 'port': '3210'}, {'file': 'docs/EMS_SECURITY_BOUNDARIES.md', 'port': '5173'}, {'file': 'docs/EMS_SECURITY_BOUNDARIES.md', 'port': '4321'}, {'file': 'docs/EMS_SECURITY_BOUNDARIES.md', 'port': '8000'}, {'file': 'scripts/ems_score.py', 'port': '3000'}, {'file': 'scripts/ems_score.py', 'port': '3001'}, {'file': 'scripts/ems_score.py', 'port': '3002'}, {'file': 'scripts/ems_score.py', 'port': '3210'}, {'file': 'scripts/ems_score.py', 'port': '5173'}, {'file': 'scripts/ems_score.py', 'port': '4321'}, {'file': 'scripts/ems_score.py', 'port': '8000'}, {'file': 'scripts/ems_static_guard.py', 'port': '3000'}, {'file': 'scripts/ems_static_guard.py', 'port': '3001'}, {'file': 'scripts/ems_static_guard.py', 'port': '3002'}, {'file': 'scripts/ems_static_guard.py', 'port': '3210'}, {'file': 'scripts/ems_static_guard.py', 'port': '5173'}, {'file': 'scripts/ems_static_guard.py', 'port': '4321'}, {'file': 'scripts/ems_static_guard.py', 'port': '8000'}, {'file': 'frontend/src/config.ts', 'port': '3000'}, {'file': 'frontend/src/config.ts', 'port': '3001'}, {'file': 'frontend/src/config.ts', 'port': '3002'}, {'file': 'frontend/src/config.ts', 'port': '3210'}, {'file': 'frontend/src/config.ts', 'port': '5173'}, {'file': 'frontend/src/config.ts', 'port': '4321'}, {'file': 'frontend/src/config.ts', 'port': '8000'}, {'file': 'backend/app/config.py', 'port': '3000'}, {'file': 'backend/app/config.py', 'port': '3001'}, {'file': 'backend/app/config.py', 'port': '3002'}, {'file': 'backend/app/config.py', 'port': '3210'}, {'file': 'backend/app/config.py', 'port': '5173'}, {'file': 'backend/app/config.py', 'port': '4321'}, {'file': 'backend/app/config.py', 'port': '8000'}, {'file': 'backend/tests/test_api_contract.py', 'port': '8000'}, {'file': 'backend/tests/test_config.py', 'port': '3000'}, {'file': 'backend/tests/test_config.py', 'port': '3001'}, {'file': 'backend/tests/test_config.py', 'port': '3002'}, {'file': 'backend/tests/test_config.py', 'port': '3210'}, {'file': 'backend/tests/test_config.py', 'port': '5173'}, {'file': 'backend/tests/test_config.py', 'port': '4321'}, {'file': 'backend/tests/test_config.py', 'port': '8000'}], 'mnt_data': []}"
+  ],
+  "root_count": 9,
+  "unexpected_roots": [
+    "audit",
+    "backend",
+    "contracts",
+    "docs",
+    "frontend",
+    "registry",
+    "scripts",
+    "tests"
+  ],
+  "missing_roots": [
+    "01_ai_layer",
+    "02_audit_logging",
+    "03_core",
+    "04_deployment",
+    "05_documentation",
+    "06_data_pipeline",
+    "07_governance_legal",
+    "08_identity_score",
+    "09_meta_identity",
+    "10_interoperability",
+    "11_test_simulation",
+    "12_tooling",
+    "13_ui_layer",
+    "14_zero_time_auth",
+    "15_infra",
+    "16_codex",
+    "17_observability",
+    "18_data_layer",
+    "19_adapters",
+    "20_foundation",
+    "21_post_quantum_crypto",
+    "22_datasets",
+    "24_meta_orchestration"
+  ],
+  "missing_subdirs": [
+    "23_compliance/docs",
+    "23_compliance/src",
+    "23_compliance/tests"
+  ],
+  "missing_files": [
+    "23_compliance/module.yaml",
+    "23_compliance/README.md"
+  ],
+  "empty_files": [],
+  "symlinks": [],
+  "sot_status": "fail",
+  "sot_missing": [],
+  "registry_status": "fail",
+  "registry_violations": [
+    "registry_file_missing"
+  ],
+  "forbidden_status": "fail",
+  "forbidden_findings": {
+    "paths": [
+      {
+        "file": "docs/EMS_SECURITY_BOUNDARIES.md",
+        "path": "C:\\Users\\bibel\\Documents\\Github"
+      },
+      {
+        "file": "docs/EMS_SECURITY_BOUNDARIES.md",
+        "path": "C:\\Users\\bibel\\OneDrive\\Dokumente\\Github"
+      },
+      {
+        "file": "scripts/ems_static_guard.py",
+        "path": "C:\\Users\\bibel\\Documents\\Github"
+      },
+      {
+        "file": "scripts/ems_static_guard.py",
+        "path": "C:\\Users\\bibel\\OneDrive\\Dokumente\\Github"
+      }
+    ],
+    "ports": [
+      {
+        "file": "README.md",
+        "port": "3000"
+      },
+      {
+        "file": "README.md",
+        "port": "3001"
+      },
+      {
+        "file": "README.md",
+        "port": "3002"
+      },
+      {
+        "file": "README.md",
+        "port": "3210"
+      },
+      {
+        "file": "README.md",
+        "port": "5173"
+      },
+      {
+        "file": "README.md",
+        "port": "4321"
+      },
+      {
+        "file": "README.md",
+        "port": "8000"
+      },
+      {
+        "file": "contracts/ems_port_matrix.yaml",
+        "port": "3000"
+      },
+      {
+        "file": "contracts/ems_port_matrix.yaml",
+        "port": "3001"
+      },
+      {
+        "file": "contracts/ems_port_matrix.yaml",
+        "port": "3002"
+      },
+      {
+        "file": "contracts/ems_port_matrix.yaml",
+        "port": "3210"
+      },
+      {
+        "file": "contracts/ems_port_matrix.yaml",
+        "port": "5173"
+      },
+      {
+        "file": "contracts/ems_port_matrix.yaml",
+        "port": "4321"
+      },
+      {
+        "file": "contracts/ems_port_matrix.yaml",
+        "port": "8000"
+      },
+      {
+        "file": "docs/EMS_LOCAL_BUILD_RUNBOOK.md",
+        "port": "3000"
+      },
+      {
+        "file": "docs/EMS_LOCAL_BUILD_RUNBOOK.md",
+        "port": "3001"
+      },
+      {
+        "file": "docs/EMS_LOCAL_BUILD_RUNBOOK.md",
+        "port": "3002"
+      },
+      {
+        "file": "docs/EMS_LOCAL_BUILD_RUNBOOK.md",
+        "port": "3210"
+      },
+      {
+        "file": "docs/EMS_LOCAL_BUILD_RUNBOOK.md",
+        "port": "5173"
+      },
+      {
+        "file": "docs/EMS_LOCAL_BUILD_RUNBOOK.md",
+        "port": "4321"
+      },
+      {
+        "file": "docs/EMS_LOCAL_BUILD_RUNBOOK.md",
+        "port": "8000"
+      },
+      {
+        "file": "docs/EMS_SECURITY_BOUNDARIES.md",
+        "port": "3000"
+      },
+      {
+        "file": "docs/EMS_SECURITY_BOUNDARIES.md",
+        "port": "3001"
+      },
+      {
+        "file": "docs/EMS_SECURITY_BOUNDARIES.md",
+        "port": "3002"
+      },
+      {
+        "file": "docs/EMS_SECURITY_BOUNDARIES.md",
+        "port": "3210"
+      },
+      {
+        "file": "docs/EMS_SECURITY_BOUNDARIES.md",
+        "port": "5173"
+      },
+      {
+        "file": "docs/EMS_SECURITY_BOUNDARIES.md",
+        "port": "4321"
+      },
+      {
+        "file": "docs/EMS_SECURITY_BOUNDARIES.md",
+        "port": "8000"
+      },
+      {
+        "file": "scripts/ems_score.py",
+        "port": "3000"
+      },
+      {
+        "file": "scripts/ems_score.py",
+        "port": "3001"
+      },
+      {
+        "file": "scripts/ems_score.py",
+        "port": "3002"
+      },
+      {
+        "file": "scripts/ems_score.py",
+        "port": "3210"
+      },
+      {
+        "file": "scripts/ems_score.py",
+        "port": "5173"
+      },
+      {
+        "file": "scripts/ems_score.py",
+        "port": "4321"
+      },
+      {
+        "file": "scripts/ems_score.py",
+        "port": "8000"
+      },
+      {
+        "file": "scripts/ems_static_guard.py",
+        "port": "3000"
+      },
+      {
+        "file": "scripts/ems_static_guard.py",
+        "port": "3001"
+      },
+      {
+        "file": "scripts/ems_static_guard.py",
+        "port": "3002"
+      },
+      {
+        "file": "scripts/ems_static_guard.py",
+        "port": "3210"
+      },
+      {
+        "file": "scripts/ems_static_guard.py",
+        "port": "5173"
+      },
+      {
+        "file": "scripts/ems_static_guard.py",
+        "port": "4321"
+      },
+      {
+        "file": "scripts/ems_static_guard.py",
+        "port": "8000"
+      },
+      {
+        "file": "frontend/src/config.ts",
+        "port": "3000"
+      },
+      {
+        "file": "frontend/src/config.ts",
+        "port": "3001"
+      },
+      {
+        "file": "frontend/src/config.ts",
+        "port": "3002"
+      },
+      {
+        "file": "frontend/src/config.ts",
+        "port": "3210"
+      },
+      {
+        "file": "frontend/src/config.ts",
+        "port": "5173"
+      },
+      {
+        "file": "frontend/src/config.ts",
+        "port": "4321"
+      },
+      {
+        "file": "frontend/src/config.ts",
+        "port": "8000"
+      },
+      {
+        "file": "backend/app/config.py",
+        "port": "3000"
+      },
+      {
+        "file": "backend/app/config.py",
+        "port": "3001"
+      },
+      {
+        "file": "backend/app/config.py",
+        "port": "3002"
+      },
+      {
+        "file": "backend/app/config.py",
+        "port": "3210"
+      },
+      {
+        "file": "backend/app/config.py",
+        "port": "5173"
+      },
+      {
+        "file": "backend/app/config.py",
+        "port": "4321"
+      },
+      {
+        "file": "backend/app/config.py",
+        "port": "8000"
+      },
+      {
+        "file": "backend/tests/test_api_contract.py",
+        "port": "8000"
+      },
+      {
+        "file": "backend/tests/test_config.py",
+        "port": "3000"
+      },
+      {
+        "file": "backend/tests/test_config.py",
+        "port": "3001"
+      },
+      {
+        "file": "backend/tests/test_config.py",
+        "port": "3002"
+      },
+      {
+        "file": "backend/tests/test_config.py",
+        "port": "3210"
+      },
+      {
+        "file": "backend/tests/test_config.py",
+        "port": "5173"
+      },
+      {
+        "file": "backend/tests/test_config.py",
+        "port": "4321"
+      },
+      {
+        "file": "backend/tests/test_config.py",
+        "port": "8000"
+      }
+    ],
+    "mnt_data": []
+  }
+}

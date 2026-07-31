@@ -1,0 +1,12 @@
+{
+  "schema_version": "1",
+  "status": "PASS",
+  "source": "backend/app/http_server.py:_security_headers",
+  "delivered_policy": "default-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'",
+  "unsafe_eval": false,
+  "unsafe_inline": false,
+  "object_src_none": true,
+  "base_uri_set": true,
+  "frame_ancestors_set": true,
+  "inline_runtime": "not required by backend response policy"
+}

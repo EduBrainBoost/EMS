@@ -1,0 +1,179 @@
+# SSID-EMS Permission Matrix
+# Stand: 2026-07-16T11:43:04Z
+# Phase: 1 (Scaffold) - Berechtigungen als Demo-Stub dokumentiert
+
+phase: 1
+description: "Demo-Stub Berechtigungen. Phase 3 implementiert volles RBAC."
+
+roles:
+  - role: demo_user
+    level: user
+    login: true
+    session: true
+    logout: true
+    verify: true
+    admin: false
+    description: "Standard-Demo-Rolle"
+
+  - role: super_admin
+    level: admin
+    login: false
+    session: false
+    logout: false
+    verify: false
+    admin: false
+    description: "Nicht implementiert (Phase 3)"
+
+  - role: security_admin
+    level: admin
+    login: false
+    session: false
+    logout: false
+    verify: false
+    admin: false
+    description: "Nicht implementiert"
+
+  - role: compliance_admin
+    level: admin
+    login: false
+    session: false
+    logout: false
+    verify: false
+    admin: false
+    description: "Nicht implementiert"
+
+  - role: operations_admin
+    level: admin
+    login: false
+    session: false
+    logout: false
+    verify: false
+    admin: false
+    description: "Nicht implementiert"
+
+  - role: support_admin
+    level: admin
+    login: false
+    session: false
+    logout: false
+    verify: false
+    admin: false
+    description: "Nicht implementiert"
+
+  - role: auditor
+    level: read
+    login: false
+    session: false
+    logout: false
+    verify: false
+    admin: false
+    description: "Nicht implementiert"
+
+  - role: viewer
+    level: read
+    login: false
+    session: false
+    logout: false
+    verify: false
+    admin: false
+    description: "Nicht implementiert"
+
+  - role: user
+    level: user
+    login: false
+    session: false
+    logout: false
+    verify: false
+    admin: false
+    description: "Nicht implementiert"
+
+  - role: provider
+    level: provider
+    login: false
+    session: false
+    logout: false
+    verify: false
+    admin: false
+    description: "Nicht implementiert"
+
+endpoint_permissions:
+  - endpoint: "/health"
+    public: true
+    demo_auth: true
+    admin: true
+    rbac_check: false
+
+  - endpoint: "/readiness"
+    public: true
+    demo_auth: true
+    admin: true
+    rbac_check: false
+
+  - endpoint: "/version"
+    public: true
+    demo_auth: true
+    admin: true
+    rbac_check: false
+
+  - endpoint: "/status"
+    public: true
+    demo_auth: true
+    admin: true
+    rbac_check: false
+
+  - endpoint: "/api/contract"
+    public: true
+    demo_auth: true
+    admin: true
+    rbac_check: false
+
+  - endpoint: "/api/mvp/health"
+    public: true
+    demo_auth: true
+    admin: true
+    rbac_check: false
+
+  - endpoint: "/api/mvp/demo"
+    public: true
+    demo_auth: true
+    admin: true
+    rbac_check: false
+
+  - endpoint: "/api/mvp/verify"
+    public: false
+    demo_auth: true
+    admin: true
+    rbac_check: "Demo-Auth-Stub"
+
+  - endpoint: "/api/mvp/auth/login"
+    public: true
+    demo_auth: true
+    admin: true
+    rbac_check: false
+
+  - endpoint: "/api/mvp/auth/session"
+    public: true
+    demo_auth: true
+    admin: true
+    rbac_check: false
+
+  - endpoint: "/api/mvp/auth/logout"
+    public: true
+    demo_auth: true
+    admin: true
+    rbac_check: false
+
+security_principles:
+  deny_by_default: true
+  server_side_authorization: "Stub-Ebene (Header-Pruefung)"
+  frontend_hiding: "Nicht anwendbar (kein React-Routing in Phase 1)"
+  idor: "Nicht anwendbar (keine Resource-IDs in Phase 1)"
+  session_revocation: "Logout setzt _auth_authenticated = False"
+  account_lockout: "Nicht implementiert (Phase 3)"
+
+planned_phase3:
+  - "JWT-basierte Sessions mit HttpOnly/Secure/SameSite Cookies"
+  - "RBAC-Middleware mit Rollen-Hierarchy"
+  - "Rate Limiting pro Rolle"
+  - "Session-Timeout und Refresh-Token-Rotation"
+  - "Audit-Log fuer alle privilegierten Aktionen"

@@ -1,0 +1,26 @@
+{
+  "schema_version": "1",
+  "classification": "PREEXISTING_VALID_EVIDENCE",
+  "legacy_worktree": "C:/Users/bibel/SSID-Workspace/SSID-Arbeitsbereich/Worktrees/remediation-20260728T204803Z/SSID-EMS",
+  "legacy_branch": "remediation/20260728T204803Z/ems",
+  "legacy_head": "124c40ab0ea7a3a6e21abb8e86c8248b19aeb1c9",
+  "dirty_paths": [
+    "audit/evidence/ems_first_push_manifest.json",
+    "audit/evidence/ems_phase2_push_gate.json",
+    "audit/evidence/terminal3_ems_baseline.json",
+    "audit/evidence/terminal3_ems_consent_recovery.json",
+    "audit/evidence/terminal3_ems_runtime_authority.json"
+  ],
+  "snapshot_patch": "Runs/ssid_final_closure_verified_mutation_20260729T164521Z/terminal3_ems_legacy_tracked_diff.patch",
+  "source_unchanged": true,
+  "focused_security_tests": 3,
+  "security_auth_rbac_runtime_tests": 22,
+  "full_project_suite": 89,
+  "compileall": "PASS",
+  "diff_check": "PASS",
+  "browser_e2e": "NOT_DECLARED",
+  "accessibility": "NOT_DECLARED",
+  "dynamic_xss": "NOT_DECLARED",
+  "dependencies_licenses_sast": "NOT_DECLARED",
+  "final_release": "PENDING"
+}
