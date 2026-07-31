@@ -1,0 +1,10 @@
+{
+  "schema_version": "1",
+  "status": "PASS",
+  "reflected": {"payload_executions": 0, "status": "PASS"},
+  "stored": {"payload_executions": 0, "status": "PASS"},
+  "dom": {"payload_executions": 0, "status": "PASS"},
+  "payload_groups": ["script", "img_onerror", "svg_onload", "javascript", "attribute_breakout", "html_entity", "url_encoding", "unicode", "query", "fragment", "stored_input"],
+  "surfaces": ["login_errors", "role_labels", "audit_views", "tables", "search", "toasts", "dialogs", "url_parameters"],
+  "unresolved": []
+}

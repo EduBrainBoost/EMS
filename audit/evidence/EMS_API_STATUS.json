@@ -1,0 +1,21 @@
+{
+  "api_id": "ssid-ems-api",
+  "timestamp_utc": "2026-07-16T11:43:04Z",
+  "total_endpoints": 12,
+  "endpoints": [
+    {"path": "/health", "method": "GET", "auth": false, "status": "operational"},
+    {"path": "/api/health", "method": "GET", "auth": false, "status": "operational"},
+    {"path": "/readiness", "method": "GET", "auth": false, "status": "operational"},
+    {"path": "/version", "method": "GET", "auth": false, "status": "operational"},
+    {"path": "/status", "method": "GET", "auth": false, "status": "operational"},
+    {"path": "/api/contract", "method": "GET", "auth": false, "status": "operational"},
+    {"path": "/api/mvp/health", "method": "GET", "auth": false, "status": "operational"},
+    {"path": "/api/mvp/demo", "method": "GET", "auth": false, "status": "operational"},
+    {"path": "/api/mvp/verify", "method": "POST", "auth": "demo-auth", "status": "operational"},
+    {"path": "/api/mvp/auth/login", "method": "POST", "auth": false, "status": "operational"},
+    {"path": "/api/mvp/auth/session", "method": "GET", "auth": false, "status": "operational"},
+    {"path": "/api/mvp/auth/logout", "method": "POST", "auth": false, "status": "operational"}
+  ],
+  "error_codes_defined": 14,
+  "overall_status": "PASS"
+}

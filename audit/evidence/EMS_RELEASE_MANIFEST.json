@@ -1,0 +1,137 @@
+{
+  "release_id": "ssid-ems-phase1-corrected",
+  "timestamp_utc": "2026-07-16T12:55:00Z",
+  "repository": "SSID-EMS",
+  "repository_path": "C:\\Users\\bibel\\SSID-Workspace\\SSID-Arbeitsbereich\\Github\\SSID-EMS",
+  "branch": "master",
+  "head_commit": "bc4fb8fd1e589b92f1314a7eee3c41768b0111af",
+  "remote": "https://github.com/EduBrainBoost/EMS.git",
+  "phase": "1",
+  "version": "0.1.0-scaffold",
+  "status": "OPERATIONAL_SCAFFOLD_NOT_READY",
+  "components": {
+    "backend": {
+      "status": "operational_scaffold",
+      "port": 8100,
+      "start_command": "python backend/app/http_server.py --port 8100",
+      "health_status": "pass",
+      "readiness_status": "not_ready"
+    },
+    "frontend": {
+      "status": "operational_scaffold",
+      "port": 3100,
+      "start_command": "python frontend/server.py --port 3100",
+      "health_status": "pass"
+    },
+    "orchestrator": {
+      "status": "reachable_only",
+      "port": 3310,
+      "url": "http://localhost:3310"
+    }
+  },
+  "test_results": {
+    "backend_tests": {"pass": 35, "fail": 0, "total": 35},
+    "root_tests": {"pass": 29, "fail": 0, "total": 29},
+    "frontend_tests": {"pass": 6, "fail": 0, "total": 6},
+    "combined_tests": {"pass": 64, "fail": 0, "total": 64},
+    "guard": {"status": "pass", "findings": 0}
+  },
+  "score": {
+    "total_score": 68,
+    "max_score": 100,
+    "status": "partial"
+  },
+  "security": {
+    "classification": "PARTIAL_SCAFFOLD",
+    "critical_findings": 0,
+    "high_findings": 0,
+    "secret_findings": 0,
+    "production_blockers": [
+      "demo_credentials_active",
+      "no_full_rbac",
+      "no_cors",
+      "no_rate_limiting",
+      "no_append_only_audit",
+      "no_production_auth"
+    ]
+  },
+  "compliance": {
+    "status": "PARTIAL",
+    "dsgdvo": "PARTIAL",
+    "eidas": "NOT_APPLICABLE",
+    "mica": "NOT_APPLICABLE",
+    "amld6": "PARTIAL",
+    "dora": "PARTIAL",
+    "nis2": "PARTIAL",
+    "eu_ai_act": "NOT_APPLICABLE",
+    "open_source": "PASS"
+  },
+  "artifacts": [
+    "docs/operations/EMS_CURRENT_STATE.md",
+    "docs/operations/EMS_GAP_ANALYSIS.md",
+    "docs/operations/EMS_SERVICE_MATRIX.md",
+    "docs/operations/EMS_SERVICE_MATRIX.yaml",
+    "docs/operations/EMS_API_MATRIX.yaml",
+    "docs/operations/EMS_PERMISSION_MATRIX.yaml",
+    "docs/operations/EMS_DEPENDENCY_MATRIX.yaml",
+    "docs/operations/EMS_IMPLEMENTATION_PLAN.md",
+    "docs/operations/EMS_ROLLBACK_PLAN.md",
+    "audit/evidence/EMS_CHANGESET.md",
+    "audit/evidence/EMS_TEST_REPORT.md",
+    "audit/evidence/EMS_SECURITY_REPORT.md",
+    "audit/evidence/EMS_COMPLIANCE_REPORT.md",
+    "audit/evidence/EMS_EVIDENCE.md",
+    "audit/evidence/EMS_EVIDENCE.json",
+    "audit/evidence/EMS_REGISTRY_UPDATE.yaml",
+    "audit/evidence/EMS_SCORE.json",
+    "audit/evidence/EMS_RELEASE_MANIFEST.json",
+    "audit/evidence/EMS_SERVICE_STATUS.json",
+    "audit/evidence/EMS_API_STATUS.json",
+    "registry/ems_module_registry.yaml",
+    "registry/ems_contract_registry.yaml",
+    "pytest.ini"
+  ],
+  "changed_files": [
+    "scripts/ems_static_guard.py",
+    "backend/tests/conftest.py",
+    "pytest.ini",
+    "docs/operations/EMS_SERVICE_MATRIX.yaml",
+    "registry/ems_module_registry.yaml",
+    "registry/ems_contract_registry.yaml"
+  ],
+  "new_files": [
+    "docs/operations/EMS_CURRENT_STATE.md",
+    "docs/operations/EMS_GAP_ANALYSIS.md",
+    "docs/operations/EMS_SERVICE_MATRIX.md",
+    "docs/operations/EMS_API_MATRIX.yaml",
+    "docs/operations/EMS_PERMISSION_MATRIX.yaml",
+    "docs/operations/EMS_DEPENDENCY_MATRIX.yaml",
+    "docs/operations/EMS_IMPLEMENTATION_PLAN.md",
+    "docs/operations/EMS_ROLLBACK_PLAN.md",
+    "audit/evidence/EMS_CHANGESET.md",
+    "audit/evidence/EMS_TEST_REPORT.md",
+    "audit/evidence/EMS_SECURITY_REPORT.md",
+    "audit/evidence/EMS_COMPLIANCE_REPORT.md",
+    "audit/evidence/EMS_EVIDENCE.md",
+    "audit/evidence/EMS_EVIDENCE.json",
+    "audit/evidence/EMS_REGISTRY_UPDATE.yaml",
+    "audit/evidence/EMS_SCORE.json",
+    "audit/evidence/EMS_SERVICE_STATUS.json",
+    "audit/evidence/EMS_API_STATUS.json"
+  ],
+  "open_findings": {
+    "critical": [],
+    "high": [],
+    "medium": [
+      "Keine Datenbank (Phase 3)",
+      "Kein RBAC (Phase 3)",
+      "Kein npm-Build (Phase 3)"
+    ],
+    "low": [
+      "Kein CORS (Phase 3)",
+      "Kein Rate Limit (Phase 3)",
+      "Kein E2E-Browser-Test (Phase 3)"
+    ]
+  },
+  "next_action": "Create release ZIP and update evidence with verified hashes"
+}

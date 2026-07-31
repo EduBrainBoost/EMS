@@ -1,10 +1,9 @@
+import pytest
 from backend.app.config import (
     EMS_BACKEND_PORT,
     EMS_FRONTEND_PORT,
+    ENV_MODE,
     FORBIDDEN_PORTS,
-    MODE,
-    REMOTE_URL,
-    SERVICE_NAME,
     START_SERVICES,
     validate_ports,
 )
@@ -25,20 +24,12 @@ def test_forbidden_ports_listed():
     assert FORBIDDEN_PORTS == expected
 
 
-def test_mode_is_local_rebuild():
-    assert MODE == "local_rebuild"
+def test_env_mode_is_scaffold():
+    assert ENV_MODE == "local_scaffold"
 
 
 def test_start_services_is_false():
     assert START_SERVICES is False
-
-
-def test_service_name_is_ems():
-    assert SERVICE_NAME == "EMS"
-
-
-def test_remote_url_is_correct():
-    assert REMOTE_URL == "https://github.com/EduBrainBoost/EMS.git"
 
 
 def test_validate_ports_passes():

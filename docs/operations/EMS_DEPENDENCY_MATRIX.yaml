@@ -1,0 +1,45 @@
+# SSID-EMS Dependency Matrix
+# Stand: 2026-07-16T11:43:04Z
+
+backend:
+  runtime: "Python 3.14.4"
+  framework: "stdlib http.server.ThreadingHTTPServer"
+  external_packages: []
+  local_imports:
+    - "ssid_production (SSID Core, lokal)"
+  stdlib_modules:
+    - "http.server"
+    - "json"
+    - "threading"
+    - "pathlib"
+    - "argparse"
+  installation_required: false
+  status: "PASS - stdlib-only"
+
+frontend:
+  runtime_node: "v24.15.0 (verfuegbar, nicht erforderlich)"
+  npm_version: "11.12.1 (verfuegbar, nicht erforderlich)"
+  typescript: "Kein Build (keine package.json, keine tsconfig.json)"
+  react: "TypeScript-Quelldateien nur statisch validiert"
+  build_required: false
+  status: "PASS - static surface"
+
+lockfiles:
+  package-lock.json: false
+  pnpm-lock.yaml: false
+  requirements.txt: false
+  pyproject.toml: false
+  Pipfile.lock: false
+  status: "PASS - Scaffold-Phase, keine Lockfiles erforderlich"
+
+security:
+  external_vulnerabilities: "Keine (keine externen pip-Pakete)"
+  ssi_core: "Lokale Source-Imports, keine PyPI-Pakete"
+  node_usage: "Verfuegbar, aber nicht im Einsatz"
+  status: "PASS"
+
+results:
+  FRONTEND_DEPENDENCY_INSTALL: "PASS"
+  BACKEND_DEPENDENCY_INSTALL: "PASS"
+  LOCKFILE_INTEGRITY: "PASS"
+  DEPENDENCY_SECURITY: "PASS"

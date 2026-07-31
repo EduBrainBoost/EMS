@@ -1,13 +1,56 @@
-# EMS API Contract — Local Rebuild v1
-# Defines the EMS surface area. No auth. No PII. No secrets.
+# SSID-EMS API Contract — Pre-Release Candidate V2
+# Local pre-release contract. No real personal data. No secrets.
 
 meta:
-  version: "0.1.0-rebuild"
-  phase: "phase1_local_rebuild"
-  updated_at_utc: "2026-05-10T20:00:00+00:00"
+  version: "0.3.0-program-epic-02"
+  pre_release_contract_version: "1.0.0-pre-release-candidate"
+  schema_version: "1.0.0"
+  phase: "full_program_order_pre_release_candidate"
+  updated_at_utc: "2026-07-09T23:05:34Z"
+  contract_freeze: "v1-candidate"
 
-service: "EMS"
+service: "SSID-EMS"
 base_path: "/"
+
+common_error_schema: &runtime_error_schema
+  type: object
+  required: [status, error_code, message, audit_correlation_id, runtime_audit_event, privacy_boundary]
+  properties:
+    status: { type: string, enum: [ERROR] }
+    error_code:
+      type: string
+      enum:
+        - auth_required
+        - malformed_auth_state
+        - auth_boundary_missing
+        - production_auth_not_allowed
+        - auth_bypass_attempt
+        - auth_boundary_violation
+        - fake_token_rejected
+        - invalid_json
+        - wrong_content_type
+        - payload_too_large
+        - schema_violation
+        - request_mismatch
+        - unknown_fields_rejected
+        - unsupported_version
+        - invalid_status_injection
+        - invalid_did_structure
+        - missing_did
+        - missing_credential
+        - credential_tampered
+        - replay_like_request_rejected
+        - storage_boundary_rejected
+        - audit_tampering_detected
+        - network_failure_mapped
+        - backend_unavailable
+        - ui_invalid_state
+        - schema_invalid_response
+        - timeout_simulation
+    message: { type: string }
+    audit_correlation_id: { type: string }
+    runtime_audit_event: { type: object }
+    privacy_boundary: { type: string }
 
 endpoints:
   /health:
@@ -19,7 +62,7 @@ endpoints:
       required: [service, status, started, mode]
       properties:
         service: { type: string }
-        status: { type: string, enum: [not_started] }
+        status: { type: string, enum: [ok] }
         started: { type: boolean }
         mode: { type: string }
 
@@ -62,9 +105,68 @@ endpoints:
         mode: { type: string }
         endpoints: { type: object }
 
+  /api/mvp/health:
+    method: GET
+    description: "Local Program Epic 02 runtime health endpoint"
+    auth_required: false
+    response_schema:
+      type: object
+      required: [service, status, runtime_id, external_services, diagnostics, privacy_boundary]
+      properties:
+        service: { type: string }
+        status: { type: string, enum: [ok] }
+        runtime_id: { type: string }
+        external_services: { type: string, enum: [NOT_USED] }
+        diagnostics: { type: object }
+        privacy_boundary: { type: string }
+    error_schema: *runtime_error_schema
+
+  /api/mvp/demo:
+    method: GET
+    description: "Deterministic SSID MVP release-readiness demo fixture"
+    auth_required: false
+    response_schema:
+      type: object
+      required: [demo_id, request, api_response, ui_result, audit_evidence, privacy_boundary]
+      properties:
+        demo_id: { type: string }
+        request: { type: object }
+        api_response: { type: object }
+        ui_result: { type: object }
+        audit_evidence: { type: object }
+        privacy_boundary: { type: string }
+    error_schema: *runtime_error_schema
+
+  /api/mvp/verify:
+    method: POST
+    description: "Local deterministic MVP runtime verification result for the demo request"
+    auth_required: true
+    auth_boundary: "safe-demo-auth-stub"
+    request_schema:
+      type: object
+      required: [request_id, identity_profile_ref, credential_ref, verifier_ref, nonce_hash, runtime_id, auth_boundary]
+    response_schema:
+      type: object
+      required: [status, privacy_boundary]
+      properties:
+        status: { type: string, enum: [PASS, FAIL, INSUFFICIENT, ERROR] }
+        api_response: { type: object }
+        ui_result: { type: object }
+        audit_evidence: { type: object }
+        audit_evidence_id: { type: string }
+        audit_correlation_id: { type: string }
+        runtime_audit_chain: { type: array }
+        product_audit_chain: { type: array }
+        privacy_boundary: { type: string }
+    error_schema: *runtime_error_schema
+
 policies:
-  no_auth_in_scaffold: true
-  no_pii: true
+  no_auth_in_scaffold: false
+  auth_boundary: "safe-demo-auth-stub"
+  persistence: "in-memory-hash-only-stub"
+  restart_safe_persistence_claim: false
+  no_personal_data: true
   no_secrets: true
-  no_provider_calls: true
-  no_service_start: true
+  no_external_provider_calls: true
+  openrouter_private_content: "NOT_USED"
+  ollama: "NOT_USED"

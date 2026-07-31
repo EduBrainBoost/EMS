@@ -1,0 +1,11 @@
+{
+  "badges": {
+    "accessibility": "PASS",
+    "browser": "PASS",
+    "compliance": "PASS",
+    "release": "PARTIAL",
+    "security": "PASS"
+  },
+  "schema_version": "1",
+  "status": "PASS"
+}

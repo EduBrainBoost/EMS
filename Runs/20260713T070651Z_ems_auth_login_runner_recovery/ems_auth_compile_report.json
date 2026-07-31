@@ -1,0 +1,12 @@
+{
+  "run_id": "20260713T070651Z",
+  "status": "PASS",
+  "files": [
+    "backend/app/runtime_http_adapter.py",
+    "backend/app/http_server.py",
+    "backend/app/api_contract.py",
+    "backend/tests/test_auth_login.py",
+    "backend/tests/test_api_contract.py",
+    "24_meta_orchestration/scripts/run_ems_hourly_operations.py"
+  ]
+}

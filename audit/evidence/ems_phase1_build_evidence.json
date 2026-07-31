@@ -1,0 +1,59 @@
+{
+  "evidence_id": "ems_phase1_build_evidence",
+  "timestamp_utc": "2026-07-31T00:56:56.412321+00:00",
+  "mode": "standalone",
+  "ssid_repository": {
+    "configured": false,
+    "resolved_path": null
+  },
+  "ssid_preflight": {
+    "status": "NOT_CONFIGURED",
+    "required": false,
+    "executed": false,
+    "checks": {},
+    "exit_codes": {},
+    "reason_code": "SSID_REPO_NOT_CONFIGURED"
+  },
+  "ems_guard": {
+    "scan": "ems_static_guard",
+    "timestamp": "2026-05-10T19:00:00+00:00",
+    "repo": ".",
+    "findings_count": 0,
+    "findings": [],
+    "contract_violations": [],
+    "status": "pass",
+    "exit_code": 0
+  },
+  "backend_tests": {
+    "exit_code": 0,
+    "stdout": "..............................................................           [100%]\n62 passed in 16.32s\n",
+    "stderr": "",
+    "pass": true
+  },
+  "root_tests": {
+    "exit_code": 0,
+    "stdout": "..................................................                       [100%]\n50 passed in 3.50s\n",
+    "stderr": "",
+    "pass": true
+  },
+  "score": {
+    "score_version": "ems_phase1_v1",
+    "timestamp_utc": "2026-05-10T19:00:00+00:00",
+    "max_score": 100,
+    "pass_threshold": 95,
+    "total_score": 100,
+    "status": "pass",
+    "breakdown": {
+      "repo_structure": 15,
+      "backend_contract": 15,
+      "frontend_contract": 10,
+      "port_policy": 15,
+      "no_service_start": 15,
+      "tests_passed": 15,
+      "evidence_written": 10,
+      "registry_updated": 5
+    }
+  },
+  "overall_status": "PASS",
+  "overall_exit_code": 0
+}

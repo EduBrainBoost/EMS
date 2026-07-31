@@ -1,0 +1,36 @@
+{
+  "service_id": "ssid-ems-backend",
+  "service_name": "SSID-EMS",
+  "timestamp_utc": "2026-07-16T11:43:04Z",
+  "backend": {
+    "port": 8100,
+    "host": "127.0.0.1",
+    "status": "operational",
+    "health_endpoint": "http://127.0.0.1:8100/health",
+    "health_status": "ok",
+    "readiness_status": "not_ready",
+    "version": "0.1.0-scaffold",
+    "mode": "local_scaffold",
+    "start_command": "python backend/app/http_server.py --port 8100",
+    "stop_command": "kill PID",
+    "tests_passed": 35,
+    "tests_total": 35
+  },
+  "frontend": {
+    "port": 3100,
+    "host": "127.0.0.1",
+    "status": "operational",
+    "health_endpoint": "http://127.0.0.1:3100/health",
+    "health_status": "ok",
+    "start_command": "python frontend/server.py --port 3100",
+    "stop_command": "kill PID",
+    "tests_passed": 6,
+    "tests_total": 6
+  },
+  "orchestrator": {
+    "url": "http://localhost:3310",
+    "status": "reachable",
+    "health_status": "ok"
+  },
+  "overall_status": "EMS_OPERATIONAL_READY_PHASE1"
+}

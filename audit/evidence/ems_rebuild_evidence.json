@@ -18,15 +18,13 @@
   "ems_guard": {
     "scan": "ems_static_guard",
     "timestamp": "2026-05-10T20:00:00+00:00",
-    "repo": "<REDACTED_LOCAL_PATH>",
+    "repo": "C:\\Users\\bibel\\SSID-Workspace\\SSID-Arbeitsbereich\\Github\\EMS",
     "findings_count": 0,
     "structure_findings": [],
     "findings": [],
     "contract_violations": [],
     "status": "pass",
-    "exit_code": 0,
-    "path_redacted": true,
-    "redaction_reason": "LOCAL_ABSOLUTE_PATH_REMOVED"
+    "exit_code": 0
   },
   "backend_tests": {
     "exit_code": 0,
@@ -66,7 +64,5 @@
       "registry_updated": 5
     }
   },
-  "repo_root": "<REDACTED_LOCAL_PATH>",
-  "path_redacted": true,
-  "redaction_reason": "LOCAL_ABSOLUTE_PATH_REMOVED"
+  "repo_root": "C:\\Users\\bibel\\SSID-Workspace\\SSID-Arbeitsbereich\\Github\\EMS"
 }

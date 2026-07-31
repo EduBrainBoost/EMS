@@ -1,0 +1,102 @@
+{
+  "evidence_id": "ems_phase1_final_evidence",
+  "timestamp_utc": "2026-07-16T11:43:04Z",
+  "repository": "SSID-EMS",
+  "repository_path": "C:\\Users\\bibel\\SSID-Workspace\\SSID-Arbeitsbereich\\Github\\SSID-EMS",
+  "branch": "master",
+  "commit": "none (working tree, no commits)",
+  "phase": "1",
+  "status": "EMS_OPERATIONAL_READY_PHASE1",
+  "guard": {
+    "status": "pass",
+    "findings_count": 0,
+    "contract_violations": 0
+  },
+  "tests": {
+    "backend": 35,
+    "backend_pass": 35,
+    "backend_fail": 0,
+    "root": 29,
+    "root_pass": 29,
+    "root_fail": 0,
+    "frontend_server": 1,
+    "frontend_server_pass": 1,
+    "frontend_contract": 5,
+    "frontend_contract_pass": 5
+  },
+  "score": {
+    "total_score": 100,
+    "max_score": 100,
+    "threshold": 95,
+    "status": "pass"
+  },
+  "services": {
+    "backend": {
+      "port": 8100,
+      "host": "127.0.0.1",
+      "status": "operational",
+      "health": "ok",
+      "readiness": "not_ready"
+    },
+    "frontend": {
+      "port": 3100,
+      "host": "127.0.0.1",
+      "status": "operational",
+      "health": "ok"
+    },
+    "orchestrator": {
+      "port": 3310,
+      "host": "127.0.0.1",
+      "status": "reachable",
+      "health": "ok"
+    }
+  },
+  "auth": {
+    "status": "operational-scaffold",
+    "type": "demo-stub-in-memory",
+    "login": "pass",
+    "logout": "pass",
+    "bad_login": "pass"
+  },
+  "security": {
+    "critical_findings": 0,
+    "high_findings": 0,
+    "secret_findings": 0,
+    "status": "PASS"
+  },
+  "compliance": {
+    "status": "PARTIAL",
+    "pass_checks": 3,
+    "partial_checks": 7,
+    "not_applicable": 6,
+    "not_executed": 2
+  },
+  "backup": {
+    "path": "C:\\Users\\bibel\\SSID-Workspace\\SSID-Arbeitsbereich\\backups\\SSID-EMS_20260716T114304Z",
+    "file_count": 97,
+    "size_bytes": 394133,
+    "sha256": "fc1dc83e0cb340ef64fe84d7a3a277eb4d66df482d2e5f7ef9e39e0a19503922"
+  },
+  "artifacts": [
+    "docs/operations/EMS_CURRENT_STATE.md",
+    "docs/operations/EMS_GAP_ANALYSIS.md",
+    "docs/operations/EMS_SERVICE_MATRIX.md",
+    "docs/operations/EMS_API_MATRIX.yaml",
+    "docs/operations/EMS_PERMISSION_MATRIX.yaml",
+    "docs/operations/EMS_DEPENDENCY_MATRIX.yaml",
+    "docs/operations/EMS_IMPLEMENTATION_PLAN.md",
+    "docs/operations/EMS_ROLLBACK_PLAN.md",
+    "audit/evidence/EMS_CHANGESET.md",
+    "audit/evidence/EMS_TEST_REPORT.md",
+    "audit/evidence/EMS_SECURITY_REPORT.md",
+    "audit/evidence/EMS_COMPLIANCE_REPORT.md",
+    "audit/evidence/EMS_EVIDENCE.md",
+    "audit/evidence/EMS_SERVICE_STATUS.json",
+    "audit/evidence/EMS_API_STATUS.json",
+    "audit/evidence/EMS_REGISTRY_UPDATE.yaml",
+    "audit/evidence/EMS_SCORE.json",
+    "audit/evidence/EMS_EVIDENCE.json",
+    "registry/ems_module_registry.yaml",
+    "registry/ems_contract_registry.yaml"
+  ]
+}

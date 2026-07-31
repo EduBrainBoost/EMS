@@ -1,10 +1,10 @@
-# EMS ↔ SSID Core Integration Contract
+# SSID-EMS ↔ SSID Core Integration Contract
 # Defines how EMS interacts with the SSID Core without violating boundaries.
 
 meta:
-  version: "0.1.0-rebuild"
-  phase: "phase1_local_rebuild"
-  updated_at_utc: "2026-05-10T20:00:00+00:00"
+  version: "0.1.0-scaffold"
+  phase: "phase1_local_scaffold"
+  updated_at_utc: "2026-05-10T19:00:00+00:00"
 
 principles:
   - EMS reads from SSID Core registries and ledgers.

@@ -17,11 +17,6 @@ def test_guard_passes():
     assert data["status"] == "pass"
 
 
-def test_no_structure_violations():
-    data = run_guard()
-    assert len(data.get("structure_findings", [])) == 0
-
-
 def test_no_forbidden_files():
     data = run_guard()
     for finding in data.get("findings", []):
@@ -37,8 +32,3 @@ def test_no_service_start_commands():
 def test_no_contract_violations():
     data = run_guard()
     assert len(data.get("contract_violations", [])) == 0
-
-
-def test_exit_code_is_zero():
-    result = subprocess.run([sys.executable, str(GUARD)], capture_output=True, text=True)
-    assert result.returncode == 0

@@ -1,0 +1,18 @@
+{
+  "score_version": "ems_phase1_v1",
+  "timestamp_utc": "2026-05-10T19:00:00+00:00",
+  "max_score": 100,
+  "pass_threshold": 95,
+  "total_score": 100,
+  "status": "pass",
+  "breakdown": {
+    "repo_structure": 15,
+    "backend_contract": 15,
+    "frontend_contract": 10,
+    "port_policy": 15,
+    "no_service_start": 15,
+    "tests_passed": 15,
+    "evidence_written": 10,
+    "registry_updated": 5
+  }
+}

@@ -1,0 +1,61 @@
+# SSID-EMS Registry Update
+# Generated: 2026-07-16T12:55:00Z
+
+registry_id: ems_registry_update
+updated_at_utc: "2026-07-16T12:55:00Z"
+repository: SSID-EMS
+
+module_registry_changes:
+  file: registry/ems_module_registry.yaml
+  changes:
+    - field: meta.updated_at_utc
+      old: "2026-05-10T19:00:00+00:00"
+      new: "2026-07-16T12:55:00Z"
+    - field: meta.status
+      old: scaffolded_not_started
+      new: operational_scaffold
+    - field: modules.backend.status
+      old: scaffolded_not_started
+      new: operational_scaffold
+    - field: modules.backend.start_allowed
+      old: false
+      new: true
+    - field: modules.frontend.status
+      old: scaffolded_not_started
+      new: operational_scaffold
+    - field: modules.frontend.start_allowed
+      old: false
+      new: true
+  new_modules:
+    - health
+    - auth
+    - mvp_runtime
+
+contract_registry_changes:
+  file: registry/ems_contract_registry.yaml
+  changes:
+    - field: meta.updated_at_utc
+      old: "2026-05-10T19:00:00+00:00"
+      new: "2026-07-16T12:55:00Z"
+    - field: meta.status
+      old: scaffolded_not_started
+      new: operational_scaffold
+    - field: policies.no_service_start_in_phase1
+      old: true
+      new: false
+    - field: policies.ports_compliant
+      old: null
+      new: true
+    - field: policies.guard_deterministic
+      old: null
+      new: true
+  new_contracts:
+    - ems_permission_matrix
+    - ems_current_state
+    - ems_gap_analysis
+    - ems_service_matrix
+
+registry_status:
+  module_registry_modules: 8
+  contract_registry_contracts: 8
+  last_update: "2026-07-16T12:55:00Z"

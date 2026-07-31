@@ -1,42 +1,56 @@
-# EMS Module Registry
-# Phase 1 — Local Rebuild v1
+# SSID-EMS Module Registry
+# Phase 1 — Local Operational Scaffold v1
+# Updated: 2026-07-16T11:43:04Z
 
 meta:
   registry_id: ems_module_registry
-  version: "0.1.0-rebuild"
-  updated_at_utc: "2026-05-10T20:00:00+00:00"
-  repo: EMS
+  version: "0.1.0-scaffold"
+  updated_at_utc: "2026-07-16T11:43:04Z"
+  repo: SSID-EMS
+  status: OPERATIONAL_READY_PHASE1
 
 modules:
   backend:
-    name: "EMS Backend"
+    name: "SSID-EMS Backend"
     path: "backend/app"
     language: "python"
+    runtime: "Python 3.14.4 stdlib"
     port: 8100
-    status: "rebuilt_not_started"
-    entrypoint: "backend/app/main.py"
-    start_allowed: false
+    host: "127.0.0.1"
+    status: "operational"
+    entrypoint: "backend/app/http_server.py"
+    start_command: "python backend/app/http_server.py --port 8100"
+    stop_command: "kill PID"
+    health_endpoint: "http://127.0.0.1:8100/health"
+    start_allowed: true
+    tests_passed: 35
+    test_path: "backend/tests"
 
   frontend:
-    name: "EMS Frontend"
-    path: "frontend/src"
-    language: "typescript"
+    name: "SSID-EMS Frontend"
+    path: "frontend"
+    language: "python"
+    runtime: "Python 3.14.4 stdlib"
     port: 3100
-    status: "rebuilt_not_started"
-    entrypoint: "frontend/src/App.tsx"
-    start_allowed: false
-
-  contracts:
-    name: "EMS Contracts"
-    path: "contracts"
-    language: "yaml"
-    status: "active"
+    host: "127.0.0.1"
+    status: "operational"
+    entrypoint: "frontend/server.py"
+    start_command: "python frontend/server.py --port 3100"
+    stop_command: "kill PID"
+    health_endpoint: "http://127.0.0.1:3100/health"
+    start_allowed: true
+    tests_passed: 1
+    test_path: "tests/test_frontend_health_server.py"
+    ts_contract_tests_passed: 5
+    ts_contract_test_path: "tests/test_runtime_ui_contract_static.py"
 
   guard:
     name: "EMS Static Guard"
     path: "scripts/ems_static_guard.py"
     language: "python"
     status: "active"
+    last_result: "pass"
+    findings_count: 0
     purpose: "Policy enforcement before start/push"
 
   score:
@@ -44,6 +58,9 @@ modules:
     path: "scripts/ems_score.py"
     language: "python"
     status: "active"
+    last_score: 100
+    max_score: 100
+    threshold: 95
 
   validation:
     name: "EMS Validation Orchestrator"
@@ -51,33 +68,36 @@ modules:
     language: "python"
     status: "active"
 
-  manifest:
-    name: "EMS First Push Manifest"
-    path: "scripts/first_push_manifest.py"
+  health:
+    name: "SSID-EMS Health Contracts"
+    path: "backend/app/health.py"
     language: "python"
-    status: "active"
+    endpoints:
+      - "/health"
+      - "/readiness"
+      - "/version"
+      - "/status"
+    status: "operational"
 
-  push_gate:
-    name: "EMS Push Gate"
-    path: "scripts/ems_push_gate.py"
+  auth:
+    name: "SSID-EMS Demo Auth"
+    path: "backend/app/runtime_http_adapter.py"
     language: "python"
-    status: "active"
-    purpose: "Blocks push without approval"
+    type: "demo-stub-in-memory"
+    persistence: "none"
+    endpoints:
+      - "/api/mvp/auth/login"
+      - "/api/mvp/auth/session"
+      - "/api/mvp/auth/logout"
+    status: "operational-scaffold"
 
-  phase2_validator:
-    name: "EMS Phase 2 Approval Validation"
-    path: "scripts/ems_phase2_approval_validation.py"
+  mvp_runtime:
+    name: "SSID-EMS MVP Runtime Adapter"
+    path: "backend/app/runtime_http_adapter.py"
     language: "python"
-    status: "active"
-
-  approval_schema:
-    name: "EMS Push Approval Schema"
-    path: "schemas/ems_remote_push_approval.schema.json"
-    language: "json"
-    status: "active"
-
-  approval_template:
-    name: "EMS Push Approval Template"
-    path: "approvals/templates/ems_remote_push_approval_template.yaml"
-    language: "yaml"
-    status: "active"
+    endpoints:
+      - "/api/mvp/health"
+      - "/api/mvp/demo"
+      - "/api/mvp/verify"
+    status: "operational-scaffold"
+    external_services: "NOT_USED"
